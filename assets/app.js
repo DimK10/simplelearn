@@ -9,6 +9,9 @@
 import './styles/app.css';
 
 // start the Stimulus application
-import './bootstrap';
+// import './bootstrap';
+import * as mdb from 'mdb-ui-kit';
+import 'mdb-ui-kit/css/mdb.min.css';
+
 
 require('./Main');
