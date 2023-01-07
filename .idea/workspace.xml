@@ -5,36 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/actions/alert.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/actions/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/auth/Login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/auth/Logout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/auth/Register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/auth/SecuredPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/dashboard/Dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/dashboard/MainChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/layout/Alert.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/layout/Breadcrumb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/layout/HeaderNav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/layout/Loading.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/layout/NavBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/layout/Pagination.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/layout/Sidebar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/reducers/alert.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/reducers/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/utils/setAuthToken.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/simplelearn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/simplelearn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/HelloPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/HelloPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +247,7 @@
       <workItem from="1672221199663" duration="5000" />
       <workItem from="1673096664383" duration="118000" />
       <workItem from="1673096795529" duration="288000" />
-      <workItem from="1673097103158" duration="17487000" />
+      <workItem from="1673097103158" duration="18883000" />
     </task>
     <servers />
   </component>
