@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/HelloPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/HelloPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20221227184402.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20221227184908.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +32,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpDebugGeneral" break_at_first_line="true" listening_started="true" />
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="localhost" id="80e668ac-6679-461a-806b-d1c8b663d5e1" name="localhost:8000" port="8000" />
@@ -213,10 +213,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php"
+    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php.debug"
   }
 }]]></component>
-  <component name="RunManager" selected="Shell Script.react hot reload">
+  <component name="RunManager" selected="JavaScript Debug.Debug React">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
@@ -241,7 +241,7 @@
       <workItem from="1672221199663" duration="5000" />
       <workItem from="1673096664383" duration="118000" />
       <workItem from="1673096795529" duration="288000" />
-      <workItem from="1673097103158" duration="5290000" />
+      <workItem from="1673097103158" duration="8884000" />
     </task>
     <servers />
   </component>
@@ -275,6 +275,12 @@
           <url>file://$PROJECT_DIR$/src/Controller/DashboardController.php</url>
           <line>19</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/HelloPage.js</url>
+          <line>5</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
