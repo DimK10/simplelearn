@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layout/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,19 +35,14 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpDebugGeneral" break_at_first_line="true" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="localhost" id="80e668ac-6679-461a-806b-d1c8b663d5e1" name="localhost:8000" port="8000" />
-      <server host="localhost" id="699347f2-9a4e-46ed-9b9b-03b242faf776" name="localhost" use_path_mappings="true">
-        <path_mappings>
-          <mapping local-root="$PROJECT_DIR$/public" remote-root="D:/www" />
-        </path_mappings>
-      </server>
     </servers>
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="D:\web-dev-workstation\simplelearn/public" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost:8000/" />
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.2">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.1">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug-bundle" />
@@ -200,23 +199,25 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/web-dev-workstation/simplelearn/assets/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php.debug"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/dimk/web-dev-workstation/simplelearn/config/jwt&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.php.debug.servers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config/jwt" />
       <recent name="D:\web-dev-workstation\simplelearn\assets\components" />
       <recent name="D:\web-dev-workstation\simplelearn\assets\components\auth" />
       <recent name="D:\web-dev-workstation\simplelearn\assets" />
@@ -227,11 +228,43 @@
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="php server with xdebug Ubuntu" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="/opt/lampp/bin/php" />
+      <option name="SCRIPT_OPTIONS" value="-S localhost:8000" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/public" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="react hot reload  ubuntu" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="/snap/bin/yarn" />
+      <option name="SCRIPT_OPTIONS" value="encore dev-server --hot" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="JavaScript Debug.Debug React" />
       <item itemvalue="PHPUnit.phpunit.xml.dist" />
       <item itemvalue="Shell Script.php server with xdebug" />
+      <item itemvalue="Shell Script.php server with xdebug Ubuntu" />
       <item itemvalue="Shell Script.react hot reload" />
+      <item itemvalue="Shell Script.react hot reload  ubuntu" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -248,6 +281,11 @@
       <workItem from="1673096664383" duration="118000" />
       <workItem from="1673096795529" duration="288000" />
       <workItem from="1673097103158" duration="18883000" />
+      <workItem from="1673248328001" duration="513000" />
+      <workItem from="1673248905995" duration="59000" />
+      <workItem from="1673249006880" duration="6381000" />
+      <workItem from="1673419534584" duration="1014000" />
+      <workItem from="1673427845564" duration="2934000" />
     </task>
     <servers />
   </component>
@@ -268,42 +306,29 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/assets/reducers/index.js</url>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
+          <line>74</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
+          <line>76</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/RegistrationController.php</url>
-          <option name="timeStamp" value="5" />
+          <line>24</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/RegistrationController.php</url>
           <line>25</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/src/Controller/DashboardController.php</url>
-          <line>19</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/components/HelloPage.js</url>
-          <line>6</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/reducers/index.js</url>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
-          <line>74</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
-          <line>76</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="13" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

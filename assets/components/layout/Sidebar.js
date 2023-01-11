@@ -27,7 +27,7 @@ function Sidebar(props) {
               className="list-group-item list-group-item-action py-2 ripple active"
             >
               <i className="fas fa-chart-area fa-fw me-3"></i
-              ><span>Webiste traffic</span>
+              ><span>My Lessons</span>
             </a>
             <a
               href="#"
