@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/styles/user-icon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/simplelearn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/simplelearn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/auth/SecuredPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/auth/SecuredPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layout/HeaderNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layout/HeaderNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layout/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BaseFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BaseFixture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,6 +195,9 @@
       <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/vendor/lcobucci/clock" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
     </include_path>
   </component>
   <component name="ProjectId" id="2JVc5ULAONQZMVdFGOumJaiYBC7" />
@@ -225,7 +232,7 @@
       <recent name="D:\web-dev-workstation\simplelearn\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.react hot reload  ubuntu">
+  <component name="RunManager" selected="Shell Script.php server with xdebug Ubuntu">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
@@ -288,7 +295,7 @@
       <workItem from="1673249006880" duration="6381000" />
       <workItem from="1673419534584" duration="1014000" />
       <workItem from="1673427845564" duration="2989000" />
-      <workItem from="1673505111167" duration="2752000" />
+      <workItem from="1673505111167" duration="8789000" />
     </task>
     <servers />
   </component>
