@@ -14,7 +14,8 @@ class Lesson
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * TODO REMOVE STRATEGY FOR REAL DATA
+     * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -49,6 +50,16 @@ class Lesson
     {
         return $this->id;
     }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+
 
     public function getName(): ?string
     {
