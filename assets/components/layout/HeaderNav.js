@@ -33,69 +33,24 @@ const HeaderNav = props => {
 
             {/*<!-- Brand -->*/}
             <a className="navbar-brand" href="#">
-              <img
-                src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
-                height="25"
-                alt=""
-                loading="lazy"
-              />
+              <h2 style={{fontWeight: '900'}}>Simplelearn</h2>
             </a>
             {/*<!-- Search form -->*/}
-            <form className="d-none d-md-flex input-group w-auto my-auto">
-              <input
-                autoComplete="off"
-                type="search"
-                className="form-control rounded"
-                placeholder='Search (ctrl + "/" to focus)'
-                style={{minWidth: '225px'}}
-              />
-              <span className="input-group-text border-0"
-              ><i className="fas fa-search"></i
-              ></span>
-            </form>
+            {/*<form className="d-none d-md-flex input-group w-auto my-auto">*/}
+            {/*  <input*/}
+            {/*    autoComplete="off"*/}
+            {/*    type="search"*/}
+            {/*    className="form-control rounded"*/}
+            {/*    placeholder='Search (ctrl + "/" to focus)'*/}
+            {/*    style={{minWidth: '225px'}}*/}
+            {/*  />*/}
+            {/*  <span className="input-group-text border-0"*/}
+            {/*  ><i className="fas fa-search"></i*/}
+            {/*  ></span>*/}
+            {/*</form>*/}
 
             {/*<!-- Right links -->*/}
             <ul className="navbar-nav ms-auto d-flex flex-row">
-              {/*<!-- Notification dropdown -->*/}
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-mdb-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i className="fas fa-bell"></i>
-                  <span className="badge rounded-pill badge-notification bg-danger"
-                  >1</span
-                  >
-                </a>
-                <ul
-                  className="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li><a className="dropdown-item" href="#">Some news</a></li>
-                  <li><a className="dropdown-item" href="#">Another news</a></li>
-                  <li>
-                    <a className="dropdown-item" href="#">Something else here</a>
-                  </li>
-                </ul>
-              </li>
-
-              {/*<!-- Icon -->*/}
-              <li className="nav-item">
-                <a className="nav-link me-3 me-lg-0" href="#">
-                  <i className="fas fa-fill-drip"></i>
-                </a>
-              </li>
-              {/*<!-- Icon -->*/}
-              <li className="nav-item me-3 me-lg-0">
-                <a className="nav-link" href="#">
-                  <i className="fab fa-github"></i>
-                </a>
-              </li>
-
               {/*<!-- Icon dropdown -->*/}
               <li className="nav-item dropdown">
                 <a
@@ -174,21 +129,19 @@ const HeaderNav = props => {
                   data-mdb-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                    className="rounded-circle"
-                    height="22"
-                    alt=""
-                    loading="lazy"
-                  />
+                  <i className="fa-solid fa-user"></i>
                 </a>
                 <ul
                   className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <li><a className="dropdown-item" href="#">My profile</a></li>
-                  <li><a className="dropdown-item" href="#">Settings</a></li>
-                  <li><a className="dropdown-item" href="#">Logout</a></li>
+                  {/*<li><a className="dropdown-item" href="#">My profile</a></li>*/}
+                  {/*<li><a className="dropdown-item" href="#">Settings</a></li>*/}
+                  <li>
+                    <Link className="dropdown-item" to='/logout'>
+                      Logout
+                    </Link>
+                  </li>
                 </ul>
               </li>
             </ul>

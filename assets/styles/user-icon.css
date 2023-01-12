@@ -1,0 +1,10 @@
+/* User icon */
+.nav-link.dropdown-toggle.hidden-arrow.d-flex.align-items-center {
+    border: 2px solid;
+    border-radius: 50%;
+    width: 36px;
+}
+
+.fa-solid.fa-user {
+    margin: 0 auto;
+}

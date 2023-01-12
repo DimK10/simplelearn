@@ -5,86 +5,48 @@ import {Link} from "react-router-dom";
 Sidebar.propTypes = {};
 
 function Sidebar(props) {
-  return (
-    <Fragment>
-      {/*<!-- Sidebar -->*/}
-      <nav
-        id="sidebarMenu"
-        className="collapse d-lg-block sidebar collapse bg-white"
-      >
-        <div className="position-sticky">
-          <div className="list-group list-group-flush mx-3 mt-4">
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-              aria-current="true"
+    return (
+        <Fragment>
+            {/*<!-- Sidebar -->*/}
+            <nav
+                id="sidebarMenu"
+                className="collapse d-lg-block sidebar collapse bg-white"
             >
-              <i className="fas fa-tachometer-alt fa-fw me-3"></i
-              ><span>Main dashboard</span>
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple active"
-            >
-              <i className="fas fa-chart-area fa-fw me-3"></i
-              ><span>My Lessons</span>
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-lock fa-fw me-3"></i><span>Password</span></a
-            >
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-chart-line fa-fw me-3"></i
-            ><span>Analytics</span></a
-            >
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            >
-              <i className="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
-            >
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-globe fa-fw me-3"></i
-            ><span>International</span></a
-            >
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-building fa-fw me-3"></i
-            ><span>Partners</span></a
-            >
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-calendar fa-fw me-3"></i
-            ><span>Calendar</span></a
-            >
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-users fa-fw me-3"></i><span>Users</span></a
-            >
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            ><i className="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a
-            >
-          </div>
-        </div>
-      </nav>
-      {/*<!-- Sidebar -->*/}
-    </Fragment>
-  );
+                <div className="position-sticky">
+                    <div className="list-group list-group-flush mx-3 mt-4">
+
+                        <Link className={`list-group-item list-group-item-action py-2 ripple ${
+                            window.location.pathname === '/dashboard' ? 'active' : ''
+                        }`} to='/dashboard'>
+                            <i className="fas fa-tachometer-alt fa-fw me-3"></i
+                            ><span>Main dashboard</span>
+                        </Link>
+
+                        <Link className={`list-group-item list-group-item-action py-2 ripple ${
+                            window.location.pathname === '/my-lessons' ? 'active' : ''
+                        }`} to='/my-lessons'>
+                            <i className="fa-solid fa-book-open fa-fw me-3"></i>
+                            <span>My Lessons</span>
+                        </Link>
+
+                        <Link className={`list-group-item list-group-item-action py-2 ripple ${
+                            window.location.pathname === '/my-questions' ? 'active' : ''
+                        }`} to='/my-questions'>
+                            <i className="fa-solid fa-clipboard-question fa-fw me-3"></i>
+                            <span>My Questions</span>
+                        </Link>
+                        <a
+                            href="#"
+                            className="list-group-item list-group-item-action py-2 ripple"
+                        ><i className="fas fa-chart-line fa-fw me-3"></i
+                        ><span>Analytics</span></a
+                        >
+                    </div>
+                </div>
+            </nav>
+            {/*<!-- Sidebar -->*/}
+        </Fragment>
+    );
 }
 
 export default Sidebar;

@@ -28,7 +28,7 @@ function Main() {
       <Provider store={store}>
         <Router>
           <Routes>
-            <Route exact path="/" element={<Login/>}/>
+            <Route exact path="/" element={<SecuredPage/>}/>
             <Route path='/sign-in' element={<Login/>}/>
             <Route path='/sign-up' element={<Register/>}/>
             <Route path='/logout' element={<Logout/>}/>

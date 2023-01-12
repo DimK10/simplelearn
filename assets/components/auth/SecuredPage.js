@@ -16,7 +16,7 @@ const SecuredPage = ({ children }) => {
   }, []);
 
   if (auth.jwt === null && auth.isAuthenticated === null) {
-    return <Navigate to='/not-found' />
+    return <Navigate to='/sign-in' />
   }
 
   if (auth.error === 'Token expired') {
