@@ -30,6 +30,8 @@ class LessonDTO
      */
     private $enrolledStudents;
 
+
+
     /**
      * @param int $id
      * @param string $name
@@ -37,14 +39,7 @@ class LessonDTO
      * @param int $tutor
      * @param array $enrolledStudents
      */
-    public function __construct(int $id, string $name, string $description, int $tutor, array $enrolledStudents)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->tutor = $tutor;
-        $this->enrolledStudents = $enrolledStudents;
-    }
+    public function __construct(){}
 
     /**
      * @return int

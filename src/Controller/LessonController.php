@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Converter\LessonToLessonDTO;
 use App\Entity\Lesson;
 use App\Entity\User;
 use App\Repository\LessonRepository;
@@ -23,11 +24,17 @@ class LessonController extends AbstractController
     private $userService;
 
     /**
+     * @var LessonToLessonDTO
+     */
+    private $lessonToLessonDTO;
+
+    /**
      * @param UserService $usrService
      */
-    public function __construct(UserService $usrService)
+    public function __construct(UserService $usrService, LessonToLessonDTO $lessonToLessonDTO)
     {
         $this->userService = $usrService;
+        $this->lessonToLessonDTO = $lessonToLessonDTO;
     }
 
 
@@ -59,6 +66,10 @@ class LessonController extends AbstractController
 
         $lessons = $lessonRepository->getAllLessonsForTutor($tutor, $firstResult, $numOfRecords);
 
-        return $this->json($lessons);
+        $lessonDTOs = array_map(function ($lesson) {
+            return $this->lessonToLessonDTO->convert($lesson);
+        }, $lessons);
+
+        return $this->json($lessonDTOs);
     }
 }

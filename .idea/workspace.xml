@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/actions/lesson.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/reducers/lesson.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dto/LessonDTO.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Converter/LessonDTOToLesson.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Converter/LessonToLessonDTO.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LessonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LessonRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LessonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LessonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dto/LessonDTO.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dto/LessonDTO.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +291,7 @@
       <workItem from="1673419534584" duration="1014000" />
       <workItem from="1673427845564" duration="2989000" />
       <workItem from="1673505111167" duration="16627000" />
-      <workItem from="1673593074530" duration="3894000" />
+      <workItem from="1673593074530" duration="5723000" />
     </task>
     <servers />
   </component>
