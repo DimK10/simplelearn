@@ -1,7 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import HeaderNav from "../layout/HeaderNav";
+import {useDispatch} from "react-redux";
+import {getAllLessonsByPageForTutor} from "../../actions/lesson";
 
 const MyLessons = () =>{
+
+    const dispatch = useDispatch();
+    const lessons = useState(state => state.lesson);
+
+    useEffect(() => {
+        dispatch(getAllLessonsByPageForTutor(0, 10))
+        console.log(lessons);
+    }, [])
+
     return (
         <>
             <HeaderNav/>

@@ -9,13 +9,14 @@ const {
     lessonError
 } = lessonSlice.actions;
 
-export const getAllLessonsByPage = (pageNo, pageSize) => async (dispatch) => {
+export const getAllLessonsByPageForTutor = (pageNo, pageSize) => async (dispatch) => {
     if (localStorage.jwt) {
         setAuthToken(localStorage.jwt);
     }
 
     try {
-        const res = await axios.get(`/api/lessons/${pageNo}/${pageSize}`);
+        ///lessons/tutor/{pageNo}/{numOfRecords}
+        const res = await axios.get(`/api/lessons/tutor/${pageNo}/${pageSize}`);
         dispatch(getAllLessons(res.data))
     } catch (err) {
         dispatch(lessonError(err.response.data.errorMessage))

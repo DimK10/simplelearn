@@ -6,6 +6,7 @@ use App\Repository\LessonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=LessonRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Lesson
 {
     /**
+     * @Groups("admin")
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
      * @ORM\GeneratedValue(strategy="NONE")
@@ -21,22 +23,26 @@ class Lesson
     private $id;
 
     /**
+     * @Groups("admin")
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @Groups("admin")
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
+     * @Groups("client")
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="lessons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tutor;
 
     /**
+     * @Groups("none")  fixme enrolled admin as student?
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="lessonsEnrolled")
      */
     private $enrolledStudents;

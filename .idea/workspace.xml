@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Controller/LessonControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Controller/LessonControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/util/ClientFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/util/ClientFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/lesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lessons/MyLessons.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lessons/MyLessons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Lesson.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Lesson.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +220,11 @@
     "php.override.implement.member.chooser.php.doc": "NONE",
     "settings.editor.selected.configurable": "settings.php.debug.servers",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -225,7 +235,7 @@
       <recent name="D:\web-dev-workstation\simplelearn\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.LessonControllerTest.testIndex">
+  <component name="RunManager" selected="JavaScript Debug.Debug React">
     <configuration name="LessonControllerTest.testIndex" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Controller\LessonControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Controller/LessonControllerTest.php" method="testIndex" scope="Method" />
       <method v="2" />
@@ -299,7 +309,8 @@
       <workItem from="1673419534584" duration="1014000" />
       <workItem from="1673427845564" duration="2989000" />
       <workItem from="1673505111167" duration="16627000" />
-      <workItem from="1673593074530" duration="12474000" />
+      <workItem from="1673593074530" duration="12951000" />
+      <workItem from="1673607995480" duration="2447000" />
     </task>
     <servers />
   </component>
@@ -333,6 +344,30 @@
           <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
           <line>76</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
+          <line>77</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/actions/lesson.js</url>
+          <line>12</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
+          <line>21</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
+          <line>28</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/RegistrationController.php</url>

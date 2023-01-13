@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -15,6 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
+     * @Groups("user")
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
      * @ORM\GeneratedValue(strategy="NONE")
@@ -23,38 +25,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     /**
+     * @Groups("user")
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
+     * @Groups("user")
      * @ORM\Column(type="string", length=180)
      */
     private $username;
 
     /**
+     * @Groups("user")
      * @ORM\Column(type="json")
      */
     private $roles = [];
 
     /**
+     * @Groups("user")
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="tutor")
+     * @Groups("user")
+     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="tutor", fetch="LAZY")
      * This represent the lessons this user is a teacher to
      */
     private $lessons;
 
     /**
+     * @Groups("user")
      * @ORM\ManyToMany(targetEntity=Lesson::class, mappedBy="enrolledStudents")
      */
     private $lessonsEnrolled;
 
     /**
+     * @Groups("user")
      * @ORM\OneToMany(targetEntity=ExamTaken::class, mappedBy="student")
      */
     private $examsTaken;
