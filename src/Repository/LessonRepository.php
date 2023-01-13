@@ -39,6 +39,22 @@ class LessonRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Lesson[] Returns an array of Lesson objects for tutor
+     */
+    public function getAllLessonsForTutor($tutor, $firstResult, $maxResults): array
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.tutor = :tutor')
+            ->setParameter('tutor', $tutor)
+            ->orderBy('l.id', 'ASC')
+            ->setFirstResult($firstResult)
+            ->setMaxResults($maxResults)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Lesson[] Returns an array of Lesson objects
 //     */
