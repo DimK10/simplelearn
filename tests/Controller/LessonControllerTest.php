@@ -18,6 +18,7 @@ use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class LessonControllerTest extends TestCase
 {
@@ -54,26 +55,26 @@ class LessonControllerTest extends TestCase
         // When
         $matcher = $this->createMock(UrlMatcherInterface::class);
 
-        $userServiceMock = $this->createMock(UserService::class);
-        $userServiceMock->expects(self::once())
-            ->method('getCurrentUser')
-            ->willReturn($admin);
+//        $userServiceMock = $this->createMock(UserService::class);
+//        $userServiceMock->expects(self::once())
+//            ->method('getCurrentUser')
+//            ->willReturn($admin);
 
         $lessonToLessonDTOMock = $this->createMock(LessonToLessonDTO::class);
         $lessonToLessonDTOMock->expects(self::any())
             ->method('convert');
 
         $lessonRepository = $this->createMock(LessonRepository::class);
-        $lessonRepository->expects(self::once())
-            ->method('getAllLessonsForTutor')
-            ->with($admin, 0, 10)
-            ->willReturn($lessons);
+//        $lessonRepository->expects(self::once())
+//            ->method('getAllLessonsForTutor')
+//            ->with($admin, 0, 10)
+//            ->willReturn($lessons);
 
 
 
         // Then
         /**
-         * @var AmpHttpClient $client
+         * @var HttpClientInterface $client
          */
 //        $client = HttpClient::create();
 

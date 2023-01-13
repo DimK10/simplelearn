@@ -24,7 +24,7 @@ class ClientFactory
      * @return HttpClientInterface
      * @throws TransportExceptionInterface
      */
-    public static function createAuthenticatedClient($email = 'admin', $password = '123456!Aa')
+    public static function createAuthenticatedClient($email = 'admin@gmail.com', $password = '123456!Aa')
     {
         /**
          * @var AmpHttpClient $client
