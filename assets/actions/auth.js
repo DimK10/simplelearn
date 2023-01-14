@@ -75,7 +75,7 @@ export const login = (email, password) => async (dispatch) => {
     const res = await axios.post('api/login_check', body, config);
 
     const token = res.data.token;
-    const email = jwt(token).sub;
+    const email = jwt(token).email;
 
      await dispatch(loginSuccess({jwt: token, user: email}));
 
