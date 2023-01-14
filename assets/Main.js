@@ -13,6 +13,7 @@ import Logout from "./components/auth/Logout";
 import SecuredPage from "./components/auth/SecuredPage";
 import Dashboard from "./components/dashboard/Dashboard";
 import MyLessons from "./components/lessons/MyLessons";
+import Lesson from "./components/lesson/Lesson";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -39,10 +40,16 @@ function Main() {
                 <Dashboard/>
               </SecuredPage>}/>
 
+            {/* Lesson Routes */}
             <Route path='/my-lessons' element={
               <SecuredPage>
                 <MyLessons/>
               </SecuredPage>}/>
+            <Route path='lesson/view' element={
+              <SecuredPage>
+                <Lesson />
+              </SecuredPage>
+            } />
 
           </Routes>
         </Router>

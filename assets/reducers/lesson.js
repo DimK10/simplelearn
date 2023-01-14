@@ -26,6 +26,10 @@ const lessonSlice = createSlice({
             const { payload } = action;
             state.error = payload;
             state.loading = false;
+        },
+        setViewableLesson: (state, action) => {
+          const { payload } = action;
+          state.lesson = payload;
         }
     }
 })

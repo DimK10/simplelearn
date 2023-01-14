@@ -1,7 +1,20 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setViewableLessonAction} from "../../actions/lesson";
 
 const LessonCard = ({lessons}) => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onLessonBtnClick = (e) => {
+    const lessonName = e.target.previousSibling.previousSibling.innerHTML;
+    let lesson = lessons.find(lesson => lesson.name === lessonName);
+    dispatch(setViewableLessonAction(lesson));
+    navigate("/lesson/view");
+  }
 
   return (
     <>
@@ -23,7 +36,7 @@ const LessonCard = ({lessons}) => {
                   <div className="card-body text-center d-flex flex-column justify-content-around">
                     <h5 className="card-title">{lesson.name}</h5>
                     <p className="card-text">Show info for {lesson.name} lesson</p>
-                    <button type="button" className="btn btn-primary">Check Lesson</button>
+                    <button type="button" className="btn btn-primary" onClick={(e) => {onLessonBtnClick(e)}}>Check Lesson</button>
                   </div>
                 </div>
               </div>
@@ -36,7 +49,7 @@ const LessonCard = ({lessons}) => {
 }
 
 LessonCard.propTypes = {
-  lessons: PropTypes.array
+  lessons: PropTypes.array.isRequired
 };
 
 export default LessonCard;
