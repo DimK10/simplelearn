@@ -10,7 +10,7 @@
     margin: inherit;
 }
 
-#correct {
+.correct {
     background: var(--card-correct-answer);
     color: #FFFFFF;
 }
