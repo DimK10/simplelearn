@@ -1,7 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from "prop-types";
+import AddQuestion from "./AddQuestion";
+import {v4 as uuidv4} from 'uuid';
 
 const LessonForm = ({lesson}) => {
+
+    const [questionComponents, setQuestionComponents] = useState([]);
+
+    const [formData, setFormData] = useState({
+        questions: [],
+    });
+
+    const {
+        questions
+    } = formData;
+
+    const onPlusBtnClick = (e) => {
+        e.preventDefault();
+
+        let questionComponent = {
+            id: uuidv4()
+        }
+
+        setQuestionComponents([...questionComponents, questionComponent])
+    }
+
     return (
         <>
             <div className="container pt-4">
@@ -78,7 +101,23 @@ const LessonForm = ({lesson}) => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="row">
+                                {
+                                    questionComponents.map((questionComponent) => {
+                                        return <AddQuestion questionId={questionComponent.id}
+                                                            key={questionComponent.id}/>
+                                    })
+                                }
+                            </div>
+                            <div className="row">
+                                <button className="btn btn-primary" onClick={(e) => {
+                                    onPlusBtnClick(e)
+                                }}>
+                                    <i className="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
+
                     </div>
                 </section>
             </div>

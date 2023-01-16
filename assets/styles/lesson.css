@@ -14,3 +14,8 @@
     background: var(--card-correct-answer);
     color: #FFFFFF;
 }
+
+.answer-checkbox {
+    display: inherit;
+    align-items: center;
+}
