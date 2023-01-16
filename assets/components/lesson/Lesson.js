@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import LessonForm from "./LessonForm";
 import {useSelector} from "react-redux";
+import HeaderNav from "../layout/HeaderNav";
 
 const Lesson = () => {
 
@@ -9,6 +10,7 @@ const Lesson = () => {
 
   return (
       <>
+        <HeaderNav/>
         <main style={{marginTop: '58px'}}>
           <div className="container pt-4">
             <section className="mb-4">

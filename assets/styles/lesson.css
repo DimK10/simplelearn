@@ -1,0 +1,16 @@
+:root {
+    --card-correct-answer: #0da243bf;
+}
+
+.question-card-body {
+    padding: .5rem;
+}
+
+.question-card-body > p {
+    margin: inherit;
+}
+
+#correct {
+    background: var(--card-correct-answer);
+    color: #FFFFFF;
+}
