@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
+import PropTypes from "prop-types";
 
-const AddQuestion = (props) => {
+const AddQuestion = ({ questionId, onRemoveQuestionClick }) => {
     return (
         <Fragment>
             <div className="card mb-4">
@@ -28,7 +29,7 @@ const AddQuestion = (props) => {
                                 </button>
                             </div>
                             <div className="col-sm-2 col-md-2">
-                                <button type="submit" className="btn btn-danger w-100">
+                                <button type="button" className="btn btn-danger w-100" onClick={() => {onRemoveQuestionClick(questionId)}} >
                                     <i className="fa-solid fa-x"></i>
                                 </button>
                             </div>
@@ -41,5 +42,10 @@ const AddQuestion = (props) => {
         </Fragment>
     )
 };
+
+AddQuestion.proptypes = {
+    questionId: PropTypes.string.isRequired,
+    onRemoveQuestionClick: PropTypes.func.isRequired
+}
 
 export default AddQuestion;

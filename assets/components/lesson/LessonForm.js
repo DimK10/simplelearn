@@ -25,6 +25,10 @@ const LessonForm = ({lesson}) => {
         setQuestionComponents([...questionComponents, questionComponent])
     }
 
+    const onRemoveQuestionClick = (questionId) => {
+        setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== questionId)]);
+    }
+
     return (
         <>
             <div className="container pt-4">
@@ -105,7 +109,9 @@ const LessonForm = ({lesson}) => {
                                 {
                                     questionComponents.map((questionComponent) => {
                                         return <AddQuestion questionId={questionComponent.id}
-                                                            key={questionComponent.id}/>
+                                                            key={questionComponent.id}
+                                                            onRemoveQuestionClick={onRemoveQuestionClick}
+                                        />
                                     })
                                 }
                             </div>
