@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -309,7 +310,7 @@
       <workItem from="1673505111167" duration="16627000" />
       <workItem from="1673593074530" duration="12951000" />
       <workItem from="1673607995480" duration="2447000" />
-      <workItem from="1673936695834" duration="8672000" />
+      <workItem from="1673936695834" duration="11434000" />
     </task>
     <servers />
   </component>
@@ -343,6 +344,12 @@
           <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
           <line>76</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
+          <line>72</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/RegistrationController.php</url>

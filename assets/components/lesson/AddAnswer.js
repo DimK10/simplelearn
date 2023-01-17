@@ -40,7 +40,7 @@ const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) =
                                 </div>
                             </div>
                             <div className="col-sm-2 col-md-2">
-                                <button type="submit" className="btn btn-success w-100"
+                                <button type="button" className="btn btn-success w-100"
                                         onClick={(e) => onAddAnswerClick(e, answerId, answer)}>
                                     <i className="fa-solid fa-check"></i>
                                 </button>
