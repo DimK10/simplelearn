@@ -7,6 +7,8 @@ const LessonForm = ({lesson}) => {
 
     const [questionComponents, setQuestionComponents] = useState([]);
 
+    const [difficultyComponent, setDifficultyComponent] = useState(false);
+
     const [formData, setFormData] = useState({
         questions: [],
     });
@@ -52,7 +54,7 @@ const LessonForm = ({lesson}) => {
         onRemoveQuestionComponentClick(questionId);
     }
 
-    const removeSavedQuestion= (questionId) => {
+    const removeSavedQuestion = (questionId) => {
         setFormData({...formData, questions: [...questions.filter((question) => question.id !== questionId)]});
     }
 
@@ -69,17 +71,59 @@ const LessonForm = ({lesson}) => {
         removeSavedQuestion(questionId);
     }
 
+    const toggleDifficultyClick = () => {
+        setDifficultyComponent(!difficultyComponent);
+    }
+
     return (
         <>
             <div className="container pt-4">
                 <section className="mb-4">
                     <div className="card">
+                        <span className="border border-5 border-danger rounded" onClick={toggleDifficultyClick}></span>
                         <div className="card-header py-3">
-                            <h5 className="mb-0 text-center mb-5"><strong>Question #1</strong>
-                            </h5>
-                            <p className="lead text-center">
-                                What is the color of life?
-                            </p>
+                            <div className="row">
+                                <h5 className="mb-0 text-center mb-5"><strong>Question #1</strong></h5>
+                            </div>
+                            <div className="row">
+                                <p className="lead text-center">
+                                    What is the color of life?
+                                </p>
+                            </div>
+                            {
+                                difficultyComponent
+                                &&
+                                <div className="row text-center">
+                                    <div className="col">
+                                        <div className="custom-control custom-radio d-inline-block w-30">
+                                            <input type="radio" className="custom-control-input" id="defaultGroupExample1"
+                                                   name="groupOfDefaultRadios" />
+                                            <label className="custom-control-label" htmlFor="defaultGroupExample1">Easy</label>
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <div className="custom-control custom-radio d-inline-block">
+                                            <input type="radio" className="custom-control-input" id="defaultGroupExample2"
+                                                   name="groupOfDefaultRadios" defaultChecked={true} />
+                                            <label className="custom-control-label" htmlFor="defaultGroupExample2">Medium</label>
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <div className="custom-control custom-radio d-inline-block">
+                                            <input type="radio" className="custom-control-input" id="defaultGroupExample3"
+                                                   name="groupOfDefaultRadios" />
+                                            <label className="custom-control-label" htmlFor="defaultGroupExample3">Hard</label>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            }
+
+
                         </div>
                         <div className="card-body">
                             {
@@ -139,7 +183,7 @@ const LessonForm = ({lesson}) => {
                 </section>
             </div>
         </>
-    )
+)
 };
 
 LessonForm.prototypes = {
