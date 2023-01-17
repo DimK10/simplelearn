@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/lesson.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/lesson.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +309,7 @@
       <workItem from="1673505111167" duration="16627000" />
       <workItem from="1673593074530" duration="12951000" />
       <workItem from="1673607995480" duration="2447000" />
-      <workItem from="1673936695834" duration="6599000" />
+      <workItem from="1673936695834" duration="8672000" />
     </task>
     <servers />
   </component>

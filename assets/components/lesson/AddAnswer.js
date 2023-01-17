@@ -1,24 +1,24 @@
 import React, {Fragment, useState} from 'react';
 import PropTypes from "prop-types";
 
-const AddQuestion = ({answerId, onAddQuestionClick, onRemoveQuestionComponentClick}) => {
+const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) => {
 
-    const [question, setQuestion] = useState({
+    const [answer, setAnswer] = useState({
         id: answerId,
         title: '',
         checked: false
     });
 
     const onChange = (e) =>
-        setQuestion({...question, [e.target.name]: e.target.value});
+        setAnswer({...answer, [e.target.name]: e.target.value});
 
     const onCheckboxChange = (e) =>
-        setQuestion({...question, [e.target.name]: e.target.checked});
+        setAnswer({...answer, [e.target.name]: e.target.checked});
 
     return (
         <Fragment>
             <div className="card mb-4">
-                <div className="card-body question-card-body">
+                <div className="card-body answer-card-body">
                     <form>
                         <div className="row w-100">
                             <div className="col-sm-5 col-md-6">
@@ -41,13 +41,13 @@ const AddQuestion = ({answerId, onAddQuestionClick, onRemoveQuestionComponentCli
                             </div>
                             <div className="col-sm-2 col-md-2">
                                 <button type="submit" className="btn btn-success w-100"
-                                        onClick={(e) => onAddQuestionClick(e, answerId, question)}>
+                                        onClick={(e) => onAddAnswerClick(e, answerId, answer)}>
                                     <i className="fa-solid fa-check"></i>
                                 </button>
                             </div>
                             <div className="col-sm-2 col-md-2">
                                 <button type="button" className="btn btn-danger w-100"
-                                        onClick={() => onRemoveQuestionComponentClick(answerId)}>
+                                        onClick={() => onRemoveAnswerComponentClick(answerId)}>
                                     <i className="fa-solid fa-x"></i>
                                 </button>
                             </div>
@@ -59,10 +59,10 @@ const AddQuestion = ({answerId, onAddQuestionClick, onRemoveQuestionComponentCli
     )
 };
 
-AddQuestion.proptypes = {
+AddAnswer.proptypes = {
     answerId: PropTypes.string.isRequired,
-    onAddQuestionClick: PropTypes.func.isRequired,
-    onRemoveQuestionComponentClick: PropTypes.func.isRequired
+    onAddAnswerClick: PropTypes.func.isRequired,
+    onRemoveAnswerComponentClick: PropTypes.func.isRequired
 }
 
-export default AddQuestion;
+export default AddAnswer;

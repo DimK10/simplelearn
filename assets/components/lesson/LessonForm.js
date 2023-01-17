@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
-import AddQuestion from "./AddQuestion";
+import AddAnswer from "./AddAnswer";
 import {v4 as uuidv4} from 'uuid';
 
 const LessonForm = ({lesson}) => {
@@ -13,10 +13,12 @@ const LessonForm = ({lesson}) => {
 
     const [formData, setFormData] = useState({
         questions: [],
+        answers: []
     });
 
     const {
-        questions
+        questions,
+        answers
     } = formData;
 
     useEffect(() => {
@@ -24,16 +26,6 @@ const LessonForm = ({lesson}) => {
     }, [formData]);
 
     const formIsInvalid = (form) => form.checkValidity() === false;
-
-    const onPlusQuestionBtnClick = (e) => {
-        e.preventDefault();
-
-        let questionComponent = {
-            id: uuidv4()
-        }
-
-        setQuestionComponents([...questionComponents, questionComponent])
-    }
 
     const onPlusAnswerBtnClick = (e) => {
         e.preventDefault();
@@ -45,7 +37,17 @@ const LessonForm = ({lesson}) => {
         setAnswerComponents([...answerComponents, answerComponent])
     }
 
-    const onAddQuestionClick = (e, questionId, question) => {
+    const onPlusQuestionBtnClick = (e) => {
+        e.preventDefault();
+
+        let answerComponent = {
+            id: uuidv4()
+        }
+
+        setAnswerComponents([...answerComponents, answerComponent])
+    }
+
+    const onAddAnswerClick = (e, answerId, answer) => {
         e.preventDefault();
         const form = e.target.form;
 
@@ -59,28 +61,28 @@ const LessonForm = ({lesson}) => {
         // add to formData
         setFormData({
             ...formData,
-            questions: [...questions, question]
+            answers: [...answers, answer]
         });
 
         // remove from questions
-        onRemoveQuestionComponentClick(questionId);
+        onRemoveAnswerComponentClick(answerId);
     }
 
-    const removeSavedQuestion = (questionId) => {
-        setFormData({...formData, questions: [...questions.filter((question) => question.id !== questionId)]});
+    const removeSavedAnswer = (answerId) => {
+        setFormData({...formData, answers: [...answers.filter((answer) => answer.id !== answerId)]});
     }
 
-    const onRemoveQuestionComponentClick = (questionId) => {
-        setAnswerComponents([...answerComponents.filter((questionComponent) => questionComponent.id !== questionId)]);
+    const onRemoveAnswerComponentClick = (answerId) => {
+        setAnswerComponents([...answerComponents.filter((answerComponent) => answerComponent.id !== answerId)]);
     }
 
 
-    const onRemoveSavedQuestionClick = (e) => {
-        const questionId = e.currentTarget.getAttribute('data-index');
+    const onRemoveSavedAnswerClick = (e) => {
+        const answerId = e.currentTarget.getAttribute('data-index');
 
         // TODO SEND TO API REMOVE ANSWER
 
-        removeSavedQuestion(questionId);
+        removeSavedAnswer(answerId);
     }
 
     const toggleDifficultyClick = () => {
@@ -153,16 +155,16 @@ const LessonForm = ({lesson}) => {
                         </div>
                         <div className="card-body">
                             {
-                                questions !== null
+                                answers !== null
                                 &&
-                                questions.length > 0
+                                answers.length > 0
                                     ?
-                                    questions.map(question => (
-                                        <div className="row mb-3" key={question.id}>
-                                            <div className={`card ${question.checked && 'correct'}`}>
+                                    answers.map(answer => (
+                                        <div className="row mb-3" key={answer.id}>
+                                            <div className={`card ${answer.checked && 'correct'}`}>
                                                 <div
                                                     className="card-body d-flex justify-content-between align-items-center question-card-body">
-                                                    <p className="card-text me-auto">{questions.indexOf(question) + 1}) {question.title}</p>
+                                                    <p className="card-text me-auto">{answers.indexOf(answer) + 1}) {answer.title}</p>
                                                     <button type="button" className="btn btn-warning m-1"
                                                             style={{height: 'min-content'}}
                                                     >
@@ -171,8 +173,8 @@ const LessonForm = ({lesson}) => {
                                                         <p style={{display: 'inline'}}>Edit</p>
                                                     </button>
                                                     <button type="button" className="btn btn-danger m-1"
-                                                            style={{height: 'min-content'}} data-index={question.id}
-                                                            onClick={(e) => onRemoveSavedQuestionClick(e)}>
+                                                            style={{height: 'min-content'}} data-index={answer.id}
+                                                            onClick={(e) => onRemoveSavedAnswerClick(e)}>
                                                         <i className="fa-solid fa-trash"
                                                            style={{display: 'inline', marginRight: '.3rem'}}></i>
                                                         <p style={{display: 'inline'}}>Delete</p>
@@ -188,10 +190,10 @@ const LessonForm = ({lesson}) => {
                             <div className="row">
                                 {
                                     answerComponents.map((answerComponent) => {
-                                        return <AddQuestion answerId={answerComponent.id}
-                                                            key={answerComponent.id}
-                                                            onAddQuestionClick={onAddQuestionClick}
-                                                            onRemoveQuestionComponentClick={onRemoveQuestionComponentClick}
+                                        return <AddAnswer answerId={answerComponent.id}
+                                                          key={answerComponent.id}
+                                                          onAddAnswerClick={onAddAnswerClick}
+                                                          onRemoveAnswerComponentClick={onRemoveAnswerComponentClick}
                                         />
                                     })
                                 }
@@ -208,7 +210,7 @@ const LessonForm = ({lesson}) => {
                     </div>
                     <div className="row">
                         <button className="btn btn-primary" onClick={(e) => {
-                            onPlusQuestionBtnClick(e)
+                            onPlusAnswerBtnClick(e)
                         }}>
                             <i className="fa-solid fa-plus"></i>
                         </button>
