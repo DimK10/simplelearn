@@ -19,3 +19,11 @@
     display: inherit;
     align-items: center;
 }
+
+.question-modify-buttons {
+    top: 30%;
+}
+
+.question-button {
+    margin-right: .3rem;
+}

@@ -7,6 +7,8 @@ const LessonForm = ({lesson}) => {
 
     const [questionComponents, setQuestionComponents] = useState([]);
 
+    const [answerComponents, setAnswerComponents] = useState([]);
+
     const [difficultyComponent, setDifficultyComponent] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const LessonForm = ({lesson}) => {
 
     const formIsInvalid = (form) => form.checkValidity() === false;
 
-    const onPlusBtnClick = (e) => {
+    const onPlusQuestionBtnClick = (e) => {
         e.preventDefault();
 
         let questionComponent = {
@@ -31,6 +33,16 @@ const LessonForm = ({lesson}) => {
         }
 
         setQuestionComponents([...questionComponents, questionComponent])
+    }
+
+    const onPlusAnswerBtnClick = (e) => {
+        e.preventDefault();
+
+        let answerComponent = {
+            id: uuidv4()
+        }
+
+        setAnswerComponents([...answerComponents, answerComponent])
     }
 
     const onAddQuestionClick = (e, questionId, question) => {
@@ -59,7 +71,7 @@ const LessonForm = ({lesson}) => {
     }
 
     const onRemoveQuestionComponentClick = (questionId) => {
-        setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== questionId)]);
+        setAnswerComponents([...answerComponents.filter((questionComponent) => questionComponent.id !== questionId)]);
     }
 
 
@@ -79,11 +91,21 @@ const LessonForm = ({lesson}) => {
         <>
             <div className="container pt-4">
                 <section className="mb-4">
-                    <div className="card">
+                    <div className="card mb-4">
                         <span className="border border-5 border-danger rounded" onClick={toggleDifficultyClick}></span>
                         <div className="card-header py-3">
-                            <div className="row">
+                            <div className="row position-relative">
                                 <h5 className="mb-0 text-center mb-5"><strong>Question #1</strong></h5>
+                                <div className="position-absolute question-modify-buttons">
+                                    <button type="button" className="btn btn-danger question-button float-end">
+                                        <i className="fa-solid fa-trash"></i>
+                                    </button>
+                                    <button type="button" className="btn btn-warning question-button float-end">
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                    </button>
+
+                                </div>
+
                             </div>
                             <div className="row">
                                 <p className="lead text-center">
@@ -91,33 +113,37 @@ const LessonForm = ({lesson}) => {
                                 </p>
                             </div>
                             {
+                                /* difficulty radio */
                                 difficultyComponent
                                 &&
                                 <div className="row text-center">
                                     <div className="col">
                                         <div className="custom-control custom-radio d-inline-block w-30">
-                                            <input type="radio" className="custom-control-input" id="defaultGroupExample1"
-                                                   name="groupOfDefaultRadios" />
-                                            <label className="custom-control-label" htmlFor="defaultGroupExample1">Easy</label>
+                                            <input type="radio" className="custom-control-input"
+                                                   id="defaultGroupExample1"
+                                                   name="groupOfDefaultRadios"/>
+                                            <label className="custom-control-label"
+                                                   htmlFor="defaultGroupExample1">Easy</label>
                                         </div>
                                     </div>
                                     <div className="col">
                                         <div className="custom-control custom-radio d-inline-block">
-                                            <input type="radio" className="custom-control-input" id="defaultGroupExample2"
-                                                   name="groupOfDefaultRadios" defaultChecked={true} />
-                                            <label className="custom-control-label" htmlFor="defaultGroupExample2">Medium</label>
+                                            <input type="radio" className="custom-control-input"
+                                                   id="defaultGroupExample2"
+                                                   name="groupOfDefaultRadios" defaultChecked={true}/>
+                                            <label className="custom-control-label"
+                                                   htmlFor="defaultGroupExample2">Medium</label>
                                         </div>
                                     </div>
                                     <div className="col">
                                         <div className="custom-control custom-radio d-inline-block">
-                                            <input type="radio" className="custom-control-input" id="defaultGroupExample3"
-                                                   name="groupOfDefaultRadios" />
-                                            <label className="custom-control-label" htmlFor="defaultGroupExample3">Hard</label>
+                                            <input type="radio" className="custom-control-input"
+                                                   id="defaultGroupExample3"
+                                                   name="groupOfDefaultRadios"/>
+                                            <label className="custom-control-label"
+                                                   htmlFor="defaultGroupExample3">Hard</label>
                                         </div>
                                     </div>
-
-
-
 
 
                                 </div>
@@ -156,14 +182,14 @@ const LessonForm = ({lesson}) => {
                                         </div>
                                     ))
                                     :
-                                    <h5 className="text-center">No questions Added! Press the plus button to add a new
+                                    <h5 className="text-center">No answers Added! Press the plus button to add a new
                                         question</h5>
                             }
                             <div className="row">
                                 {
-                                    questionComponents.map((questionComponent) => {
-                                        return <AddQuestion questionId={questionComponent.id}
-                                                            key={questionComponent.id}
+                                    answerComponents.map((answerComponent) => {
+                                        return <AddQuestion answerId={answerComponent.id}
+                                                            key={answerComponent.id}
                                                             onAddQuestionClick={onAddQuestionClick}
                                                             onRemoveQuestionComponentClick={onRemoveQuestionComponentClick}
                                         />
@@ -172,7 +198,7 @@ const LessonForm = ({lesson}) => {
                             </div>
                             <div className="row">
                                 <button className="btn btn-primary" onClick={(e) => {
-                                    onPlusBtnClick(e)
+                                    onPlusAnswerBtnClick(e)
                                 }}>
                                     <i className="fa-solid fa-plus"></i>
                                 </button>
@@ -180,10 +206,18 @@ const LessonForm = ({lesson}) => {
                         </div>
 
                     </div>
+                    <div className="row">
+                        <button className="btn btn-primary" onClick={(e) => {
+                            onPlusQuestionBtnClick(e)
+                        }}>
+                            <i className="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+
                 </section>
             </div>
         </>
-)
+    )
 };
 
 LessonForm.prototypes = {

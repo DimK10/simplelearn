@@ -1,10 +1,10 @@
 import React, {Fragment, useState} from 'react';
 import PropTypes from "prop-types";
 
-const AddQuestion = ({questionId, onAddQuestionClick, onRemoveQuestionComponentClick}) => {
+const AddQuestion = ({answerId, onAddQuestionClick, onRemoveQuestionComponentClick}) => {
 
     const [question, setQuestion] = useState({
-        id: questionId,
+        id: answerId,
         title: '',
         checked: false
     });
@@ -41,13 +41,13 @@ const AddQuestion = ({questionId, onAddQuestionClick, onRemoveQuestionComponentC
                             </div>
                             <div className="col-sm-2 col-md-2">
                                 <button type="submit" className="btn btn-success w-100"
-                                        onClick={(e) => onAddQuestionClick(e, questionId, question)}>
+                                        onClick={(e) => onAddQuestionClick(e, answerId, question)}>
                                     <i className="fa-solid fa-check"></i>
                                 </button>
                             </div>
                             <div className="col-sm-2 col-md-2">
                                 <button type="button" className="btn btn-danger w-100"
-                                        onClick={() => onRemoveQuestionComponentClick(questionId)}>
+                                        onClick={() => onRemoveQuestionComponentClick(answerId)}>
                                     <i className="fa-solid fa-x"></i>
                                 </button>
                             </div>
@@ -60,7 +60,7 @@ const AddQuestion = ({questionId, onAddQuestionClick, onRemoveQuestionComponentC
 };
 
 AddQuestion.proptypes = {
-    questionId: PropTypes.string.isRequired,
+    answerId: PropTypes.string.isRequired,
     onAddQuestionClick: PropTypes.func.isRequired,
     onRemoveQuestionComponentClick: PropTypes.func.isRequired
 }
