@@ -13,7 +13,7 @@ const LessonForm = ({lesson}) => {
     const [difficultyComponent, setDifficultyComponent] = useState(false);
 
     const [formData, setFormData] = useState({
-        questions: [],
+        questions: localStorage.getItem("questions") !== null ? JSON.parse(localStorage.getItem("questions")) : [],
     });
 
     const {
@@ -22,6 +22,7 @@ const LessonForm = ({lesson}) => {
 
     useEffect(() => {
         console.log(formData);
+        localStorage.setItem("questions", JSON.stringify(questions));
     }, [formData]);
 
     const formIsInvalid = (form) => form.checkValidity() === false;
@@ -57,6 +58,8 @@ const LessonForm = ({lesson}) => {
             questions: [...questions, question]
         });
 
+        // localStorage.setItem("questions", JSON.stringify(questions));
+
         // remove from questions
         onRemoveQuestionComponentClick(questionId);
     }
@@ -73,6 +76,8 @@ const LessonForm = ({lesson}) => {
             ...formData,
             questions
         })
+
+        // localStorage.setItem("questions", JSON.stringify(questions));
         // setFormData({
         //     ...formData,
         //     answers: [...answers, answer]
@@ -87,13 +92,28 @@ const LessonForm = ({lesson}) => {
             ...formData,
             questions: [...questions.filter((question) => question.id !== questionId)]
         });
+
+
     }
 
-    const removeSavedAnswer = (answerId) => {
+    const removeSavedAnswer = (answerId, questionId) => {
+
+
+        let questions = formData.questions.map(
+            question => (
+                question.id === questionId
+                    ?
+                    {...question, answers: [...question.answers.filter(answer => answer.questionId !== questionId || answer.id !== answerId)]}
+                    :
+                    question
+            ));
+
         setFormData({
             ...formData,
-            answers: [...answers.filter((answer) => answer.id !== answerId)]
+            questions
         });
+
+        // localStorage.setItem("questions", JSON.stringify(questions));
     }
 
     const onRemoveQuestionComponentClick = (questionId) => {
@@ -114,12 +134,12 @@ const LessonForm = ({lesson}) => {
         removeSavedQuestion(questionId);
     }
 
-    const onRemoveSavedAnswerClick = (e) => {
+    const onRemoveSavedAnswerClick = (e, questionId) => {
         const answerId = e.currentTarget.getAttribute('data-index');
 
         // TODO SEND TO API REMOVE ANSWER
 
-        removeSavedAnswer(answerId);
+        removeSavedAnswer(answerId, questionId);
     }
 
     const toggleDifficultyClick = () => {
@@ -259,7 +279,7 @@ const LessonForm = ({lesson}) => {
                                                                     className="btn btn-danger m-1"
                                                                     style={{height: 'min-content'}}
                                                                     data-index={answer.id}
-                                                                    onClick={(e) => onRemoveSavedAnswerClick(e)}>
+                                                                    onClick={(e) => onRemoveSavedAnswerClick(e, answer.questionId)}>
                                                                 <i className="fa-solid fa-trash"
                                                                    style={{
                                                                        display: 'inline',
