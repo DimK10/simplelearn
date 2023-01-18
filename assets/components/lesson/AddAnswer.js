@@ -15,6 +15,18 @@ const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) =
     const onCheckboxChange = (e) =>
         setAnswer({...answer, [e.target.name]: e.target.checked});
 
+    const validateForm = (e, id, object, callback) => {
+        const form = e.target.form;
+
+        // Check for basic form validity
+        if (form.checkValidity() === false) {
+            form.reportValidity();
+            return;
+        }
+
+        callback(e, id, object);
+    }
+
     return (
         <Fragment>
             <div className="card mb-4">
@@ -40,8 +52,8 @@ const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) =
                                 </div>
                             </div>
                             <div className="col-sm-2 col-md-2">
-                                <button type="button" className="btn btn-success w-100"
-                                        onClick={(e) => onAddAnswerClick(e, answerId, answer)}>
+                                <button type="submit" className="btn btn-success w-100"
+                                        onClick={(e) => validateForm(e, answerId, answer, onAddAnswerClick)}>
                                     <i className="fa-solid fa-check"></i>
                                 </button>
                             </div>
