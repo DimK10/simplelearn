@@ -9,6 +9,8 @@ const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) =
         checked: false
     });
 
+    const [invalidAnswerText, setInvalidAnswerText] = useState(false);
+
     const onChange = (e) =>
         setAnswer({...answer, [e.target.name]: e.target.value});
 
@@ -16,11 +18,12 @@ const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) =
         setAnswer({...answer, [e.target.name]: e.target.checked});
 
     const validateForm = (e, id, object, callback) => {
-        const form = e.target.form;
+        e.preventDefault();
+        // const form = e.target.form;
 
         // Check for basic form validity
-        if (form.checkValidity() === false) {
-            form.reportValidity();
+        if (answer.title === '') {
+            setInvalidAnswerText(true);
             return;
         }
 
@@ -38,6 +41,12 @@ const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) =
                                     <input type="text" id="form5Example1" className="form-control" name="title"
                                            onChange={(e) => onChange(e)} required={true}/>
                                     <label className="form-label" htmlFor="form5Example1">Enter Your Answer</label>
+                                    {
+                                        invalidAnswerText &&
+                                        <div className="text-danger">Please provide a
+                                            valid
+                                            answer.</div>
+                                    }
                                 </div>
                             </div>
                             <div className="col-sm-3 col-md-2 answer-checkbox">
