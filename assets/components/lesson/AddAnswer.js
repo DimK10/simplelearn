@@ -1,12 +1,13 @@
 import React, {Fragment, useState} from 'react';
 import PropTypes from "prop-types";
 
-const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) => {
+const AddAnswer = ({questionId, answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) => {
 
     const [answer, setAnswer] = useState({
         id: answerId,
         title: '',
-        checked: false
+        checked: false,
+        questionId
     });
 
     const [invalidAnswerText, setInvalidAnswerText] = useState(false);
@@ -81,6 +82,7 @@ const AddAnswer = ({answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) =
 };
 
 AddAnswer.proptypes = {
+    questionId: PropTypes.string.isRequired,
     answerId: PropTypes.string.isRequired,
     onAddAnswerClick: PropTypes.func.isRequired,
     onRemoveAnswerComponentClick: PropTypes.func.isRequired

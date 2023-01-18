@@ -12,7 +12,8 @@ const AddQuestion = ({
     const [question, setQuestion] = useState({
         id: questionId,
         title: '',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        answers: []
     });
 
     const [invalidQuestionText, setInvalidQuestionText] = useState(false);

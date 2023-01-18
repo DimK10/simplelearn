@@ -14,12 +14,10 @@ const LessonForm = ({lesson}) => {
 
     const [formData, setFormData] = useState({
         questions: [],
-        answers: []
     });
 
     const {
         questions,
-        answers
     } = formData;
 
     useEffect(() => {
@@ -28,11 +26,12 @@ const LessonForm = ({lesson}) => {
 
     const formIsInvalid = (form) => form.checkValidity() === false;
 
-    const onPlusAnswerBtnClick = (e) => {
+    const onPlusAnswerBtnClick = (e, questionId) => {
         e.preventDefault();
 
         let answerComponent = {
-            id: uuidv4()
+            id: uuidv4(),
+            questionId
         }
 
         setAnswerComponents([...answerComponents, answerComponent]);
@@ -67,10 +66,17 @@ const LessonForm = ({lesson}) => {
         // TODO SEND TO API
 
         // add to formData
+
+        let questions = formData.questions.map(question => (question.id === answer.questionId ? {...question, answers: [...question.answers, answer]} : question));
+
         setFormData({
             ...formData,
-            answers: [...answers, answer]
-        });
+            questions
+        })
+        // setFormData({
+        //     ...formData,
+        //     answers: [...answers, answer]
+        // });
 
         // remove from questions
         onRemoveAnswerComponentClick(answerId);
@@ -227,17 +233,17 @@ const LessonForm = ({lesson}) => {
                                 </div>
                                 <div className="card-body">
                                     {
-                                        answers !== null
+                                        question.answers !== null
                                         &&
-                                        answers.length > 0
+                                        question.answers.length > 0
                                             ?
-                                            answers.map(answer => (
+                                            question.answers.map(answer => (
                                                 <div className="row mb-3" key={answer.id}>
                                                     <div
                                                         className={`card ${answer.checked && 'correct'}`}>
                                                         <div
                                                             className="card-body d-flex justify-content-between align-items-center question-card-body">
-                                                            <p className="card-text me-auto">{answers.indexOf(answer) + 1}) {answer.title}</p>
+                                                            <p className="card-text me-auto">{question.answers.indexOf(answer) + 1}) {answer.title}</p>
                                                             <button type="button"
                                                                     className="btn btn-warning m-1"
                                                                     style={{height: 'min-content'}}
@@ -275,6 +281,7 @@ const LessonForm = ({lesson}) => {
                                         {
                                             answerComponents.map((answerComponent) => {
                                                 return <AddAnswer
+                                                    questionId={question.id}
                                                     answerId={answerComponent.id}
                                                     key={answerComponent.id}
                                                     onAddAnswerClick={onAddAnswerClick}
@@ -286,7 +293,7 @@ const LessonForm = ({lesson}) => {
                                     <div className="row">
                                         <button className="btn btn-primary"
                                                 onClick={(e) => {
-                                                    onPlusAnswerBtnClick(e)
+                                                    onPlusAnswerBtnClick(e, question.id)
                                                 }}>
                                             <i className="fa-solid fa-plus"></i>
                                         </button>
