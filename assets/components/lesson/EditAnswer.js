@@ -9,10 +9,10 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
     const [invalidAnswerText, setInvalidAnswerText] = useState(false);
 
     const onChange = (e) =>
-        setEditingAnswer({...answer, [e.target.name]: e.target.value});
+        setEditingAnswer({...editingAnswer, [e.target.name]: e.target.value});
 
     const onCheckboxChange = (e) =>
-        setEditingAnswer({...answer, [e.target.name]: e.target.checked});
+        setEditingAnswer({...editingAnswer, [e.target.name]: e.target.checked});
 
     return (
         <Fragment>
@@ -25,7 +25,7 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
                                     <input type="text" id="form5Example1" className="form-control" name="title"
                                            onChange={(e) => onChange(e)}
                                            required={true}
-                                           value={answer.title}
+                                           value={editingAnswer.title}
                                     />
                                     <label className="form-label" htmlFor="form5Example1">Enter Your Answer</label>
                                     {
@@ -40,7 +40,7 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
                                 <div className="form-check d-flex text-center">
                                     <input className="form-check-input me-2" type="checkbox" name="checked"
                                            id="form5Example3"
-                                           checked={answer.checked}
+                                           checked={editingAnswer.checked}
                                            onChange={(e) => onCheckboxChange(e)}
                                     />
                                     <label className="form-check-label" htmlFor="form5Example3">
@@ -51,7 +51,7 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
                             <div className="col-sm-2 col-md-2">
                                 <button type="submit" className="btn btn-success w-100"
                                         onClick={(e) => {
-                                            const validationErrors = validateForm(e, answer.id, answer, onAEditAnswerClick);
+                                            const validationErrors = validateForm(e, editingAnswer.id, editingAnswer, onAEditAnswerClick);
                                             setInvalidAnswerText(validationErrors);
                                         }}>
                                     <i className="fa-solid fa-check"></i>
@@ -59,7 +59,7 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
                             </div>
                             <div className="col-sm-2 col-md-2">
                                 <button type="button" className="btn btn-danger w-100"
-                                        onClick={() => onRemoveAnswerComponentClickOnEdit(answer)}>
+                                        onClick={() => onRemoveAnswerComponentClickOnEdit(editingAnswer)}>
                                     <i className="fa-solid fa-x"></i>
                                 </button>
                             </div>

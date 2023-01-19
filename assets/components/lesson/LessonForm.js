@@ -169,6 +169,7 @@ const LessonForm = ({lesson}) => {
         // TODO SEND TO API
 
 
+        answer = {...answer, status: 'show'};
         questions = questions.map(questionEl => (questionEl.id === answer.questionId ? {
             ...questionEl,
             answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answer} : answerEl)
@@ -245,7 +246,7 @@ const LessonForm = ({lesson}) => {
         questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
             ...questionEl,
             answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {
-                ...answer,
+                ...answerEl,
                 status: 'show'
             } : answerEl)
         } : questionEl);
@@ -473,7 +474,7 @@ const LessonForm = ({lesson}) => {
                                             {
                                                 /* show answers on create */
                                                 answerComponents.map((answerComponent) => (
-                                                    answerComponent.status === 'show'
+                                                    answerComponent.status === 'add'
                                                     &&
                                                     <AddAnswer
                                                         questionId={question.id}
