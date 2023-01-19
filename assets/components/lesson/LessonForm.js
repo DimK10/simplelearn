@@ -210,10 +210,22 @@ const LessonForm = ({lesson}) => {
         removeSavedAnswer(answerId, questionId);
     }
 
+    /* fast radio buttons to change difficulty without full edit of question */
     const toggleDifficultyClick = () => {
         setDifficultyComponent(!difficultyComponent);
     }
 
+
+    const changeDifficultyRadio = (e, question) => {
+        const difficulty = e.target.value;
+
+        questions = questions.map(questionEl => questionEl.id === question.id ? {...questionEl, difficulty } : questionEl);
+
+        setFormData({
+            ...formData,
+            questions
+        })
+    }
 
     return (
         <>
@@ -285,7 +297,11 @@ const LessonForm = ({lesson}) => {
                                                     <input type="radio"
                                                            className="custom-control-input"
                                                            id="defaultGroupExample1"
-                                                           name="groupOfDefaultRadios"/>
+                                                           name="difficulty"
+                                                           checked={question.difficulty === 'easy'}
+                                                           value="easy"
+                                                           onClick={(e) => changeDifficultyRadio(e, question)}
+                                                    />
                                                     <label
                                                         className="custom-control-label"
                                                         htmlFor="defaultGroupExample1">Easy</label>
@@ -297,8 +313,11 @@ const LessonForm = ({lesson}) => {
                                                     <input type="radio"
                                                            className="custom-control-input"
                                                            id="defaultGroupExample2"
-                                                           name="groupOfDefaultRadios"
-                                                           defaultChecked={true}/>
+                                                           name="difficulty"
+                                                           checked={question.difficulty === 'medium'}
+                                                           value="medium"
+                                                           onClick={(e) => changeDifficultyRadio(e, question)}
+                                                    />
                                                     <label
                                                         className="custom-control-label"
                                                         htmlFor="defaultGroupExample2">Medium</label>
@@ -310,7 +329,11 @@ const LessonForm = ({lesson}) => {
                                                     <input type="radio"
                                                            className="custom-control-input"
                                                            id="defaultGroupExample3"
-                                                           name="groupOfDefaultRadios"/>
+                                                           name="difficulty"
+                                                           checked={question.difficulty === 'hard'}
+                                                           value="hard"
+                                                           onClick={(e) => changeDifficultyRadio(e, question)}
+                                                    />
                                                     <label
                                                         className="custom-control-label"
                                                         htmlFor="defaultGroupExample3">Hard</label>
