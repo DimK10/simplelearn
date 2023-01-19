@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import validateForm from "../../utils/validateForm";
 
@@ -10,6 +10,10 @@ const EditQuestion = ({question, onAEditQuestionClick, onRemoveQuestionComponent
 
     const onChange = (e) =>
         setEditingQuestion({...editingQuestion, [e.target.name]: e.target.value});
+
+    useEffect(() => {
+        console.log(question);
+    },[question]);
 
 
     return (

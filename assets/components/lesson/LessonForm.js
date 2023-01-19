@@ -84,7 +84,7 @@ const LessonForm = ({lesson}) => {
 
         setFormData({
             ...formData,
-            questions
+            questions: [...questions]
         })
 
         // remove from questions
@@ -98,7 +98,7 @@ const LessonForm = ({lesson}) => {
         e.preventDefault();
 
         let questionComponent = {
-            id: uuidv4(),
+            id: question.id,
             status: 'edit'
         }
 
@@ -108,7 +108,7 @@ const LessonForm = ({lesson}) => {
 
         setFormData({
             ...formData,
-            questions
+            questions: [...questions]
         })
 
         setQuestionComponents([...questionComponents, questionComponent]);
@@ -155,7 +155,7 @@ const LessonForm = ({lesson}) => {
 
         setFormData({
             ...formData,
-            questions
+            questions: [...questions]
         });
 
         // localStorage.setItem("questions", JSON.stringify(questions));
@@ -171,7 +171,7 @@ const LessonForm = ({lesson}) => {
 
         setFormData({
             ...formData,
-            questions
+            questions: [...questions]
         })
 
         setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== question.id)]);
@@ -403,7 +403,7 @@ const LessonForm = ({lesson}) => {
                                 :
                                 <EditQuestion onRemoveQuestionComponentClickOnEdit={onRemoveQuestionComponentClickOnEdit}
                                               onAEditQuestionClick={onAEditQuestionClick}
-                                              question={questions.find(question => question.id !== questionComponent.id)}/>
+                                              question={questions.find(questionEl => questionEl.id === questionComponent.id)}/>
 
                         ))
                     }
