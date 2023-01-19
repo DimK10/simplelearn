@@ -121,10 +121,16 @@ const LessonForm = ({lesson}) => {
 
         // TODO SEND TO API
 
+
+        questions = questions.map(questionEl => (questionEl.id === question.id ? {
+            ...question,
+            status: 'show'
+        } : questionEl));
+
         // add to formData
         setFormData({
             ...formData,
-            questions: [...questions, question]
+            questions
         });
 
         // localStorage.setItem("questions", JSON.stringify(questions));
