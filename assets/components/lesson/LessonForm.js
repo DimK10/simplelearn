@@ -104,7 +104,10 @@ const LessonForm = ({lesson}) => {
 
         // change question status to edit
 
-        questions = questions.map(questionEl => questionEl.id === question.id ? {...questionEl, status: 'edit'} : questionEl);
+        questions = questions.map(questionEl => questionEl.id === question.id ? {
+            ...questionEl,
+            status: 'edit'
+        } : questionEl);
 
         setFormData({
             ...formData,
@@ -167,7 +170,10 @@ const LessonForm = ({lesson}) => {
 
     const onRemoveQuestionComponentClickOnEdit = (question) => {
 
-        questions = questions.map(questionEl => questionEl.id === question.id ? {...questionEl, status: 'show'} : questionEl);
+        questions = questions.map(questionEl => questionEl.id === question.id ? {
+            ...questionEl,
+            status: 'show'
+        } : questionEl);
 
         setFormData({
             ...formData,
@@ -215,7 +221,7 @@ const LessonForm = ({lesson}) => {
                         &&
                         questions.map(question => (
                             question.status === 'show'
-                            &&
+                            ?
                             <div className="card mb-4">
                                 {
                                     question.difficulty === 'easy' &&
@@ -383,6 +389,10 @@ const LessonForm = ({lesson}) => {
                                 </div>
 
                             </div>
+                                :
+                            <EditQuestion onRemoveQuestionComponentClickOnEdit={onRemoveQuestionComponentClickOnEdit}
+                                              onAEditQuestionClick={onAEditQuestionClick}
+                                              question={questions.find(questionEl => questionEl.id === question.id)}/>
                         ))
                     }
                     {
@@ -393,17 +403,14 @@ const LessonForm = ({lesson}) => {
                         questionComponents.map(questionComponent => (
                             /* check if add or edit mode */
                             questionComponent.status === 'add'
-                                ?
-                                <AddQuestion key={questionComponent.id}
-                                             questionsLength={questions.length}
-                                             questionId={questionComponent.id}
-                                             onAddQuestionClick={onAddQuestionClick}
-                                             onRemoveQuestionComponentClick={onRemoveQuestionComponentClick}
-                                />
-                                :
-                                <EditQuestion onRemoveQuestionComponentClickOnEdit={onRemoveQuestionComponentClickOnEdit}
-                                              onAEditQuestionClick={onAEditQuestionClick}
-                                              question={questions.find(questionEl => questionEl.id === questionComponent.id)}/>
+                            &&
+                            <AddQuestion key={questionComponent.id}
+                                         questionsLength={questions.length}
+                                         questionId={questionComponent.id}
+                                         onAddQuestionClick={onAddQuestionClick}
+                                         onRemoveQuestionComponentClick={onRemoveQuestionComponentClick}
+                            />
+
 
                         ))
                     }
