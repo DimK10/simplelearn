@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/components/lesson/EditQuestion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/utils/validateForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import AddAnswer from "./AddAnswer";
 import {v4 as uuidv4} from 'uuid';
 import AddQuestion from "./AddQuestion";
+import EditQuestion from "./EditQuestion";
 
 const LessonForm = ({lesson}) => {
 
@@ -16,7 +17,7 @@ const LessonForm = ({lesson}) => {
         questions: localStorage.getItem("questions") !== null ? JSON.parse(localStorage.getItem("questions")) : [],
     });
 
-    const {
+    let {
         questions,
     } = formData;
 
@@ -25,14 +26,15 @@ const LessonForm = ({lesson}) => {
         localStorage.setItem("questions", JSON.stringify(questions));
     }, [formData]);
 
-    const formIsInvalid = (form) => form.checkValidity() === false;
 
+    /* Plus button operations */
     const onPlusAnswerBtnClick = (e, questionId) => {
         e.preventDefault();
 
         let answerComponent = {
             id: uuidv4(),
-            questionId
+            questionId,
+            status: 'add'
         }
 
         setAnswerComponents([...answerComponents, answerComponent]);
@@ -41,16 +43,21 @@ const LessonForm = ({lesson}) => {
     const onPlusQuestionBtnClick = (e) => {
         e.preventDefault();
 
-        let answerComponent = {
-            id: uuidv4()
+        let questionComponent = {
+            id: uuidv4(),
+            status: 'add'
         }
 
-        setQuestionComponents([...questionComponents, answerComponent]);
+        setQuestionComponents([...questionComponents, questionComponent]);
     }
 
+    /* Add operations */
     const onAddQuestionClick = (e, questionId, question) => {
 
         // TODO SEND TO API
+
+
+        question = {...question, status: 'show'};
 
         // add to formData
         setFormData({
@@ -70,30 +77,65 @@ const LessonForm = ({lesson}) => {
 
         // add to formData
 
-        let questions = formData.questions.map(question => (question.id === answer.questionId ? {...question, answers: [...question.answers, answer]} : question));
+        let questions = formData.questions.map(question => (question.id === answer.questionId ? {
+            ...question,
+            answers: [...question.answers, answer]
+        } : question));
 
         setFormData({
             ...formData,
             questions
         })
 
-        // localStorage.setItem("questions", JSON.stringify(questions));
-        // setFormData({
-        //     ...formData,
-        //     answers: [...answers, answer]
-        // });
-
         // remove from questions
         onRemoveAnswerComponentClick(answerId);
     }
 
+    /* Edit operations */
+
+    /* Edit button in show status component */
+    const onEditQuestionBtnClick = (e, question) => {
+        e.preventDefault();
+
+        let questionComponent = {
+            id: uuidv4(),
+            status: 'edit'
+        }
+
+        // change question status to edit
+
+        questions = questions.map(questionEl => questionEl.id === question.id ? {...questionEl, status: 'edit'} : questionEl);
+
+        setFormData({
+            ...formData,
+            questions
+        })
+
+        setQuestionComponents([...questionComponents, questionComponent]);
+    }
+
+    const onAEditQuestionClick = (e, questionId, question) => {
+
+        // TODO SEND TO API
+
+        // add to formData
+        setFormData({
+            ...formData,
+            questions: [...questions, question]
+        });
+
+        // localStorage.setItem("questions", JSON.stringify(questions));
+
+        // remove from questions
+        onRemoveQuestionComponentClick(questionId);
+    }
+
+    /* Remove operations */
     const removeSavedQuestion = (questionId) => {
         setFormData({
             ...formData,
             questions: [...questions.filter((question) => question.id !== questionId)]
         });
-
-
     }
 
     const removeSavedAnswer = (answerId, questionId) => {
@@ -103,7 +145,10 @@ const LessonForm = ({lesson}) => {
             question => (
                 question.id === questionId
                     ?
-                    {...question, answers: [...question.answers.filter(answer => answer.questionId !== questionId || answer.id !== answerId)]}
+                    {
+                        ...question,
+                        answers: [...question.answers.filter(answer => answer.questionId !== questionId || answer.id !== answerId)]
+                    }
                     :
                     question
             ));
@@ -120,10 +165,21 @@ const LessonForm = ({lesson}) => {
         setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== questionId)]);
     }
 
+    const onRemoveQuestionComponentClickOnEdit = (question) => {
+
+        questions = questions.map(questionEl => questionEl.id === question.id ? {...questionEl, status: 'show'} : questionEl);
+
+        setFormData({
+            ...formData,
+            questions
+        })
+
+        setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== question.id)]);
+    }
+
     const onRemoveAnswerComponentClick = (answerId) => {
         setAnswerComponents([...answerComponents.filter((answerComponent) => answerComponent.id !== answerId)]);
     }
-
 
 
     const onRemoveSavedAQuestionClick = (e) => {
@@ -152,11 +208,14 @@ const LessonForm = ({lesson}) => {
             <div className="container pt-4">
                 <section className="mb-4">
                     {
+                        /* show questions */
                         questions !== null
                         &&
                         questions.length > 0
                         &&
                         questions.map(question => (
+                            question.status === 'show'
+                            &&
                             <div className="card mb-4">
                                 {
                                     question.difficulty === 'easy' &&
@@ -190,7 +249,8 @@ const LessonForm = ({lesson}) => {
                                                 <i className="fa-solid fa-trash"></i>
                                             </button>
                                             <button type="button"
-                                                    className="btn btn-warning question-button float-end">
+                                                    className="btn btn-warning question-button float-end"
+                                                    onClick={(e) => onEditQuestionBtnClick(e, question)}>
                                                 <i className="fa-solid fa-pen-to-square"></i>
                                             </button>
 
@@ -253,6 +313,7 @@ const LessonForm = ({lesson}) => {
                                 </div>
                                 <div className="card-body">
                                     {
+                                        /* show answers of each question */
                                         question.answers !== null
                                         &&
                                         question.answers.length > 0
@@ -299,6 +360,7 @@ const LessonForm = ({lesson}) => {
                                     }
                                     <div className="row">
                                         {
+                                            /* show answers on create */
                                             answerComponents.map((answerComponent) => {
                                                 return <AddAnswer
                                                     questionId={question.id}
@@ -329,12 +391,20 @@ const LessonForm = ({lesson}) => {
                         questionComponents.length > 0
                         &&
                         questionComponents.map(questionComponent => (
-                            <AddQuestion key={questionComponent.id}
-                                         questionsLength={questions.length}
-                                         questionId={questionComponent.id}
-                                         onAddQuestionClick={onAddQuestionClick}
-                                         onRemoveQuestionComponentClick={onRemoveQuestionComponentClick}
-                            />
+                            /* check if add or edit mode */
+                            questionComponent.status === 'add'
+                                ?
+                                <AddQuestion key={questionComponent.id}
+                                             questionsLength={questions.length}
+                                             questionId={questionComponent.id}
+                                             onAddQuestionClick={onAddQuestionClick}
+                                             onRemoveQuestionComponentClick={onRemoveQuestionComponentClick}
+                                />
+                                :
+                                <EditQuestion onRemoveQuestionComponentClickOnEdit={onRemoveQuestionComponentClickOnEdit}
+                                              onAEditQuestionClick={onAEditQuestionClick}
+                                              question={questions.find(question => question.id !== questionComponent.id)}/>
+
                         ))
                     }
                     <div className="row">

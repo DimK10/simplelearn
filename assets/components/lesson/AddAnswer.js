@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import PropTypes from "prop-types";
+import validateForm from "../../utils/validateForm";
 
 const AddAnswer = ({questionId, answerId, onAddAnswerClick, onRemoveAnswerComponentClick}) => {
 
@@ -18,18 +19,18 @@ const AddAnswer = ({questionId, answerId, onAddAnswerClick, onRemoveAnswerCompon
     const onCheckboxChange = (e) =>
         setAnswer({...answer, [e.target.name]: e.target.checked});
 
-    const validateForm = (e, id, object, callback) => {
-        e.preventDefault();
-        // const form = e.target.form;
-
-        // Check for basic form validity
-        if (answer.title === '') {
-            setInvalidAnswerText(true);
-            return;
-        }
-
-        callback(e, id, object);
-    }
+    // const validateForm = (e, id, object, callback) => {
+    //     e.preventDefault();
+    //     // const form = e.target.form;
+    //
+    //     // Check for basic form validity
+    //     if (answer.title === '') {
+    //         setInvalidAnswerText(true);
+    //         return;
+    //     }
+    //
+    //     callback(e, id, object);
+    // }
 
     return (
         <Fragment>
@@ -63,7 +64,10 @@ const AddAnswer = ({questionId, answerId, onAddAnswerClick, onRemoveAnswerCompon
                             </div>
                             <div className="col-sm-2 col-md-2">
                                 <button type="submit" className="btn btn-success w-100"
-                                        onClick={(e) => validateForm(e, answerId, answer, onAddAnswerClick)}>
+                                        onClick={(e) => {
+                                            const validationErrors = validateForm(e, answerId, answer, onAddAnswerClick);
+                                            setInvalidAnswerText(validationErrors);
+                                        }}>
                                     <i className="fa-solid fa-check"></i>
                                 </button>
                             </div>
