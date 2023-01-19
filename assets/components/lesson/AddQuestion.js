@@ -24,21 +24,6 @@ const AddQuestion = ({
     const onChange = (e) =>
         setQuestion({...question, [e.target.name]: e.target.value});
 
-    // const validateForm = (e, id, object, callback) => {
-    //     e.preventDefault();
-    //     // console.log(e)
-    //     // const form = e.target.form;
-    //     // console.log(form.checkValidity())
-    //
-    //     // Check for basic form validity
-    //     if (question.title === '') {
-    //         setInvalidQuestionText(true);
-    //         return;
-    //     }
-    //
-    //     callback(e, id, object);
-    // }
-
     return (
         <Fragment>
             <div className="card mb-4" key={questionId}>

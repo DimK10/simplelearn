@@ -1,25 +1,18 @@
 import React, {Fragment, useState} from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import validateForm from "../../utils/validateForm";
 
-const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRemoveAnswerComponentClick}) => {
+const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnEdit}) => {
 
-    const [answer, setAnswer] = useState({
-        id: answerId,
-        rowNum: answersLength,
-        title: '',
-        checked: false,
-        status: 'add',
-        questionId
-    });
+    const [editingAnswer, setEditingAnswer] = useState({...answer});
 
     const [invalidAnswerText, setInvalidAnswerText] = useState(false);
 
     const onChange = (e) =>
-        setAnswer({...answer, [e.target.name]: e.target.value});
+        setEditingAnswer({...answer, [e.target.name]: e.target.value});
 
     const onCheckboxChange = (e) =>
-        setAnswer({...answer, [e.target.name]: e.target.checked});
+        setEditingAnswer({...answer, [e.target.name]: e.target.checked});
 
     return (
         <Fragment>
@@ -30,7 +23,10 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                             <div className="col-sm-5 col-md-6">
                                 <div className="form-outline">
                                     <input type="text" id="form5Example1" className="form-control" name="title"
-                                           onChange={(e) => onChange(e)} required={true}/>
+                                           onChange={(e) => onChange(e)}
+                                           required={true}
+                                           value={answer.title}
+                                    />
                                     <label className="form-label" htmlFor="form5Example1">Enter Your Answer</label>
                                     {
                                         invalidAnswerText &&
@@ -44,7 +40,8 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                                 <div className="form-check d-flex text-center">
                                     <input className="form-check-input me-2" type="checkbox" name="checked"
                                            id="form5Example3"
-                                           defaultChecked={false} onChange={(e) => onCheckboxChange(e)}
+                                           checked={answer.checked}
+                                           onChange={(e) => onCheckboxChange(e)}
                                     />
                                     <label className="form-check-label" htmlFor="form5Example3">
                                         Correct
@@ -54,7 +51,7 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                             <div className="col-sm-2 col-md-2">
                                 <button type="submit" className="btn btn-success w-100"
                                         onClick={(e) => {
-                                            const validationErrors = validateForm(e, answerId, answer, onAddAnswerClick);
+                                            const validationErrors = validateForm(e, answer.id, answer, onAEditAnswerClick);
                                             setInvalidAnswerText(validationErrors);
                                         }}>
                                     <i className="fa-solid fa-check"></i>
@@ -62,7 +59,7 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                             </div>
                             <div className="col-sm-2 col-md-2">
                                 <button type="button" className="btn btn-danger w-100"
-                                        onClick={() => onRemoveAnswerComponentClick(answerId)}>
+                                        onClick={() => onRemoveAnswerComponentClickOnEdit(answer)}>
                                     <i className="fa-solid fa-x"></i>
                                 </button>
                             </div>
@@ -71,15 +68,13 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                 </div>
             </div>
         </Fragment>
-    )
+    );
 };
 
-AddAnswer.proptypes = {
-    questionId: PropTypes.string.isRequired,
-    answerId: PropTypes.string.isRequired,
-    answersLength: PropTypes.number.isRequired,
-    onAddAnswerClick: PropTypes.func.isRequired,
-    onRemoveAnswerComponentClick: PropTypes.func.isRequired
-}
+EditAnswer.propTypes = {
+    answer: PropTypes.object.isRequired,
+    onAEditAnswerClick: PropTypes.func.isRequired,
+    onRemoveAnswerComponentClickOnEdit: PropTypes.func.isRequired
+};
 
-export default AddAnswer;
+export default EditAnswer;

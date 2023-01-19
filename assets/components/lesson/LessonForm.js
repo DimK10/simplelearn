@@ -4,6 +4,7 @@ import AddAnswer from "./AddAnswer";
 import {v4 as uuidv4} from 'uuid';
 import AddQuestion from "./AddQuestion";
 import EditQuestion from "./EditQuestion";
+import EditAnswer from "./EditAnswer";
 
 const LessonForm = ({lesson}) => {
 
@@ -76,6 +77,7 @@ const LessonForm = ({lesson}) => {
         // TODO SEND TO API
 
         // add to formData
+        answer = {...answer, status: 'show'};
 
         let questions = formData.questions.map(question => (question.id === answer.questionId ? {
             ...question,
@@ -93,7 +95,7 @@ const LessonForm = ({lesson}) => {
 
     /* Edit operations */
 
-    /* Edit button in show status component */
+    /* Edit button for question in show status component */
     const onEditQuestionBtnClick = (e, question) => {
         e.preventDefault();
 
@@ -137,6 +139,51 @@ const LessonForm = ({lesson}) => {
 
         // remove from questions
         onRemoveQuestionComponentClick(questionId);
+    }
+
+    const onEditAnswerBtnClick = (e, answer) => {
+        e.preventDefault();
+
+        let answerComponent = {
+            id: answer.id,
+            status: 'edit'
+        }
+
+        // change answer status to edit
+
+        questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
+            ...questionEl,
+            answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answerEl, status: 'edit'} : answerEl)
+        } : questionEl);
+
+        setFormData({
+            ...formData,
+            questions: [...questions]
+        })
+
+        setAnswerComponents([...answerComponents, answerComponent]);
+    }
+
+    const onEditAnswerClick = (e, answerId, answer) => {
+
+        // TODO SEND TO API
+
+
+        questions = questions.map(questionEl => (questionEl.id === answer.questionId ? {
+            ...questionEl,
+            answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answer} : answerEl)
+        } : questionEl));
+
+        // add to formData
+        setFormData({
+            ...formData,
+            questions
+        });
+
+        // localStorage.setItem("questions", JSON.stringify(questions));
+
+        // remove from questions
+        onRemoveAnswerComponentClick(answerId);
     }
 
     /* Remove operations */
@@ -193,6 +240,24 @@ const LessonForm = ({lesson}) => {
         setAnswerComponents([...answerComponents.filter((answerComponent) => answerComponent.id !== answerId)]);
     }
 
+    const onRemoveAnswerComponentClickOnEdit = (answer) => {
+
+        questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
+            ...questionEl,
+            answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {
+                ...answer,
+                status: 'show'
+            } : answerEl)
+        } : questionEl);
+
+        setFormData({
+            ...formData,
+            questions: [...questions]
+        })
+
+        setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== question.id)]);
+    }
+
 
     const onRemoveSavedAQuestionClick = (e) => {
         const questionId = e.currentTarget.getAttribute('data-index');
@@ -219,11 +284,14 @@ const LessonForm = ({lesson}) => {
     const changeDifficultyRadio = (e, question) => {
         const difficulty = e.target.value;
 
-        questions = questions.map(questionEl => questionEl.id === question.id ? {...questionEl, difficulty } : questionEl);
+        questions = questions.map(questionEl => questionEl.id === question.id ? {
+            ...questionEl,
+            difficulty
+        } : questionEl);
 
         setFormData({
             ...formData,
-            questions
+            questions: [...questions]
         })
     }
 
@@ -239,189 +307,201 @@ const LessonForm = ({lesson}) => {
                         &&
                         questions.map(question => (
                             question.status === 'show'
-                            ?
-                            <div className="card mb-4">
-                                {
-                                    question.difficulty === 'easy' &&
-                                    <span key={question.id + 1}
-                                          className="border border-5 border-success rounded"
-                                          onClick={toggleDifficultyClick}></span>
-                                }
-                                {
-                                    question.difficulty === 'medium' &&
-                                    <span key={question.id + 1}
-                                          className="border border-5 border-warning rounded"
-                                          onClick={toggleDifficultyClick}></span>
-                                }
-                                {
-                                    question.difficulty === 'hard' &&
-                                    <span key={question.id + 1}
-                                          className="border border-5 border-danger rounded"
-                                          onClick={toggleDifficultyClick}></span>
-                                }
-                                <div className="card-header py-3">
-                                    <div className="row position-relative">
-                                        <h5 className="mb-0 text-center mb-5"><strong>Question
-                                            #{questions.indexOf(question) + 1}</strong>
-                                        </h5>
-                                        <div
-                                            className="position-absolute question-modify-buttons">
-                                            <button type="button"
-                                                    className="btn btn-danger question-button float-end"
-                                                    data-index={question.id}
-                                                    onClick={(e) => onRemoveSavedAQuestionClick(e)}>
-                                                <i className="fa-solid fa-trash"></i>
-                                            </button>
-                                            <button type="button"
-                                                    className="btn btn-warning question-button float-end"
-                                                    onClick={(e) => onEditQuestionBtnClick(e, question)}>
-                                                <i className="fa-solid fa-pen-to-square"></i>
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-                                    <div className="row">
-                                        <p className="lead text-center">
-                                            {question.title}
-                                        </p>
-                                    </div>
+                                ?
+                                <div className="card mb-4">
                                     {
-                                        /* difficulty radio */
-                                        difficultyComponent
-                                        &&
-                                        <div className="row text-center">
-                                            <div className="col">
-                                                <div
-                                                    className="custom-control custom-radio d-inline-block w-30">
-                                                    <input type="radio"
-                                                           className="custom-control-input"
-                                                           id="defaultGroupExample1"
-                                                           name="difficulty"
-                                                           checked={question.difficulty === 'easy'}
-                                                           value="easy"
-                                                           onClick={(e) => changeDifficultyRadio(e, question)}
-                                                    />
-                                                    <label
-                                                        className="custom-control-label"
-                                                        htmlFor="defaultGroupExample1">Easy</label>
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div
-                                                    className="custom-control custom-radio d-inline-block">
-                                                    <input type="radio"
-                                                           className="custom-control-input"
-                                                           id="defaultGroupExample2"
-                                                           name="difficulty"
-                                                           checked={question.difficulty === 'medium'}
-                                                           value="medium"
-                                                           onClick={(e) => changeDifficultyRadio(e, question)}
-                                                    />
-                                                    <label
-                                                        className="custom-control-label"
-                                                        htmlFor="defaultGroupExample2">Medium</label>
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div
-                                                    className="custom-control custom-radio d-inline-block">
-                                                    <input type="radio"
-                                                           className="custom-control-input"
-                                                           id="defaultGroupExample3"
-                                                           name="difficulty"
-                                                           checked={question.difficulty === 'hard'}
-                                                           value="hard"
-                                                           onClick={(e) => changeDifficultyRadio(e, question)}
-                                                    />
-                                                    <label
-                                                        className="custom-control-label"
-                                                        htmlFor="defaultGroupExample3">Hard</label>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
+                                        question.difficulty === 'easy' &&
+                                        <span key={question.id + 1}
+                                              className="border border-5 border-success rounded"
+                                              onClick={toggleDifficultyClick}></span>
                                     }
-
-
-                                </div>
-                                <div className="card-body">
                                     {
-                                        /* show answers of each question */
-                                        question.answers !== null
-                                        &&
-                                        question.answers.length > 0
-                                            ?
-                                            question.answers.map(answer => (
-                                                <div className="row mb-3" key={answer.id}>
+                                        question.difficulty === 'medium' &&
+                                        <span key={question.id + 1}
+                                              className="border border-5 border-warning rounded"
+                                              onClick={toggleDifficultyClick}></span>
+                                    }
+                                    {
+                                        question.difficulty === 'hard' &&
+                                        <span key={question.id + 1}
+                                              className="border border-5 border-danger rounded"
+                                              onClick={toggleDifficultyClick}></span>
+                                    }
+                                    <div className="card-header py-3">
+                                        <div className="row position-relative">
+                                            <h5 className="mb-0 text-center mb-5"><strong>Question
+                                                #{questions.indexOf(question) + 1}</strong>
+                                            </h5>
+                                            <div
+                                                className="position-absolute question-modify-buttons">
+                                                <button type="button"
+                                                        className="btn btn-danger question-button float-end"
+                                                        data-index={question.id}
+                                                        onClick={(e) => onRemoveSavedAQuestionClick(e)}>
+                                                    <i className="fa-solid fa-trash"></i>
+                                                </button>
+                                                <button type="button"
+                                                        className="btn btn-warning question-button float-end"
+                                                        onClick={(e) => onEditQuestionBtnClick(e, question)}>
+                                                    <i className="fa-solid fa-pen-to-square"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+                                        <div className="row">
+                                            <p className="lead text-center">
+                                                {question.title}
+                                            </p>
+                                        </div>
+                                        {
+                                            /* difficulty radio */
+                                            difficultyComponent
+                                            &&
+                                            <div className="row text-center">
+                                                <div className="col">
                                                     <div
-                                                        className={`card ${answer.checked && 'correct'}`}>
-                                                        <div
-                                                            className="card-body d-flex justify-content-between align-items-center question-card-body">
-                                                            <p className="card-text me-auto">{question.answers.indexOf(answer) + 1}) {answer.title}</p>
-                                                            <button type="button"
-                                                                    className="btn btn-warning m-1"
-                                                                    style={{height: 'min-content'}}
-                                                            >
-                                                                <i className="fa-solid fa-pen-to-square"
-                                                                   style={{
-                                                                       display: 'inline',
-                                                                       marginRight: '.3rem'
-                                                                   }}></i>
-                                                                <p style={{display: 'inline'}}>Edit</p>
-                                                            </button>
-                                                            <button type="button"
-                                                                    className="btn btn-danger m-1"
-                                                                    style={{height: 'min-content'}}
-                                                                    data-index={answer.id}
-                                                                    onClick={(e) => onRemoveSavedAnswerClick(e, answer.questionId)}>
-                                                                <i className="fa-solid fa-trash"
-                                                                   style={{
-                                                                       display: 'inline',
-                                                                       marginRight: '.3rem'
-                                                                   }}></i>
-                                                                <p style={{display: 'inline'}}>Delete</p>
-                                                            </button>
-                                                        </div>
+                                                        className="custom-control custom-radio d-inline-block w-30">
+                                                        <input type="radio"
+                                                               className="custom-control-input"
+                                                               id="defaultGroupExample1"
+                                                               name="difficulty"
+                                                               checked={question.difficulty === 'easy'}
+                                                               value="easy"
+                                                               onClick={(e) => changeDifficultyRadio(e, question)}
+                                                        />
+                                                        <label
+                                                            className="custom-control-label"
+                                                            htmlFor="defaultGroupExample1">Easy</label>
                                                     </div>
                                                 </div>
-                                            ))
-                                            :
-                                            <h5 className="text-center">No answers Added!
-                                                Press the plus button to add a
-                                                new
-                                                question</h5>
-                                    }
-                                    <div className="row">
-                                        {
-                                            /* show answers on create */
-                                            answerComponents.map((answerComponent) => {
-                                                return <AddAnswer
-                                                    questionId={question.id}
-                                                    answerId={answerComponent.id}
-                                                    key={answerComponent.id}
-                                                    onAddAnswerClick={onAddAnswerClick}
-                                                    onRemoveAnswerComponentClick={onRemoveAnswerComponentClick}
-                                                />
-                                            })
-                                        }
-                                    </div>
-                                    <div className="row">
-                                        <button className="btn btn-primary"
-                                                onClick={(e) => {
-                                                    onPlusAnswerBtnClick(e, question.id)
-                                                }}>
-                                            <i className="fa-solid fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                                <div className="col">
+                                                    <div
+                                                        className="custom-control custom-radio d-inline-block">
+                                                        <input type="radio"
+                                                               className="custom-control-input"
+                                                               id="defaultGroupExample2"
+                                                               name="difficulty"
+                                                               checked={question.difficulty === 'medium'}
+                                                               value="medium"
+                                                               onClick={(e) => changeDifficultyRadio(e, question)}
+                                                        />
+                                                        <label
+                                                            className="custom-control-label"
+                                                            htmlFor="defaultGroupExample2">Medium</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col">
+                                                    <div
+                                                        className="custom-control custom-radio d-inline-block">
+                                                        <input type="radio"
+                                                               className="custom-control-input"
+                                                               id="defaultGroupExample3"
+                                                               name="difficulty"
+                                                               checked={question.difficulty === 'hard'}
+                                                               value="hard"
+                                                               onClick={(e) => changeDifficultyRadio(e, question)}
+                                                        />
+                                                        <label
+                                                            className="custom-control-label"
+                                                            htmlFor="defaultGroupExample3">Hard</label>
+                                                    </div>
+                                                </div>
 
-                            </div>
+
+                                            </div>
+                                        }
+
+
+                                    </div>
+                                    <div className="card-body">
+                                        {
+                                            /* show answers of each question */
+                                            question.answers !== null
+                                            &&
+                                            question.answers.length > 0
+                                                ?
+                                                question.answers.map(answer => (
+                                                    answer.status === 'show'
+                                                        ?
+                                                        <div className="row mb-3" key={answer.id}>
+                                                            <div
+                                                                className={`card ${answer.checked && 'correct'}`}>
+                                                                <div
+                                                                    className="card-body d-flex justify-content-between align-items-center question-card-body">
+                                                                    <p className="card-text me-auto">{question.answers.indexOf(answer) + 1}) {answer.title}</p>
+                                                                    <button type="button"
+                                                                            className="btn btn-warning m-1"
+                                                                            style={{height: 'min-content'}}
+                                                                            onClick={(e) => onEditAnswerBtnClick(e, answer)}
+                                                                    >
+                                                                        <i className="fa-solid fa-pen-to-square"
+                                                                           style={{
+                                                                               display: 'inline',
+                                                                               marginRight: '.3rem'
+                                                                           }}></i>
+                                                                        <p style={{display: 'inline'}}>Edit</p>
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            className="btn btn-danger m-1"
+                                                                            style={{height: 'min-content'}}
+                                                                            data-index={answer.id}
+                                                                            onClick={(e) => onRemoveSavedAnswerClick(e, answer.questionId)}>
+                                                                        <i className="fa-solid fa-trash"
+                                                                           style={{
+                                                                               display: 'inline',
+                                                                               marginRight: '.3rem'
+                                                                           }}></i>
+                                                                        <p style={{display: 'inline'}}>Delete</p>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        :
+                                                        <EditAnswer
+                                                            onRemoveAnswerComponentClickOnEdit={onRemoveAnswerComponentClickOnEdit}
+                                                            answer={answer} onAEditAnswerClick={onEditAnswerClick}
+                                                        />
+                                                ))
+                                                :
+                                                <h5 className="text-center">No answers Added!
+                                                    Press the plus button to add a
+                                                    new
+                                                    question</h5>
+                                        }
+                                        <div className="row">
+                                            {
+                                                /* show answers on create */
+                                                answerComponents.map((answerComponent) => (
+                                                    answerComponent.status === 'show'
+                                                    &&
+                                                    <AddAnswer
+                                                        questionId={question.id}
+                                                        answerId={answerComponent.id}
+                                                        answersLength={question.answers.length}
+                                                        key={answerComponent.id}
+                                                        onAddAnswerClick={onAddAnswerClick}
+                                                        onRemoveAnswerComponentClick={onRemoveAnswerComponentClick}
+                                                    />
+                                                ))
+                                            }
+                                        </div>
+                                        <div className="row">
+                                            <button className="btn btn-primary"
+                                                    onClick={(e) => {
+                                                        onPlusAnswerBtnClick(e, question.id)
+                                                    }}>
+                                                <i className="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 :
-                            <EditQuestion onRemoveQuestionComponentClickOnEdit={onRemoveQuestionComponentClickOnEdit}
-                                              onAEditQuestionClick={onAEditQuestionClick}
-                                              question={questions.find(questionEl => questionEl.id === question.id)}/>
+                                <EditQuestion
+                                    onRemoveQuestionComponentClickOnEdit={onRemoveQuestionComponentClickOnEdit}
+                                    onAEditQuestionClick={onAEditQuestionClick}
+                                    question={questions.find(questionEl => questionEl.id === question.id)}/>
                         ))
                     }
                     {
