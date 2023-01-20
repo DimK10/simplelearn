@@ -7,8 +7,8 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
     const [answer, setAnswer] = useState({
         id: answerId,
         rowNum: answersLength,
-        title: '',
-        checked: false,
+        text: '',
+        correct: false,
         status: 'add',
         questionId
     });

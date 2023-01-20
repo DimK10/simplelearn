@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/reducers/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230107154440.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20230120104848.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Answer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Answer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Lesson.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Lesson.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +240,7 @@
       <recent name="D:\web-dev-workstation\simplelearn\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.react hot reload  ubuntu">
+  <component name="RunManager" selected="Shell Script.php server with xdebug Ubuntu">
     <configuration name="LessonControllerTest.testIndex" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Controller\LessonControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Controller/LessonControllerTest.php" method="testIndex" scope="Method" />
       <method v="2" />
@@ -316,7 +319,7 @@
       <workItem from="1673936695834" duration="12136000" />
       <workItem from="1674022485148" duration="350000" />
       <workItem from="1674025106453" duration="3173000" />
-      <workItem from="1674204861118" duration="3847000" />
+      <workItem from="1674204861118" duration="9918000" />
     </task>
     <servers />
   </component>
@@ -360,6 +363,16 @@
           <url>file://$PROJECT_DIR$/src/Controller/RegistrationController.php</url>
           <line>25</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/QuestionController.php</url>
+          <line>39</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/QuestionController.php</url>
+          <line>31</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

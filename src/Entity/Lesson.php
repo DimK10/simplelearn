@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Lesson
 {
     /**
-     * @Groups("admin")
+     * @Groups({"admin", "lesson"})
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
      * @ORM\GeneratedValue(strategy="NONE")
@@ -23,13 +23,13 @@ class Lesson
     private $id;
 
     /**
-     * @Groups("admin")
+     * @Groups({"admin", "lesson"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @Groups("admin")
+     * @Groups({"admin", "lesson"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -48,6 +48,7 @@ class Lesson
     private $enrolledStudents;
 
     /**
+     * @Groups({"lesson"})
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="lesson", orphanRemoval=true)
      */
     private $questions;

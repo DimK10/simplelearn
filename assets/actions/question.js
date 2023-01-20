@@ -2,6 +2,7 @@ import setAuthToken from "../utils/setAuthToken";
 import axios from "axios";
 import questionSlice from "../reducers/question";
 import alertSlice from "../reducers/alert";
+import question from "../reducers/question";
 
 
 const {
@@ -20,18 +21,34 @@ export const saveAllQuestionsAction = (lesson, questions) => async (dispatch) =>
         setAuthToken(localStorage.jwt);
     }
 
-    const config = {
-        headers: {
+    const headers = {
             'Content-Type': 'application/json',
-        },
-    };
+        };
+
+    // Remove id's in questions and their answers
+    questions = [...questions.map(question => {
+        question.id = null;
+        delete question.rowNum;
+
+        question.answers =
+            [...question.answers.map(answer => {
+                answer.id = null;
+                delete answer.rowNum;
+                return answer;
+            })]
+
+        return question;
+    })]
 
     const body = JSON.stringify({questions});
+    console.log(body);
 
 
     try {
 
-        const res = await axios.post(`/api/lesson/questions/save/${lesson.id}`, body, config);
+        const res = await axios.post(`/api/lesson/questions/save/${lesson.id}`, body, {
+            headers: headers
+        });
 
 
         dispatch(saveAllQuestions(res.data));

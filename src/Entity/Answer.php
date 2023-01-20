@@ -6,6 +6,7 @@ use App\Repository\AnswerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AnswerRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Answer
 {
     /**
+     * @Groups("lesson")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,14 +22,16 @@ class Answer
     private $id;
 
     /**
+     * @Groups("lesson")
      * @ORM\Column(type="text")
      */
     private $text;
 
     /**
+     * @Groups("lesson")
      * @ORM\Column(type="boolean")
      */
-    private $corrent;
+    private $correct;
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")

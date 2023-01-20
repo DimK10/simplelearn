@@ -6,10 +6,11 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 enum QuestionType: string {
     case EASY = 'EASY';
-    case MODERATE = 'MODERATE';
+    case MEDIUM = 'MEDIUM';
     case HARD = 'HARD';
 }
 
@@ -19,14 +20,16 @@ enum QuestionType: string {
 class Question
 {
     /**
+     * @Groups("lesson")
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     * @Groups("lesson")
      * @ORM\Column(type="text")
      */
     private $title;
@@ -37,11 +40,13 @@ class Question
     private $description;
 
     /**
+     * @Groups("lesson")
      * @ORM\Column(type="string", length=255, enumType=QuestionType::class)
      */
-    private $type;
+    private $difficulty;
 
     /**
+     * @Groups("lesson")
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question", orphanRemoval=true)
      */
     private $answers;
