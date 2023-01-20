@@ -29,11 +29,14 @@ export const saveAllQuestionsAction = (lesson, questions) => async (dispatch) =>
     questions = [...questions.map(question => {
         question.id = null;
         delete question.rowNum;
+        delete question.status;
 
         question.answers =
             [...question.answers.map(answer => {
                 answer.id = null;
                 delete answer.rowNum;
+                delete answer.status;
+                delete answer.questionId;
                 return answer;
             })]
 

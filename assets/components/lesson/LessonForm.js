@@ -436,10 +436,10 @@ const LessonForm = ({lesson}) => {
                                                         ?
                                                         <div className="row mb-3" key={answer.id}>
                                                             <div
-                                                                className={`card ${answer.checked && 'correct'}`}>
+                                                                className={`card ${answer.correct && 'correct'}`}>
                                                                 <div
                                                                     className="card-body d-flex justify-content-between align-items-center question-card-body">
-                                                                    <p className="card-text me-auto">{question.answers.indexOf(answer) + 1}) {answer.title}</p>
+                                                                    <p className="card-text me-auto">{question.answers.indexOf(answer) + 1}) {answer.text}</p>
                                                                     <button type="button"
                                                                             className="btn btn-warning m-1"
                                                                             style={{height: 'min-content'}}

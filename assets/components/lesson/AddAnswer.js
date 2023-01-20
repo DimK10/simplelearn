@@ -29,7 +29,7 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                         <div className="row w-100">
                             <div className="col-sm-5 col-md-6">
                                 <div className="form-outline">
-                                    <input type="text" id="form5Example1" className="form-control" name="title"
+                                    <input type="text" id="form5Example1" className="form-control" name="text"
                                            onChange={(e) => onChange(e)} required={true}/>
                                     <label className="form-label" htmlFor="form5Example1">Enter Your Answer</label>
                                     {
@@ -42,7 +42,7 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                             </div>
                             <div className="col-sm-3 col-md-2 answer-checkbox">
                                 <div className="form-check d-flex text-center">
-                                    <input className="form-check-input me-2" type="checkbox" name="checked"
+                                    <input className="form-check-input me-2" type="checkbox" name="correct"
                                            id="form5Example3"
                                            defaultChecked={false} onChange={(e) => onCheckboxChange(e)}
                                     />

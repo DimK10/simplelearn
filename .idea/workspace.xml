@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/actions/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddAnswer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230107154440.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20230120104848.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Answer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Answer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Lesson.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Lesson.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/EditAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/EditAnswer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,7 +314,7 @@
       <workItem from="1673936695834" duration="12136000" />
       <workItem from="1674022485148" duration="350000" />
       <workItem from="1674025106453" duration="3173000" />
-      <workItem from="1674204861118" duration="9918000" />
+      <workItem from="1674204861118" duration="10472000" />
     </task>
     <servers />
   </component>
