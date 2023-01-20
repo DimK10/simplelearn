@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
 import LessonForm from "./LessonForm";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import HeaderNav from "../layout/HeaderNav";
 
 const Lesson = () => {
 
-    const {lesson} = useSelector(state => state.lesson);
+    let {lesson} = useSelector(state => state.lesson);
+    const [lessonObj, setLessonObj] = useState({...lesson});
+
+
+    useEffect(() => {
+        if (Object.entries(lessonObj).length !== 0)
+            localStorage.setItem("lesson", JSON.stringify(lessonObj));
+        else
+            setLessonObj(JSON.parse(localStorage.getItem("lesson")));
+    }, [lesson]);
+
+
 
     return (
         <>
@@ -19,7 +30,7 @@ const Lesson = () => {
                                 <div className="row">
                                     <div className="col">
                                         <h5 className="mb-0 me-auto text-center mb-5">
-                                            <strong>{lesson.name} Lesson</strong>
+                                            <strong>{lessonObj.name} Lesson</strong>
                                         </h5>
                                         <div className="text-center">
                                             <p className="">Click on the top border color to change the difficulty</p>

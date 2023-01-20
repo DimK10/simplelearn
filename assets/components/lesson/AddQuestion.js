@@ -5,6 +5,7 @@ import validateForm from "../../utils/validateForm";
 
 const AddQuestion = ({
                          questionId,
+                         lessonId,
                          questionsLength,
                          onAddQuestionClick,
                          onRemoveQuestionComponentClick
@@ -16,7 +17,8 @@ const AddQuestion = ({
         title: '',
         difficulty: 'easy',
         status: 'add',
-        answers: []
+        answers: [],
+        lessonId: lessonId
     });
 
     const [invalidQuestionText, setInvalidQuestionText] = useState(false);

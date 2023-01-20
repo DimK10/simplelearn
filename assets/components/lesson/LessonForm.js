@@ -5,8 +5,12 @@ import {v4 as uuidv4} from 'uuid';
 import AddQuestion from "./AddQuestion";
 import EditQuestion from "./EditQuestion";
 import EditAnswer from "./EditAnswer";
+import {useDispatch} from "react-redux";
+import {saveAllQuestionsAction} from "../../actions/question";
 
 const LessonForm = ({lesson}) => {
+
+    const dispatch = useDispatch();
 
     const [questionComponents, setQuestionComponents] = useState([]);
 
@@ -25,6 +29,7 @@ const LessonForm = ({lesson}) => {
     useEffect(() => {
         console.log(formData);
         localStorage.setItem("questions", JSON.stringify(questions));
+        localStorage.setItem("currentLesson", JSON.stringify(lesson));
     }, [formData]);
 
 
@@ -296,6 +301,10 @@ const LessonForm = ({lesson}) => {
         })
     }
 
+    const saveAllQuestions = () => {
+        dispatch(saveAllQuestionsAction(lesson, questions));
+    }
+
     return (
         <>
             <div className="container pt-4">
@@ -517,6 +526,7 @@ const LessonForm = ({lesson}) => {
                             <AddQuestion key={questionComponent.id}
                                          questionsLength={questions.length}
                                          questionId={questionComponent.id}
+                                         lessonId={lesson.id}
                                          onAddQuestionClick={onAddQuestionClick}
                                          onRemoveQuestionComponentClick={onRemoveQuestionComponentClick}
                             />
@@ -533,6 +543,13 @@ const LessonForm = ({lesson}) => {
                     </div>
 
                 </section>
+            </div>
+            <div className="row">
+                <button className="btn btn-success" onClick={saveAllQuestions}>
+
+                    <i className="fa-solid fa-check"></i>
+                    Save Questions
+                </button>
             </div>
         </>
     )

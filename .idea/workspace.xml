@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/reducers/question.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/EditAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/EditAnswer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/AddQuestion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +237,7 @@
       <recent name="D:\web-dev-workstation\simplelearn\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.Debug React">
+  <component name="RunManager" selected="Shell Script.react hot reload  ubuntu">
     <configuration name="LessonControllerTest.testIndex" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Controller\LessonControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Controller/LessonControllerTest.php" method="testIndex" scope="Method" />
       <method v="2" />
@@ -312,6 +316,7 @@
       <workItem from="1673936695834" duration="12136000" />
       <workItem from="1674022485148" duration="350000" />
       <workItem from="1674025106453" duration="3173000" />
+      <workItem from="1674204861118" duration="3847000" />
     </task>
     <servers />
   </component>

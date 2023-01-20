@@ -56,6 +56,12 @@ class Question
      */
     private $examsAsSelectedQuestion;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lesson::class, inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lesson;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -193,6 +199,18 @@ class Question
         if ($this->examsAsSelectedQuestion->removeElement($examsAsSelectedQuestion)) {
             $examsAsSelectedQuestion->removeQuestionsSelected($this);
         }
+
+        return $this;
+    }
+
+    public function getLesson(): ?Lesson
+    {
+        return $this->lesson;
+    }
+
+    public function setLesson(?Lesson $lesson): self
+    {
+        $this->lesson = $lesson;
 
         return $this;
     }

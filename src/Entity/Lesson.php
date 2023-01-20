@@ -47,9 +47,15 @@ class Lesson
      */
     private $enrolledStudents;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="lesson", orphanRemoval=true)
+     */
+    private $questions;
+
     public function __construct()
     {
         $this->enrolledStudents = new ArrayCollection();
+        $this->questions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -123,6 +129,36 @@ class Lesson
     public function removeEnrolledStudent(User $enrolledStudent): self
     {
         $this->enrolledStudents->removeElement($enrolledStudent);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Question>
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): self
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+            $question->setLesson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): self
+    {
+        if ($this->questions->removeElement($question)) {
+            // set the owning side to null (unless already changed)
+            if ($question->getLesson() === $this) {
+                $question->setLesson(null);
+            }
+        }
 
         return $this;
     }
