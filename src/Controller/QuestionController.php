@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */class QuestionController extends AbstractController
 {
     /**
+     * Check if removable method - is it really needed?
      * @Route("/lesson/questions/save/{lessonId}", name="save_all_questions_for_lesson", methods="POST")
      */
     public function saveAllQuestions(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, int $lessonId): Response
@@ -59,6 +60,57 @@ use Symfony\Component\Routing\Annotation\Route;
 
         $entityManager->persist($lesson);
         $entityManager->flush();
+
+        // Get the persisted lesson from db and return to user
+        $lesson = $lessonRepository->find($lessonId);
+
+        $json = $serializer->serialize(
+            $lesson,
+            'json', ['groups' => 'lesson']
+        );
+
+
+        return new Response($json);
+    }
+
+    /**
+     * @Route("/lesson/question/save/{lessonId}", name="save_all_questions_for_lesson", methods="POST")
+     */
+    public function saveQuestion(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, int $lessonId) :Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        // Get request body parameters
+//        xdebug_break();
+        $decoded = json_decode($request->getContent());
+
+
+        /**
+         * @var Question $question
+         */
+//        $question = $decoded->question;
+        $question = $serializer->deserialize($request->getContent(), Question::class, 'json');
+
+        // Get lesson from lesson id
+        /**
+         * @var LessonRepository $lessonRepository
+         */
+        $lessonRepository = $entityManager
+            ->getRepository(Lesson::class);
+//
+//        /**
+//         * @var QuestionRepository $questionRepository
+//         */
+//        $questionRepository = $entityManager
+//            ->getRepository(Question::class);
+//
+//        $lesson = $lessonRepository->find($lessonId);
+//
+//        $lesson->addQuestion($question);
+//        $question->setLesson($lesson);
+//
+//        $entityManager->persist($question);
+//        $entityManager->flush();
 
         // Get the persisted lesson from db and return to user
         $lesson = $lessonRepository->find($lessonId);

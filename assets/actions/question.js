@@ -15,6 +15,47 @@ const {
 } = alertSlice.actions;
 
 
+export const saveQuestion = (lesson, question) => async (dispatch) => {
+    if (localStorage.jwt) {
+        setAuthToken(localStorage.jwt);
+    }
+
+    const headers = {
+        'Content-Type': 'application/json',
+    };
+
+
+    question.id = null;
+    delete question.rowNum;
+    delete question.status;
+
+    question.answers =
+        [...question.answers.map(answer => {
+            answer.id = null;
+            delete answer.rowNum;
+            delete answer.status;
+            delete answer.questionId;
+            return answer;
+        })];
+
+
+    const body = JSON.stringify({...question});
+
+    try {
+
+        const res = await axios.post(`/api/lesson/question/save/${lesson.id}`, body, {
+            headers: headers
+        });
+
+
+        dispatch(saveQuestion(res.data));
+
+    } catch (err) {
+        dispatch(questionError(err.response.data.errorMessage));
+        dispatch(setAlert("Something wrong happened"));
+    }
+}
+
 export const saveAllQuestionsAction = (lesson, questions) => async (dispatch) => {
 
     if (localStorage.jwt) {
