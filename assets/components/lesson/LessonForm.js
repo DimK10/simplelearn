@@ -6,7 +6,7 @@ import AddQuestion from "./AddQuestion";
 import EditQuestion from "./EditQuestion";
 import EditAnswer from "./EditAnswer";
 import {useDispatch, useSelector} from "react-redux";
-import {saveAllQuestionsAction, saveQuestion} from "../../actions/question";
+import {saveAllQuestionsAction, saveQuestionAction} from "../../actions/question";
 
 const LessonForm = ({lesson}) => {
 
@@ -60,7 +60,7 @@ const LessonForm = ({lesson}) => {
     }
 
     /* Add operations */
-    const onAddQuestionClick = (e, questionId, question) => {
+    const onAddQuestionClick = async (e, questionId, question) => {
 
         // TODO SEND TO API
 
@@ -75,7 +75,7 @@ const LessonForm = ({lesson}) => {
 
         // localStorage.setItem("questions", JSON.stringify(questions));
 
-        dispatch(saveQuestion(lesson, question));
+        await dispatch(saveQuestionAction(lesson, question));
 
         // remove from questions
         if (!hasError)
@@ -306,9 +306,9 @@ const LessonForm = ({lesson}) => {
         })
     }
 
-    const saveAllQuestions = () => {
-        dispatch(saveAllQuestionsAction(lesson, questions));
-    }
+    // const saveAllQuestions = () => {
+    //     dispatch(saveAllQuestionsAction(lesson, questions));
+    // }
 
     return (
         <>

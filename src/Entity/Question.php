@@ -8,11 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-enum QuestionType: string {
-    case EASY = 'EASY';
-    case MEDIUM = 'MEDIUM';
-    case HARD = 'HARD';
-}
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
@@ -35,13 +30,8 @@ class Question
     private $title;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
-
-    /**
      * @Groups("lesson")
-     * @ORM\Column(type="string", length=255, enumType=QuestionType::class)
+     * @ORM\Column(type="string", length=255)
      */
     private $difficulty;
 
@@ -100,17 +90,23 @@ class Question
         return $this;
     }
 
-    public function getDescription(): ?string
+    /**
+     * @return mixed
+     */
+    public function getDifficulty()
     {
-        return $this->description;
+        return $this->difficulty;
     }
 
-    public function setDescription(string $description): self
+    /**
+     * @param mixed $difficulty
+     */
+    public function setDifficulty($difficulty): void
     {
-        $this->description = $description;
-
-        return $this;
+        $this->difficulty = $difficulty;
     }
+
+
 
     public function getType(): ?string
     {

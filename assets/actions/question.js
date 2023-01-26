@@ -7,6 +7,7 @@ import question from "../reducers/question";
 
 const {
     saveAllQuestions,
+    saveQuestion,
     questionError
 } = questionSlice.actions;
 
@@ -15,7 +16,7 @@ const {
 } = alertSlice.actions;
 
 
-export const saveQuestion = (lesson, question) => async (dispatch) => {
+export const saveQuestionAction = (lesson, question) => async (dispatch) => {
     if (localStorage.jwt) {
         setAuthToken(localStorage.jwt);
     }
