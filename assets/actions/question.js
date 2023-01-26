@@ -44,16 +44,13 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
 
     try {
 
-        const res = await axios.post(`/api/lesson/question/save/${lesson.id}`, body, {
+        await axios.post(`/api/lesson/question/save/${lesson.id}`, body, {
             headers: headers
         });
 
-        let data = res.data;
+        question = {...question, status: 'show'};
 
-        data['status'] = 'show';
-
-
-        // dispatch(saveQuestion(data));
+        dispatch(saveQuestion(question));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));

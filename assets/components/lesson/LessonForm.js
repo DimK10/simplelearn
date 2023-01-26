@@ -65,13 +65,7 @@ const LessonForm = ({lesson}) => {
         // TODO SEND TO API
 
 
-        question = {...question, status: 'show'};
 
-        // add to formData
-        setFormData({
-            ...formData,
-            questions: [...questions, question]
-        });
 
         // localStorage.setItem("questions", JSON.stringify(questions));
 
@@ -79,7 +73,15 @@ const LessonForm = ({lesson}) => {
         // remove from questions
         await onRemoveQuestionComponentClick(questionId);
 
-        dispatch(saveQuestionAction(lesson, question));
+        await dispatch(saveQuestionAction(lesson, question));
+
+        question = {...question, status: 'show'};
+
+        // add to formData
+        setFormData({
+            ...formData,
+            questions: [...questions, question]
+        });
     }
 
     const onAddAnswerClick = (e, answerId, answer) => {
