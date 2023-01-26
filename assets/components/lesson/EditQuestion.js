@@ -12,7 +12,7 @@ const EditQuestion = ({question, onAEditQuestionClick, onRemoveQuestionComponent
         setEditingQuestion({...editingQuestion, [e.target.name]: e.target.value});
 
     useEffect(() => {
-        console.log(question);
+        console.log(editingQuestion);
     },[question]);
 
 

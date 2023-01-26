@@ -48,8 +48,12 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
             headers: headers
         });
 
+        let data = res.data;
 
-        dispatch(saveQuestion(res.data));
+        data['status'] = 'show';
+
+
+        // dispatch(saveQuestion(data));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));

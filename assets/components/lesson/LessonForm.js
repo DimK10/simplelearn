@@ -29,8 +29,8 @@ const LessonForm = ({lesson}) => {
     } = formData;
 
     useEffect(() => {
-        console.log(formData);
-        localStorage.setItem("questions", JSON.stringify(questions));
+        console.log(questionComponents);
+        // localStorage.setItem("questions", JSON.stringify(questions));
         localStorage.setItem("currentLesson", JSON.stringify(lesson));
     }, [formData]);
 
@@ -75,11 +75,11 @@ const LessonForm = ({lesson}) => {
 
         // localStorage.setItem("questions", JSON.stringify(questions));
 
-        await dispatch(saveQuestionAction(lesson, question));
-
+        // todo find a proper way to check if there was something wrong saving new question
         // remove from questions
-        if (!hasError)
-            onRemoveQuestionComponentClick(questionId);
+        await onRemoveQuestionComponentClick(questionId);
+
+        dispatch(saveQuestionAction(lesson, question));
     }
 
     const onAddAnswerClick = (e, answerId, answer) => {
@@ -323,7 +323,7 @@ const LessonForm = ({lesson}) => {
                         questions.map(question => (
                             question.status === 'show'
                                 ?
-                                <div className="card mb-4">
+                                <div className="card mb-4" key={uuidv4()}>
                                     {
                                         question.difficulty === 'easy' &&
                                         <span key={question.id + 1}
@@ -373,7 +373,7 @@ const LessonForm = ({lesson}) => {
                                             /* difficulty radio */
                                             difficultyComponent
                                             &&
-                                            <div className="row text-center">
+                                            <div className="row text-center" key={uuidv4()}>
                                                 <div className="col">
                                                     <div
                                                         className="custom-control custom-radio d-inline-block w-30">

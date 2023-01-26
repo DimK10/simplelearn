@@ -7,10 +7,8 @@
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/actions/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/EditQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/EditQuestion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230120104848.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,7 +315,7 @@
       <workItem from="1674025106453" duration="3173000" />
       <workItem from="1674204861118" duration="10472000" />
       <workItem from="1674753899279" duration="1613000" />
-      <workItem from="1674755643231" duration="1511000" />
+      <workItem from="1674755643231" duration="4027000" />
     </task>
     <servers />
   </component>
@@ -351,6 +349,36 @@
           <url>file://$PROJECT_DIR$/assets/actions/auth.js</url>
           <line>76</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
+          <line>79</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
+          <line>81</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
+          <line>39</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
+          <line>51</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
+          <line>323</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/RegistrationController.php</url>
