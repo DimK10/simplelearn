@@ -7,6 +7,7 @@ use App\Entity\Question;
 use App\Repository\LessonRepository;
 use App\Repository\QuestionRepository;
 use App\Service\ClassService;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -76,6 +77,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
     /**
      * @Route("/lesson/question/save/{lessonId}", name="save_all_questions_for_lesson", methods="POST")
+     * @throws NonUniqueResultException
      */
     public function saveQuestion(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, int $lessonId, ClassService $classService) :Response
     {
@@ -114,11 +116,11 @@ use Symfony\Component\Serializer\SerializerInterface;
         $entityManager->persist($question);
         $entityManager->flush();
 
-        // Get the persisted lesson from db and return to user
-        $lesson = $lessonRepository->find($lessonId);
+        // Get the persisted question from db and return to user
+        $question = $questionRepository->findLastQuestionByLessonId($lessonId);
 
         $json = $serializer->serialize(
-            $lesson,
+            $question,
             'json', ['groups' => ['lesson']]
         );
 

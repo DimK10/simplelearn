@@ -70,8 +70,7 @@ const LessonForm = ({lesson}) => {
         // localStorage.setItem("questions", JSON.stringify(questions));
 
         // todo find a proper way to check if there was something wrong saving new question
-        // remove from questions
-        await onRemoveQuestionComponentClick(questionId);
+
 
         await dispatch(saveQuestionAction(lesson, question));
 
@@ -82,6 +81,8 @@ const LessonForm = ({lesson}) => {
             ...formData,
             questions: [...questions, question]
         });
+        // remove from questions
+        await onRemoveQuestionComponentClick(questionId);
     }
 
     const onAddAnswerClick = (e, answerId, answer) => {
