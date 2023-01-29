@@ -6,8 +6,6 @@ import question from "../reducers/question";
 
 
 const {
-    saveAllQuestions,
-    saveQuestion,
     questionError
 } = questionSlice.actions;
 
@@ -45,8 +43,6 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
 
         question = {...question, ...res.data};
 
-        dispatch(saveQuestion(question));
-
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
         dispatch(setAlert("Something wrong happened"));
@@ -71,67 +67,15 @@ export const editQuestionAction = (lesson, question) => async (dispatch) => {
         })];
 
 
-    const body = JSON.stringify({...question});
+    const body = JSON.stringify({...question, status: 'show'});
 
     try {
 
-        await axios.post(`/api/lesson/question/edit/${lesson.id}`, body, {
+        const res = await axios.post(`/api/lesson/question/edit/${lesson.id}`, body, {
             headers: headers
         });
 
-        question = {...question, status: 'show'};
-
-        dispatch(saveQuestion(question));
-
-    } catch (err) {
-        dispatch(questionError(err.response.data.errorMessage));
-        dispatch(setAlert("Something wrong happened"));
-    }
-}
-
-
-export const saveAllQuestionsAction = (lesson, questions) => async (dispatch) => {
-
-    if (localStorage.jwt) {
-        setAuthToken(localStorage.jwt);
-    }
-
-    const headers = {
-            'Content-Type': 'application/json',
-        };
-
-    // Remove id's in questions and their answers
-    questions = [...questions.map(question => {
-        question.id = null;
-        delete question.rowNum;
-        delete question.status;
-
-        question.answers =
-            [...question.answers.map(answer => {
-                answer.id = null;
-                delete answer.rowNum;
-                delete answer.status;
-                delete answer.questionId;
-                return answer;
-            })]
-
-        return question;
-    })]
-
-    const body = JSON.stringify({questions});
-    console.log(body);
-
-
-    try {
-
-        const res = await axios.post(`/api/lesson/questions/save/${lesson.id}`, body, {
-            headers: headers
-        });
-
-
-        dispatch(saveAllQuestions(res.data));
-        dispatch(setAlert(`The questions for the ${lesson.name} lesson have been saved successfully!`));
-
+        question = {...question, ...res.data};
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));

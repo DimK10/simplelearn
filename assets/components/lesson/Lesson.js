@@ -15,15 +15,6 @@ const Lesson = () => {
         return <Navigate to="/my-lessons" />;
     }
 
-
-    useEffect(() => {
-        if (Object.entries(lessonObj).length !== 0)
-            localStorage.setItem("lesson", JSON.stringify(lessonObj));
-        else
-            setLessonObj(JSON.parse(localStorage.getItem("lesson")));
-    }, [lesson]);
-
-
     return (
         <>
             <HeaderNav/>
