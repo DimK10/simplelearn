@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/lesson.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/actions/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/question.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/reducers/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/lesson.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +319,7 @@
       <workItem from="1674763579950" duration="2066000" />
       <workItem from="1674900492051" duration="552000" />
       <workItem from="1674924093819" duration="3150000" />
-      <workItem from="1674983635703" duration="7275000" />
+      <workItem from="1674983635703" duration="8245000" />
     </task>
     <servers />
   </component>
@@ -385,41 +383,6 @@
           <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
           <line>515</line>
           <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>67</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>62</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>64</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/actions/question.js</url>
-          <line>46</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/reducers/question.js</url>
-          <line>14</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>265</line>
-          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/RegistrationController.php</url>

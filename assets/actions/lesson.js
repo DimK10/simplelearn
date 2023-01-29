@@ -1,14 +1,20 @@
 import lessonSlice from "../reducers/lesson";
 import setAuthToken from "../utils/setAuthToken";
 import axios from "axios";
+import question from "../reducers/question";
 
 
 const {
   getCountOfLessons,
+  saveQuestionInLesson,
   getAllLessons,
   lessonError,
   setViewableLesson,
 } = lessonSlice.actions;
+
+export const saveQuestionInLessonAction = (question) => (dispatch) => {
+    dispatch(saveQuestionInLesson(question));
+}
 
 export const getAllLessonsByPageForTutor = (pageNo, pageSize) => async (dispatch) => {
   if (localStorage.jwt) {

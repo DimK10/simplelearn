@@ -11,6 +11,12 @@ const lessonSlice = createSlice({
         error: ''
     },
     reducers: {
+        saveQuestionInLesson: (state, action) => {
+            const {payload} = action;
+            let arr =  state.lesson.questions;
+            arr.push(...payload);
+            state.lesson.questions = {...arr};
+        },
         getAllLessons: (state, action) => {
             const {payload} = action;
             state.loading = false;

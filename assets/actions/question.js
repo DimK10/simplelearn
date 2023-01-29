@@ -3,12 +3,17 @@ import axios from "axios";
 import questionSlice from "../reducers/question";
 import alertSlice from "../reducers/alert";
 import question from "../reducers/question";
+import lessonSlice from "../reducers/lesson";
 
 
 const {
     saveQuestion,
     questionError
 } = questionSlice.actions;
+
+const {
+    saveQuestionInLesson
+} = lessonSlice.actions;
 
 const {
     setAlert
@@ -44,7 +49,7 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
 
         question = {...question, ...res.data};
 
-        await dispatch(saveQuestion(question));
+        await dispatch(saveQuestionInLesson(question));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
