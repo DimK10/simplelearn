@@ -6,7 +6,11 @@ import AddQuestion from "./AddQuestion";
 import EditQuestion from "./EditQuestion";
 import EditAnswer from "./EditAnswer";
 import {useDispatch, useSelector} from "react-redux";
-import {saveAllQuestionsAction, saveQuestionAction} from "../../actions/question";
+import {
+    editQuestionAction,
+    saveAllQuestionsAction,
+    saveQuestionAction
+} from "../../actions/question";
 
 const LessonForm = ({lesson}) => {
 
@@ -125,10 +129,10 @@ const LessonForm = ({lesson}) => {
         setQuestionComponents([...questionComponents, questionComponent]);
     }
 
-    const onAEditQuestionClick = (e, questionId, question) => {
+    const onAEditQuestionClick = async (e, questionId, question) => {
 
-        // TODO SEND TO API
 
+        await dispatch(editQuestionAction(lesson, question));
 
         questions = questions.map(questionEl => (questionEl.id === question.id ? {
             ...question,

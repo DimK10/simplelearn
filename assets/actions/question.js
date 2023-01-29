@@ -58,15 +58,6 @@ export const editQuestionAction = (lesson, question) => async (dispatch) => {
         'Content-Type': 'application/json',
     };
 
-
-    question.id = null;
-    question.answers =
-        [...question.answers.map(answer => {
-            answer.id = null;
-            return answer;
-        })];
-
-
     const body = JSON.stringify({...question, status: 'show'});
 
     try {

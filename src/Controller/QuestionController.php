@@ -76,7 +76,7 @@ use Symfony\Component\Serializer\SerializerInterface;
     }
 
     /**
-     * @Route("/lesson/question/save/{lessonId}", name="save_all_questions_for_lesson", methods="POST")
+     * @Route("/lesson/question/save/{lessonId}", name="save_question_for_lesson", methods="POST")
      * @throws NonUniqueResultException
      */
     public function saveQuestion(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, int $lessonId, ClassService $classService) :Response
@@ -121,6 +121,72 @@ use Symfony\Component\Serializer\SerializerInterface;
 
         $json = $serializer->serialize(
             $question,
+            'json', ['groups' => ['lesson']]
+        );
+
+
+        return new Response($json);
+    }
+
+    /**
+     * @Route("/lesson/question/edit/{lessonId}", name="edit_question_for_lesson", methods="POST")
+     * @throws NonUniqueResultException
+     */
+    public function editQuestion(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, int $lessonId, ClassService $classService) :Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        // Get request body parameters
+//        xdebug_break();
+
+        $decoded = json_decode($request->getContent());
+
+        /**
+         * @var Question $questionToEdit
+         */
+        $questionToEdit = $classService->cast($decoded, Question::class);
+
+        // Get lesson from lesson id
+        /**
+         * @var LessonRepository $lessonRepository
+         */
+        $lessonRepository = $entityManager
+            ->getRepository(Lesson::class);
+
+        /**
+         * @var QuestionRepository $questionRepository
+         */
+        $questionRepository = $entityManager
+            ->getRepository(Question::class);
+
+        $lesson = $lessonRepository->find($lessonId);
+
+        /**
+         * Question $questionFromLesson
+         */
+        $questionFromLesson = null;
+
+        foreach ($lesson->getQuestions() as &$question) {
+            if ($question->getId() === $questionToEdit->getId()) {
+                $questionFromLesson = $question;
+            }
+        }
+
+        if ($questionFromLesson !== null) {
+            $questionFromLesson->setTitle($questionToEdit->getTitle());
+            $questionFromLesson->setDifficulty($questionToEdit->getDifficulty());
+            $questionFromLesson->setStatus(($questionToEdit->getStatus()));
+            $questionFromLesson->setRowNum(($questionToEdit->getRowNum()));
+
+            $entityManager->persist($questionFromLesson);
+            $entityManager->flush();
+        }
+
+        // Get the persisted question from db and return to user
+        $questionFromDb = $questionRepository->findLastQuestionByLessonId($lessonId);
+
+        $json = $serializer->serialize(
+            $questionFromDb,
             'json', ['groups' => ['lesson']]
         );
 
