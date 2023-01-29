@@ -6,6 +6,7 @@ import question from "../reducers/question";
 
 
 const {
+    saveQuestion,
     questionError
 } = questionSlice.actions;
 
@@ -43,6 +44,8 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
 
         question = {...question, ...res.data};
 
+        await dispatch(saveQuestion(question));
+
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
         dispatch(setAlert("Something wrong happened"));
@@ -62,11 +65,29 @@ export const editQuestionAction = (lesson, question) => async (dispatch) => {
 
     try {
 
-        const res = await axios.post(`/api/lesson/question/edit/${lesson.id}`, body, {
+        const res = await axios.put(`/api/lesson/question/edit/${lesson.id}`, body, {
             headers: headers
         });
 
         question = {...question, ...res.data};
+
+    } catch (err) {
+        dispatch(questionError(err.response.data.errorMessage));
+        dispatch(setAlert("Something wrong happened"));
+    }
+}
+
+export const deleteQuestionAction = (questionId) => async (dispatch) => {
+
+    if (localStorage.jwt) {
+        setAuthToken(localStorage.jwt);
+    }
+
+    try {
+
+        const res = await axios.delete(`/api/lesson/question/delete/${questionId}`);
+
+        dispatch(setAlert(res.data));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));

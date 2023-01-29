@@ -10,6 +10,13 @@ const questionSlice = createSlice({
         error: ''
     },
     reducers: {
+        saveQuestion: (state, action) => {
+          const { payload } = action;
+          state.question = payload;
+          state.loading = false;
+          state.hasError = false;
+          state.error = '';
+        },
         questionError: (state, action) => {
             const { payload } = action;
             state.error = payload;

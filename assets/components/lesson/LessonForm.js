@@ -7,6 +7,7 @@ import EditQuestion from "./EditQuestion";
 import EditAnswer from "./EditAnswer";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    deleteQuestionAction,
     editQuestionAction,
     saveAllQuestionsAction,
     saveQuestionAction
@@ -59,19 +60,9 @@ const LessonForm = ({lesson}) => {
     /* Add operations */
     const onAddQuestionClick = async (e, questionId, question) => {
 
-        // TODO SEND TO API
-
-
-
-
-        // localStorage.setItem("questions", JSON.stringify(questions));
-
-        // todo find a proper way to check if there was something wrong saving new question
-
-
         await dispatch(saveQuestionAction(lesson, question));
 
-        question = {...question, ...questionInRedux, status: 'show'};
+        question = {...question, status: 'show'};
 
         // add to formData
         setFormData({
@@ -201,7 +192,7 @@ const LessonForm = ({lesson}) => {
     const removeSavedQuestion = (questionId) => {
         setFormData({
             ...formData,
-            questions: [...questions.filter((question) => question.id !== questionId)]
+            questions: [...questions.filter((question) => question.id !== parseInt(questionId))]
         });
     }
 
@@ -270,12 +261,13 @@ const LessonForm = ({lesson}) => {
     }
 
 
-    const onRemoveSavedAQuestionClick = (e) => {
-        const questionId = e.currentTarget.getAttribute('data-index');
+    const onRemoveSavedAQuestionClick = async (rowNum) => {
+        console.log(lesson)
+        const question = lesson.questions.find(el => el.rowNum === parseInt(rowNum));
 
-        // TODO SEND TO API REMOVE QUESTION
+        await dispatch(deleteQuestionAction(question.id));
 
-        removeSavedQuestion(questionId);
+        removeSavedQuestion(question.id);
     }
 
     const onRemoveSavedAnswerClick = (e, questionId) => {
@@ -309,6 +301,14 @@ const LessonForm = ({lesson}) => {
     // const saveAllQuestions = () => {
     //     dispatch(saveAllQuestionsAction(lesson, questions));
     // }
+
+    // useEffect(() => {
+    //     if (questionInRedux !== null)
+    //         setFormData({
+    //             ...formData,
+    //             questions: {...questions, questionInRedux}
+    //         });
+    // }, [questionInRedux])
 
     return (
         <>
@@ -352,7 +352,7 @@ const LessonForm = ({lesson}) => {
                                                 <button type="button"
                                                         className="btn btn-danger question-button float-end"
                                                         data-index={question.id}
-                                                        onClick={(e) => onRemoveSavedAQuestionClick(e)}>
+                                                        onClick={(e) => onRemoveSavedAQuestionClick(question.rowNum)}>
                                                     <i className="fa-solid fa-trash"></i>
                                                 </button>
                                                 <button type="button"

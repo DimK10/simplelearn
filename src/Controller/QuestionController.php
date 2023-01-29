@@ -129,7 +129,7 @@ use Symfony\Component\Serializer\SerializerInterface;
     }
 
     /**
-     * @Route("/lesson/question/edit/{lessonId}", name="edit_question_for_lesson", methods="POST")
+     * @Route("/lesson/question/edit/{lessonId}", name="edit_question_for_lesson", methods="PUT")
      * @throws NonUniqueResultException
      */
     public function editQuestion(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, int $lessonId, ClassService $classService) :Response
@@ -192,5 +192,30 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 
         return new Response($json);
+    }
+
+    /**
+     */
+
+    /**
+     * @Route("/lesson/question/delete/{questionId}", name="delete_question_for_lesson", methods="DELETE")
+     * @param ManagerRegistry $doctrine
+     * @param Request $request
+     * @param int $questionId
+     * @return Response
+     */
+    public function deleteQuestion(ManagerRegistry $doctrine, Request $request, int $questionId) :Response
+    {
+
+        $questionRepository = $doctrine->getRepository(Question::class);
+
+        /**
+         * @var Question $questionToDelete
+         */
+        $questionToDelete = $questionRepository->find($questionId);
+
+        $questionRepository->remove($questionToDelete, true);
+
+        return new JsonResponse("The question was deleted successfully!");
     }
 }

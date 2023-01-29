@@ -4,6 +4,7 @@ import LessonForm from "./LessonForm";
 import {useDispatch, useSelector} from "react-redux";
 import HeaderNav from "../layout/HeaderNav";
 import {Navigate, useNavigate} from "react-router-dom";
+import Alert from "../layout/Alert";
 
 const Lesson = () => {
 
@@ -20,6 +21,7 @@ const Lesson = () => {
             <HeaderNav/>
             <main style={{marginTop: '58px'}}>
                 <div className="container pt-4">
+                    <Alert />
                     <section className="mb-4">
                         <div className="card">
                             <div className="card-header py-3">
