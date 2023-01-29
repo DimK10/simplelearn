@@ -9,9 +9,6 @@
       <change beforePath="$PROJECT_DIR$/assets/actions/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LessonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LessonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Answer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Answer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,7 +319,7 @@
       <workItem from="1674763579950" duration="2066000" />
       <workItem from="1674900492051" duration="552000" />
       <workItem from="1674924093819" duration="3150000" />
-      <workItem from="1674983635703" duration="1647000" />
+      <workItem from="1674983635703" duration="2166000" />
     </task>
     <servers />
   </component>

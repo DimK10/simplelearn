@@ -35,7 +35,7 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
         })];
 
 
-    const body = JSON.stringify({...question});
+    const body = JSON.stringify({...question, status: 'show'});
 
     try {
 
@@ -43,7 +43,7 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
             headers: headers
         });
 
-        question = {...question, ...res.data, status: 'show'};
+        question = {...question, ...res.data};
 
         dispatch(saveQuestion(question));
 

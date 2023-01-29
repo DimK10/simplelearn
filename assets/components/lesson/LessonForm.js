@@ -67,7 +67,7 @@ const LessonForm = ({lesson}) => {
 
         await dispatch(saveQuestionAction(lesson, question));
 
-        question = {...question, ...questionInRedux};
+        question = {...question, ...questionInRedux, status: 'show'};
 
         // add to formData
         setFormData({

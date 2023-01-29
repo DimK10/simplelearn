@@ -3,11 +3,17 @@ import PropTypes from "prop-types";
 import LessonForm from "./LessonForm";
 import {useDispatch, useSelector} from "react-redux";
 import HeaderNav from "../layout/HeaderNav";
+import {Navigate, useNavigate} from "react-router-dom";
 
 const Lesson = () => {
 
     let {lesson} = useSelector(state => state.lesson);
+
     const [lessonObj, setLessonObj] = useState({...lesson});
+
+    if (Object.keys(lesson).length === 0 && lesson.constructor === Object) {
+        return <Navigate to="/my-lessons" />;
+    }
 
 
     useEffect(() => {
