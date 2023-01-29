@@ -57,6 +57,18 @@ class Question
      */
     private $lesson;
 
+    /**
+     * @Groups("lesson")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
+    /**
+     * @Groups("lesson")
+     * @ORM\Column(type="integer")
+     */
+    private $rowNum;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -212,6 +224,30 @@ class Question
     public function setLesson(?Lesson $lesson): self
     {
         $this->lesson = $lesson;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getRowNum(): ?int
+    {
+        return $this->rowNum;
+    }
+
+    public function setRowNum(int $rowNum): self
+    {
+        $this->rowNum = $rowNum;
 
         return $this;
     }

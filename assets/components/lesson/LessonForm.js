@@ -12,7 +12,7 @@ const LessonForm = ({lesson}) => {
 
     const dispatch = useDispatch();
 
-    const { hasError } = useSelector(state => state.question);
+    const { hasError, question: questionInRedux } = useSelector(state => state.question);
 
     const [questionComponents, setQuestionComponents] = useState([]);
 
@@ -21,19 +21,12 @@ const LessonForm = ({lesson}) => {
     const [difficultyComponent, setDifficultyComponent] = useState(false);
 
     const [formData, setFormData] = useState({
-        questions: localStorage.getItem("questions") !== null ? JSON.parse(localStorage.getItem("questions")) : [],
+        questions: lesson.questions.length > 0 ? lesson.questions : [],
     });
 
     let {
         questions,
     } = formData;
-
-    useEffect(() => {
-        console.log(questionComponents);
-        // localStorage.setItem("questions", JSON.stringify(questions));
-        localStorage.setItem("currentLesson", JSON.stringify(lesson));
-    }, [formData]);
-
 
     /* Plus button operations */
     const onPlusAnswerBtnClick = (e, questionId) => {
@@ -74,7 +67,7 @@ const LessonForm = ({lesson}) => {
 
         await dispatch(saveQuestionAction(lesson, question));
 
-        question = {...question, status: 'show'};
+        question = {...question, ...questionInRedux};
 
         // add to formData
         setFormData({

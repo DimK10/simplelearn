@@ -18,7 +18,6 @@ const Lesson = () => {
     }, [lesson]);
 
 
-
     return (
         <>
             <HeaderNav/>

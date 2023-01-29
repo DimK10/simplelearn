@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/api", name="api_")
@@ -41,7 +42,7 @@ class LessonController extends AbstractController
     /**
      * @Route("/lessons/tutor/{pageNo}/{numOfRecords}", name="all_lessons_for_tutor", methods="GET")
      */
-    public function index(ManagerRegistry $doctrine, int $pageNo, int $numOfRecords): Response
+    public function index(ManagerRegistry $doctrine, SerializerInterface $serializer, int $pageNo, int $numOfRecords): Response
     {
 
         $entityManager = $doctrine->getManager();
@@ -66,10 +67,19 @@ class LessonController extends AbstractController
 
         $lessons = $lessonRepository->getAllLessonsForTutor($tutor, $firstResult, $numOfRecords);
 
-        $lessonDTOs = array_map(function ($lesson) {
-            return $this->lessonToLessonDTO->convert($lesson);
-        }, $lessons);
 
-        return $this->json($lessonDTOs);
+        $json = $serializer->serialize(
+            $lessons,
+            'json', ['groups' => ['lesson']]
+        );
+
+        return new Response($json);
+
+//
+//        $lessonDTOs = array_map(function ($lesson) {
+//            return $this->lessonToLessonDTO->convert($lesson);
+//        }, $lessons);
+//
+//        return $this->json($lessonDTOs);
     }
 }

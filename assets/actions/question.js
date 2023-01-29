@@ -27,15 +27,10 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
 
 
     question.id = null;
-    delete question.rowNum;
-    delete question.status;
 
     question.answers =
         [...question.answers.map(answer => {
             answer.id = null;
-            delete answer.rowNum;
-            delete answer.status;
-            delete answer.questionId;
             return answer;
         })];
 
@@ -48,7 +43,7 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
             headers: headers
         });
 
-        question = {...question, ...res.data};
+        question = {...question, ...res.data, status: 'show'};
 
         dispatch(saveQuestion(question));
 
@@ -69,15 +64,9 @@ export const editQuestionAction = (lesson, question) => async (dispatch) => {
 
 
     question.id = null;
-    delete question.rowNum;
-    delete question.status;
-
     question.answers =
         [...question.answers.map(answer => {
             answer.id = null;
-            delete answer.rowNum;
-            delete answer.status;
-            delete answer.questionId;
             return answer;
         })];
 

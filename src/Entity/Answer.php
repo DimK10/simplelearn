@@ -44,6 +44,16 @@ class Answer
      */
     private $examsTakenThisAnswerWasCorrect;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $rowNum;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
     public function __construct()
     {
         $this->examsTakenThisAnswerWasCorrect = new ArrayCollection();
@@ -113,6 +123,30 @@ class Answer
         if ($this->examsTakenThisAnswerWasCorrect->removeElement($examsTakenThisAnswerWasCorrect)) {
             $examsTakenThisAnswerWasCorrect->removeCorrectAnswer($this);
         }
+
+        return $this;
+    }
+
+    public function getRowNum(): ?int
+    {
+        return $this->rowNum;
+    }
+
+    public function setRowNum(int $rowNum): self
+    {
+        $this->rowNum = $rowNum;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
