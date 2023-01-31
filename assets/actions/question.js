@@ -13,7 +13,10 @@ const {
 } = questionSlice.actions;
 
 const {
-    saveQuestionInLesson
+    saveQuestionInLesson,
+    editQuestionInLesson,
+    removeQuestionInLesson,
+    changeStatus
 } = lessonSlice.actions;
 
 
@@ -72,7 +75,8 @@ export const editQuestionAction = (lesson, question) => async (dispatch) => {
             headers: headers
         });
 
-        question = {...question, ...res.data};
+
+        dispatch(editQuestionInLesson(res.data));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
@@ -90,10 +94,16 @@ export const deleteQuestionAction = (questionId) => async (dispatch) => {
 
         const res = await axios.delete(`/api/lesson/question/delete/${questionId}`);
 
+        dispatch(removeQuestionInLesson(questionId));
+
         dispatch(setAlertAction(res.data));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
         dispatch(setAlertAction("Something wrong happened"));
     }
+}
+
+export const changeStatusOfQuestion = (payload) => dispatch => {
+    dispatch(changeStatus(payload));
 }

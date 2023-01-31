@@ -7,6 +7,7 @@ import EditQuestion from "./EditQuestion";
 import EditAnswer from "./EditAnswer";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    changeStatusOfQuestion,
     deleteQuestionAction,
     editQuestionAction,
     saveAllQuestionsAction,
@@ -19,21 +20,23 @@ const LessonForm = () => {
 
     let {lesson} = useSelector(state => state.lesson);
 
-    const { hasError, question: questionInRedux } = useSelector(state => state.question);
-
     const [questionComponents, setQuestionComponents] = useState([]);
 
     const [answerComponents, setAnswerComponents] = useState([]);
 
     const [difficultyComponent, setDifficultyComponent] = useState(false);
+    //
+    // const [formData, setFormData] = useState({
+    //     questions: lesson.questions.length > 0 ? lesson.questions : [],
+    // });
+    //
+    // let {
+    //     questions,
+    // } = formData;
 
-    const [formData, setFormData] = useState({
-        questions: lesson.questions.length > 0 ? lesson.questions : [],
-    });
-
-    let {
-        questions,
-    } = formData;
+    const {
+        questions
+    } = lesson;
 
     /* Plus button operations */
     const onPlusAnswerBtnClick = (e, questionId) => {
@@ -67,10 +70,10 @@ const LessonForm = () => {
         question = {...question, status: 'show'};
 
         // add to formData
-        setFormData({
-            ...formData,
-            questions: [...questions, question]
-        });
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions, question]
+        // });
         // remove from questions
         await onRemoveQuestionComponentClick(questionId);
     }
@@ -82,15 +85,15 @@ const LessonForm = () => {
         // add to formData
         answer = {...answer, status: 'show'};
 
-        let questions = formData.questions.map(question => (question.id === answer.questionId ? {
-            ...question,
-            answers: [...question.answers, answer]
-        } : question));
-
-        setFormData({
-            ...formData,
-            questions: [...questions]
-        })
+        // let questions = formData.questions.map(question => (question.id === answer.questionId ? {
+        //     ...question,
+        //     answers: [...question.answers, answer]
+        // } : question));
+        //
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions]
+        // })
 
         // remove from questions
         onRemoveAnswerComponentClick(answerId);
@@ -107,17 +110,19 @@ const LessonForm = () => {
             status: 'edit'
         }
 
+        dispatch(changeStatusOfQuestion(questionComponent));
+
         // change question status to edit
 
-        questions = questions.map(questionEl => questionEl.id === question.id ? {
-            ...questionEl,
-            status: 'edit'
-        } : questionEl);
-
-        setFormData({
-            ...formData,
-            questions: [...questions]
-        })
+        // questions = questions.map(questionEl => questionEl.id === question.id ? {
+        //     ...questionEl,
+        //     status: 'edit'
+        // } : questionEl);
+        //
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions]
+        // })
 
         setQuestionComponents([...questionComponents, questionComponent]);
     }
@@ -127,16 +132,16 @@ const LessonForm = () => {
 
         await dispatch(editQuestionAction(lesson, question));
 
-        questions = questions.map(questionEl => (questionEl.id === question.id ? {
-            ...question,
-            status: 'show'
-        } : questionEl));
-
-        // add to formData
-        setFormData({
-            ...formData,
-            questions
-        });
+        // questions = questions.map(questionEl => (questionEl.id === question.id ? {
+        //     ...question,
+        //     status: 'show'
+        // } : questionEl));
+        //
+        // // add to formData
+        // setFormData({
+        //     ...formData,
+        //     questions
+        // });
 
         // localStorage.setItem("questions", JSON.stringify(questions));
 
@@ -153,16 +158,16 @@ const LessonForm = () => {
         }
 
         // change answer status to edit
-
-        questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
-            ...questionEl,
-            answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answerEl, status: 'edit'} : answerEl)
-        } : questionEl);
-
-        setFormData({
-            ...formData,
-            questions: [...questions]
-        })
+        //
+        // questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
+        //     ...questionEl,
+        //     answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answerEl, status: 'edit'} : answerEl)
+        // } : questionEl);
+        //
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions]
+        // })
 
         setAnswerComponents([...answerComponents, answerComponent]);
     }
@@ -172,17 +177,17 @@ const LessonForm = () => {
         // TODO SEND TO API
 
 
-        answer = {...answer, status: 'show'};
-        questions = questions.map(questionEl => (questionEl.id === answer.questionId ? {
-            ...questionEl,
-            answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answer} : answerEl)
-        } : questionEl));
-
-        // add to formData
-        setFormData({
-            ...formData,
-            questions
-        });
+        // answer = {...answer, status: 'show'};
+        // questions = questions.map(questionEl => (questionEl.id === answer.questionId ? {
+        //     ...questionEl,
+        //     answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answer} : answerEl)
+        // } : questionEl));
+        //
+        // // add to formData
+        // setFormData({
+        //     ...formData,
+        //     questions
+        // });
 
         // localStorage.setItem("questions", JSON.stringify(questions));
 
@@ -192,31 +197,31 @@ const LessonForm = () => {
 
     /* Remove operations */
     const removeSavedQuestion = (questionId) => {
-        setFormData({
-            ...formData,
-            questions: [...questions.filter((question) => question.id !== parseInt(questionId))]
-        });
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions.filter((question) => question.id !== parseInt(questionId))]
+        // });
     }
 
     const removeSavedAnswer = (answerId, questionId) => {
 
-
-        let questions = formData.questions.map(
-            question => (
-                question.id === questionId
-                    ?
-                    {
-                        ...question,
-                        answers: [...question.answers.filter(answer => answer.questionId !== questionId || answer.id !== answerId)]
-                    }
-                    :
-                    question
-            ));
-
-        setFormData({
-            ...formData,
-            questions: [...questions]
-        });
+        //
+        // let questions = formData.questions.map(
+        //     question => (
+        //         question.id === questionId
+        //             ?
+        //             {
+        //                 ...question,
+        //                 answers: [...question.answers.filter(answer => answer.questionId !== questionId || answer.id !== answerId)]
+        //             }
+        //             :
+        //             question
+        //     ));
+        //
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions]
+        // });
 
         // localStorage.setItem("questions", JSON.stringify(questions));
     }
@@ -227,15 +232,15 @@ const LessonForm = () => {
 
     const onRemoveQuestionComponentClickOnEdit = (question) => {
 
-        questions = questions.map(questionEl => questionEl.id === question.id ? {
-            ...questionEl,
-            status: 'show'
-        } : questionEl);
-
-        setFormData({
-            ...formData,
-            questions: [...questions]
-        })
+        // questions = questions.map(questionEl => questionEl.id === question.id ? {
+        //     ...questionEl,
+        //     status: 'show'
+        // } : questionEl);
+        //
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions]
+        // })
 
         setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== question.id)]);
     }
@@ -246,18 +251,18 @@ const LessonForm = () => {
 
     const onRemoveAnswerComponentClickOnEdit = (answer) => {
 
-        questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
-            ...questionEl,
-            answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {
-                ...answerEl,
-                status: 'show'
-            } : answerEl)
-        } : questionEl);
-
-        setFormData({
-            ...formData,
-            questions: [...questions]
-        })
+        // questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
+        //     ...questionEl,
+        //     answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {
+        //         ...answerEl,
+        //         status: 'show'
+        //     } : answerEl)
+        // } : questionEl);
+        //
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions]
+        // })
 
         setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== question.id)]);
     }
@@ -288,16 +293,16 @@ const LessonForm = () => {
 
     const changeDifficultyRadio = (e, question) => {
         const difficulty = e.target.value;
-
-        questions = questions.map(questionEl => questionEl.id === question.id ? {
-            ...questionEl,
-            difficulty
-        } : questionEl);
-
-        setFormData({
-            ...formData,
-            questions: [...questions]
-        })
+        //
+        // questions = questions.map(questionEl => questionEl.id === question.id ? {
+        //     ...questionEl,
+        //     difficulty
+        // } : questionEl);
+        //
+        // setFormData({
+        //     ...formData,
+        //     questions: [...questions]
+        // })
     }
 
     // const saveAllQuestions = () => {
