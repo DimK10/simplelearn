@@ -48,6 +48,32 @@ const lessonSlice = createSlice({
                         status
                     } : questionEl))];
         },
+
+        //answer
+        saveAnswerInLesson: (state, action) => {
+            const {payload} = action;
+
+            const {
+                questionId,
+                answer
+            } = payload;
+
+            // find question
+            let question = state.lesson.questions.find(el => el.id === questionId);
+
+            // add answer to question
+            question.answers = [...question.answers, answer];
+
+            // change question in lesson
+            state.lesson.questions = [
+                ...state.lesson.questions
+                    .map(questionEl => (questionEl.id === id ? {
+                        ...question
+                    } : questionEl))];
+        },
+
+
+
         // lessons
         getAllLessons: (state, action) => {
             const {payload} = action;

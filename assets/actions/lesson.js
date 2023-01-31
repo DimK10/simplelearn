@@ -12,9 +12,6 @@ const {
   setViewableLesson,
 } = lessonSlice.actions;
 
-export const saveQuestionInLessonAction = (question) => (dispatch) => {
-    dispatch(saveQuestionInLesson(question));
-}
 
 export const getAllLessonsByPageForTutor = (pageNo, pageSize) => async (dispatch) => {
   if (localStorage.jwt) {

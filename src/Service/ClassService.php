@@ -10,7 +10,7 @@ class ClassService
      * the type of the specified $className.
      *
      * For example, we may pass 'Acme\Model\Product' as the $className.
-     *
+     * @url https://tommcfarlin.com/cast-a-php-standard-class-to-a-specific-type/
      * @param object $instance  an instance of the stdClass to convert
      * @param string $className the name of the class type to which we want to cals
      *

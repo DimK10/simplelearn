@@ -15,5 +15,5 @@ export default combineReducers({
   alert,
   auth,
   lesson,
-  question
+  // question
 });

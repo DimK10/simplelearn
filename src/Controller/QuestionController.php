@@ -19,7 +19,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/api", name="api_")
- */class QuestionController extends AbstractController
+ */
+class QuestionController extends AbstractController
 {
     /**
      * Check if removable method - is it really needed?
@@ -96,15 +97,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 //        $question = $serializer->deserialize($request->getContent(), Question::class, 'json');
 
         // Get lesson from lesson id
-        /**
-         * @var LessonRepository $lessonRepository
-         */
+
         $lessonRepository = $entityManager
             ->getRepository(Lesson::class);
 
-        /**
-         * @var QuestionRepository $questionRepository
-         */
+
         $questionRepository = $entityManager
             ->getRepository(Question::class);
 
