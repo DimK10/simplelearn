@@ -1,14 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {revertAll} from "../actions/global";
+
+const initialState = {
+    loading: true,
+    questions: [],
+    question: null,
+    hasError: false,
+    error: ''
+};
 
 const questionSlice = createSlice({
     name: 'question',
-    initialState: {
-        loading: true,
-        questions: [],
-        question: null,
-        hasError: false,
-        error: ''
-    },
+    initialState,
+    extraReducers: (builder) => builder.addCase(revertAll, () => initialState),
     reducers: {
         saveQuestion: (state, action) => {
           const { payload } = action;

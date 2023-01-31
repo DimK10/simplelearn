@@ -1,21 +1,22 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {revertAll} from "../actions/global";
 
+const initialState = {
+    loading: true,
+    count: 0,
+    lessons: [],
+    lesson: {},
+    error: ''
+};
 
 const lessonSlice = createSlice({
     name: 'lesson',
-    initialState: {
-        loading: true,
-        count: 0,
-        lessons: [],
-        lesson: {},
-        error: ''
-    },
+    initialState,
+    extraReducers: (builder) => builder.addCase(revertAll, () => initialState),
     reducers: {
         saveQuestionInLesson: (state, action) => {
             const {payload} = action;
-            let arr =  state.lesson.questions;
-            arr.push(...payload);
-            state.lesson.questions = {...arr};
+            state.lesson.questions = [...state.lesson.questions, payload];
         },
         getAllLessons: (state, action) => {
             const {payload} = action;

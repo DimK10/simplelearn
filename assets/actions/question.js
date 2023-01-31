@@ -4,6 +4,7 @@ import questionSlice from "../reducers/question";
 import alertSlice from "../reducers/alert";
 import question from "../reducers/question";
 import lessonSlice from "../reducers/lesson";
+import {setAlertAction} from "./alert";
 
 
 const {
@@ -14,10 +15,6 @@ const {
 const {
     saveQuestionInLesson
 } = lessonSlice.actions;
-
-const {
-    setAlert
-} = alertSlice.actions;
 
 
 export const saveQuestionAction = (lesson, question) => async (dispatch) => {
@@ -52,8 +49,9 @@ export const saveQuestionAction = (lesson, question) => async (dispatch) => {
         await dispatch(saveQuestionInLesson(question));
 
     } catch (err) {
+        console.log(err)
         dispatch(questionError(err.response.data.errorMessage));
-        dispatch(setAlert("Something wrong happened"));
+        dispatch(setAlertAction("Something wrong happened"));
     }
 }
 
@@ -78,7 +76,7 @@ export const editQuestionAction = (lesson, question) => async (dispatch) => {
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
-        dispatch(setAlert("Something wrong happened"));
+        dispatch(setAlertAction("Something wrong happened"));
     }
 }
 
@@ -92,10 +90,10 @@ export const deleteQuestionAction = (questionId) => async (dispatch) => {
 
         const res = await axios.delete(`/api/lesson/question/delete/${questionId}`);
 
-        dispatch(setAlert(res.data));
+        dispatch(setAlertAction(res.data));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
-        dispatch(setAlert("Something wrong happened"));
+        dispatch(setAlertAction("Something wrong happened"));
     }
 }

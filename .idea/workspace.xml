@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/actions/global.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/actions/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/lesson.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/actions/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/auth/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/auth/Logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/Lesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/lesson/LessonForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/reducers/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/reducers/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/lesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/reducers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/question.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,31 +206,31 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary&quot;: &quot;PHPUnit&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/dimk/web-dev-workstation/simplelearn/config/jwt&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php.debug&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/snap/intellij-idea-ultimate/401/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary": "PHPUnit",
+    "last_opened_file_path": "/home/dimk/web-dev-workstation/simplelearn/config/jwt",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php.debug",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.1.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/config/jwt" />
@@ -234,7 +239,7 @@
       <recent name="D:\web-dev-workstation\simplelearn\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.php server with xdebug">
+  <component name="RunManager" selected="JavaScript Debug.Debug React">
     <configuration name="LessonControllerTest.testIndex" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Controller\LessonControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Controller/LessonControllerTest.php" method="testIndex" scope="Method" />
       <method v="2" />
@@ -319,7 +324,8 @@
       <workItem from="1674763579950" duration="2066000" />
       <workItem from="1674900492051" duration="552000" />
       <workItem from="1674924093819" duration="3150000" />
-      <workItem from="1674983635703" duration="8245000" />
+      <workItem from="1674983635703" duration="8919000" />
+      <workItem from="1675185884516" duration="1663000" />
     </task>
     <servers />
   </component>
@@ -356,32 +362,32 @@
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>37</line>
+          <line>39</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>49</line>
+          <line>51</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>323</line>
+          <line>325</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>259</line>
+          <line>261</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>237</line>
+          <line>239</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/assets/components/lesson/LessonForm.js</url>
-          <line>515</line>
+          <line>517</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

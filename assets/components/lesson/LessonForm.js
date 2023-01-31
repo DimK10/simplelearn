@@ -13,9 +13,11 @@ import {
     saveQuestionAction
 } from "../../actions/question";
 
-const LessonForm = ({lesson}) => {
+const LessonForm = () => {
 
     const dispatch = useDispatch();
+
+    let {lesson} = useSelector(state => state.lesson);
 
     const { hasError, question: questionInRedux } = useSelector(state => state.question);
 
@@ -559,9 +561,5 @@ const LessonForm = ({lesson}) => {
         </>
     )
 };
-
-LessonForm.prototypes = {
-    lesson: PropTypes.object.isRequired
-}
 
 export default LessonForm;

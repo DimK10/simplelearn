@@ -10,8 +10,6 @@ const Lesson = () => {
 
     let {lesson} = useSelector(state => state.lesson);
 
-    const [lessonObj, setLessonObj] = useState({...lesson});
-
     if (Object.keys(lesson).length === 0 && lesson.constructor === Object) {
         return <Navigate to="/my-lessons" />;
     }
@@ -28,7 +26,7 @@ const Lesson = () => {
                                 <div className="row">
                                     <div className="col">
                                         <h5 className="mb-0 me-auto text-center mb-5">
-                                            <strong>{lessonObj.name} Lesson</strong>
+                                            <strong>{lesson.name} Lesson</strong>
                                         </h5>
                                         <div className="text-center">
                                             <p className="">Click on the top border color to change the difficulty</p>
@@ -50,7 +48,7 @@ const Lesson = () => {
                                 </div>
                             </div>
                             <div className="card-body">
-                                <LessonForm lesson={lesson}/>
+                                <LessonForm />
                             </div>
                         </div>
                     </section>
