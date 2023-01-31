@@ -7,9 +7,9 @@ import lessonSlice from "../reducers/lesson";
 const {
     saveAnswerInLesson,
     lessonError
-} = lessonSlice
+} = lessonSlice.actions
 
-export const saveAnswerAction = (question, answer) => async (dispatch) => {
+export const saveAnswerAction = (questionId, answer) => async (dispatch) => {
     if (localStorage.jwt) {
         setAuthToken(localStorage.jwt);
     }
@@ -19,19 +19,19 @@ export const saveAnswerAction = (question, answer) => async (dispatch) => {
     };
 
 
-    answer.id = null;
+    answer = {...answer, id: null};
 
     const body = JSON.stringify({...answer, status: 'show'});
 
     try {
 
-        const res = await axios.post(`/api/answer/save/${question.id}`, body, {
+        const res = await axios.post(`/api/answer/save/${questionId}`, body, {
             headers: headers
         });
 
         answer = {...answer, ...res.data};
 
-        await dispatch(saveAnswerInLesson({ questionId:question.id, answer}));
+        await dispatch(saveAnswerInLesson({ questionId, answer}));
 
     } catch (err) {
         console.log(err)

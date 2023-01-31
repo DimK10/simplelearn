@@ -49,7 +49,7 @@ class AnswerRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->leftJoin('a.question', 'q')
-            ->andWhere('a.id = :questionId')
+            ->andWhere('q.id = :questionId')
             ->setParameter('questionId', $questionId)
             ->addOrderBy('a.id', 'DESC')
             ->setMaxResults(1)

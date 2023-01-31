@@ -43,7 +43,11 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/lessons/tutor/*, roles: IS_AUTHENTICATED_FULLY }
+        # question routes
         - { path: ^/api/lesson/questions/save/+d", roles: ROLE_ADMIN }
+
+        # answer routes
+        - { path: ^/api/answer/save/+d", roles: ROLE_ADMIN }
 
         - { path: ^/api/register, roles: PUBLIC_ACCESS }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }

@@ -13,6 +13,7 @@ import {
     saveAllQuestionsAction,
     saveQuestionAction
 } from "../../actions/question";
+import {saveAnswerAction} from "../../actions/answer";
 
 const LessonForm = () => {
 
@@ -78,9 +79,10 @@ const LessonForm = () => {
         await onRemoveQuestionComponentClick(questionId);
     }
 
-    const onAddAnswerClick = (e, answerId, answer) => {
+    const onAddAnswerClick = async (e, questionId, answer) => {
 
         // TODO SEND TO API
+        await dispatch(saveAnswerAction(questionId, answer))
 
         // add to formData
         answer = {...answer, status: 'show'};
@@ -96,7 +98,7 @@ const LessonForm = () => {
         // })
 
         // remove from questions
-        onRemoveAnswerComponentClick(answerId);
+        onRemoveAnswerComponentClick(answer.id);
     }
 
     /* Edit operations */

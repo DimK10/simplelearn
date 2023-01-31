@@ -67,7 +67,7 @@ const lessonSlice = createSlice({
             // change question in lesson
             state.lesson.questions = [
                 ...state.lesson.questions
-                    .map(questionEl => (questionEl.id === id ? {
+                    .map(questionEl => (questionEl.id === questionId ? {
                         ...question
                     } : questionEl))];
         },

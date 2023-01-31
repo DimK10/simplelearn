@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
-/*
+/**
  * @Route("/api", name="api_")
  */
 class AnswerController extends AbstractController
@@ -44,8 +44,8 @@ class AnswerController extends AbstractController
             return new Response('Question not found', Response::HTTP_NOT_FOUND);
         }
 
-        $question->addAnswer($answer);
-        $entityManager->persist($question);
+        $answer->setQuestion($question);
+        $entityManager->persist($answer);
         $entityManager->flush();
 
         $answerFromDb = $answerRepository->findLastAnswerByQuestionId($questionId);

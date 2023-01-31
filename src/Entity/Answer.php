@@ -78,17 +78,34 @@ class Answer
         return $this;
     }
 
-    public function isCorrent(): ?bool
+    /**
+     * @return mixed
+     */
+    public function getCorrect()
     {
-        return $this->corrent;
+        return $this->correct;
     }
 
-    public function setCorrent(bool $corrent): self
+    /**
+     * @param mixed $correct
+     */
+    public function setCorrect($correct): void
     {
-        $this->corrent = $corrent;
-
-        return $this;
+        $this->correct = $correct;
     }
+//
+//    public function isCorrent(): ?bool
+//    {
+//        return $this->corrent;
+//    }
+//
+//    public function setCorrent(bool $corrent): self
+//    {
+//        $this->corrent = $corrent;
+//
+//        return $this;
+//    }
+
 
     public function getQuestion(): ?Question
     {

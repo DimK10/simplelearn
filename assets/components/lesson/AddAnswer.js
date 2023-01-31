@@ -54,7 +54,7 @@ const AddAnswer = ({questionId, answerId, answersLength, onAddAnswerClick, onRem
                             <div className="col-sm-2 col-md-2">
                                 <button type="submit" className="btn btn-success w-100"
                                         onClick={(e) => {
-                                            const validationErrors = validateForm(e, answerId, answer, onAddAnswerClick);
+                                            const validationErrors = validateForm(e, questionId, answer, onAddAnswerClick);
                                             setInvalidAnswerText(validationErrors);
                                         }}>
                                     <i className="fa-solid fa-check"></i>
