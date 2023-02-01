@@ -2,7 +2,7 @@ import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
 import validateForm from "../../utils/validateForm";
 
-const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnEdit}) => {
+const EditAnswer = ({answer, questionId, onAEditAnswerClick, onRemoveAnswerComponentClickOnEdit}) => {
 
     const [editingAnswer, setEditingAnswer] = useState({...answer});
 
@@ -16,7 +16,7 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
 
     return (
         <Fragment>
-            <div className="card mb-4">
+            <div className="card mb-4" key={editingAnswer.id}>
                 <div className="card-body answer-card-body">
                     <form>
                         <div className="row w-100">
@@ -51,7 +51,7 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
                             <div className="col-sm-2 col-md-2">
                                 <button type="submit" className="btn btn-success w-100"
                                         onClick={(e) => {
-                                            const validationErrors = validateForm(e, editingAnswer.id, editingAnswer, onAEditAnswerClick);
+                                            const validationErrors = validateForm(e, questionId, editingAnswer, onAEditAnswerClick);
                                             setInvalidAnswerText(validationErrors);
                                         }}>
                                     <i className="fa-solid fa-check"></i>
@@ -73,6 +73,7 @@ const EditAnswer = ({answer, onAEditAnswerClick, onRemoveAnswerComponentClickOnE
 
 EditAnswer.propTypes = {
     answer: PropTypes.object.isRequired,
+    questionId: PropTypes.number.isRequired,
     onAEditAnswerClick: PropTypes.func.isRequired,
     onRemoveAnswerComponentClickOnEdit: PropTypes.func.isRequired
 };

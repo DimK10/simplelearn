@@ -6,7 +6,9 @@ import lessonSlice from "../reducers/lesson";
 
 const {
     saveAnswerInLesson,
+    editAnswerInLesson,
     removeAnswerInLesson,
+    changeStatusOfAnswer,
     lessonError
 } = lessonSlice.actions
 
@@ -43,7 +45,7 @@ export const saveAnswerAction = (questionId, answer) => async (dispatch) => {
     }
 }
 
-export const editAnswerAction = (lesson, question) => async (dispatch) => {
+export const editAnswerAction = (questionId, answer) => async (dispatch) => {
     if (localStorage.jwt) {
         setAuthToken(localStorage.jwt);
     }
@@ -52,19 +54,20 @@ export const editAnswerAction = (lesson, question) => async (dispatch) => {
         'Content-Type': 'application/json',
     };
 
-    const body = JSON.stringify({...question, status: 'show'});
+    const body = JSON.stringify({...answer, status: 'show'});
 
     try {
 
-        const res = await axios.put(`/api/lesson/question/edit/${lesson.id}`, body, {
+        const res = await axios.put(`/api/answer/edit/${questionId}`, body, {
             headers: headers
         });
 
 
-        dispatch(editQuestionInLesson(res.data));
+        await dispatch(editAnswerInLesson({questionId, answer: res.data}));
 
+        dispatch(setAlertAction("The answer was updated successfully!", "success", 3000));
     } catch (err) {
-        dispatch(questionError(err.response.data.errorMessage));
+        dispatch(lessonError(err));
         dispatch(setAlertAction("Something wrong happened", "danger"));
     }
 }
@@ -85,11 +88,11 @@ export const deleteAnswerAction = (questionId,answerId) => async (dispatch) => {
 
     } catch (err) {
         console.log(err);
-        dispatch(lessonError(err.response.data.errorMessage));
+        dispatch(lessonError(err));
         dispatch(setAlertAction("Something wrong happened", 'danger'));
     }
 }
 
-export const changeStatusOfAnswer = (payload) => dispatch => {
-    dispatch(changeStatus(payload));
+export const changeStatusOfAnswerAction = (payload) => dispatch => {
+    dispatch(changeStatusOfAnswer(payload));
 }

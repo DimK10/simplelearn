@@ -71,6 +71,29 @@ const lessonSlice = createSlice({
                         ...question
                     } : questionEl))];
         },
+        editAnswerInLesson: (state, action) => {
+            const {payload} = action;
+
+            const {
+                questionId,
+                answer
+            } = payload;
+
+            const question = state.lesson.questions.find(question => question.id === questionId);
+
+
+            question.answers = [
+                ...question.answers
+                    .map(answerEl => (answerEl.id === answer.id ? {
+                        ...answer
+                    } : answerEl))];
+
+            state.lesson.questions = [
+                ...state.lesson.questions
+                    .map(questionEl => (questionEl.id === questionId ? {
+                        ...question
+                    } : questionEl))];
+        },
         removeAnswerInLesson: (state, action) => {
             const {payload} = action;
 
@@ -82,6 +105,33 @@ const lessonSlice = createSlice({
             const question = state.lesson.questions.find(question => question.id === questionId);
 
             question.answers = [...question.answers.filter(answer => answer.id !== answerId)];
+
+            state.lesson.questions = [
+                ...state.lesson.questions
+                    .map(questionEl => (questionEl.id === questionId ? {
+                        ...question
+                    } : questionEl))];
+        },
+
+        changeStatusOfAnswer: (state, action) => {
+            const {payload} = action;
+
+            const {
+                id,
+                questionId,
+                status
+            } = payload;
+
+            const question = state.lesson.questions.find(question => question.id === questionId);
+
+            // find answer to change status
+            question.answers = [
+                ...question.answers
+                    .map(answerEl => (answerEl.id === id ? {
+                        ...answerEl,
+                        status
+                    } : answerEl))];
+
 
             state.lesson.questions = [
                 ...state.lesson.questions

@@ -13,7 +13,12 @@ import {
     saveAllQuestionsAction,
     saveQuestionAction
 } from "../../actions/question";
-import {deleteAnswerAction, saveAnswerAction} from "../../actions/answer";
+import {
+    changeStatusOfAnswerAction,
+    deleteAnswerAction,
+    editAnswerAction,
+    saveAnswerAction
+} from "../../actions/answer";
 
 const LessonForm = () => {
 
@@ -105,15 +110,6 @@ const LessonForm = () => {
 
         // change question status to edit
 
-        // questions = questions.map(questionEl => questionEl.id === question.id ? {
-        //     ...questionEl,
-        //     status: 'edit'
-        // } : questionEl);
-        //
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions]
-        // })
 
         setQuestionComponents([...questionComponents, questionComponent]);
     }
@@ -123,67 +119,32 @@ const LessonForm = () => {
 
         await dispatch(editQuestionAction(lesson, question));
 
-        // questions = questions.map(questionEl => (questionEl.id === question.id ? {
-        //     ...question,
-        //     status: 'show'
-        // } : questionEl));
-        //
-        // // add to formData
-        // setFormData({
-        //     ...formData,
-        //     questions
-        // });
-
-        // localStorage.setItem("questions", JSON.stringify(questions));
-
         // remove from questions
         onRemoveQuestionComponentClick(questionId);
     }
 
-    const onEditAnswerBtnClick = (e, answer) => {
+    const onEditAnswerBtnClick = async (e, questionId, answer) => {
         e.preventDefault();
+        console.log(questionId)
 
         let answerComponent = {
             id: answer.id,
+            questionId,
             status: 'edit'
         }
 
-        // change answer status to edit
-        //
-        // questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
-        //     ...questionEl,
-        //     answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answerEl, status: 'edit'} : answerEl)
-        // } : questionEl);
-        //
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions]
-        // })
+        dispatch(changeStatusOfAnswerAction(answerComponent));
+
 
         setAnswerComponents([...answerComponents, answerComponent]);
     }
 
-    const onEditAnswerClick = (e, answerId, answer) => {
+    const onEditAnswerClick = async (e, questionId, answer) => {
 
-        // TODO SEND TO API
-
-
-        // answer = {...answer, status: 'show'};
-        // questions = questions.map(questionEl => (questionEl.id === answer.questionId ? {
-        //     ...questionEl,
-        //     answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {...answer} : answerEl)
-        // } : questionEl));
-        //
-        // // add to formData
-        // setFormData({
-        //     ...formData,
-        //     questions
-        // });
-
-        // localStorage.setItem("questions", JSON.stringify(questions));
+        await dispatch(editAnswerAction(questionId, answer));
 
         // remove from questions
-        onRemoveAnswerComponentClick(answerId);
+        onRemoveAnswerComponentClick(answer.id);
     }
 
     /* Remove operations */
@@ -450,7 +411,7 @@ const LessonForm = () => {
                                                                     <button type="button"
                                                                             className="btn btn-warning m-1"
                                                                             style={{height: 'min-content'}}
-                                                                            onClick={(e) => onEditAnswerBtnClick(e, answer)}
+                                                                            onClick={(e) => onEditAnswerBtnClick(e, question.id, answer)}
                                                                     >
                                                                         <i className="fa-solid fa-pen-to-square"
                                                                            style={{
@@ -477,7 +438,7 @@ const LessonForm = () => {
                                                         :
                                                         <EditAnswer
                                                             onRemoveAnswerComponentClickOnEdit={onRemoveAnswerComponentClickOnEdit}
-                                                            answer={answer} onAEditAnswerClick={onEditAnswerClick}
+                                                            answer={answer} questionId={question.id} onAEditAnswerClick={onEditAnswerClick}
                                                         />
                                                 ))
                                                 :

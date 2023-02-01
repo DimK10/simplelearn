@@ -163,24 +163,31 @@ class QuestionController extends AbstractController
          */
         $questionFromLesson = null;
 
-        foreach ($lesson->getQuestions() as &$question) {
+        /**
+         * @var Question $question
+         */
+        foreach ($lesson->getQuestions() as $question) {
             if ($question->getId() === $questionToEdit->getId()) {
                 $questionFromLesson = $question;
             }
         }
 
-        if ($questionFromLesson !== null) {
-            $questionFromLesson->setTitle($questionToEdit->getTitle());
-            $questionFromLesson->setDifficulty($questionToEdit->getDifficulty());
-            $questionFromLesson->setStatus(($questionToEdit->getStatus()));
-            $questionFromLesson->setRowNum(($questionToEdit->getRowNum()));
-
-            $entityManager->persist($questionFromLesson);
-            $entityManager->flush();
+        if ($questionFromLesson === null) {
+            return new Response('Question not found', Response::HTTP_NOT_FOUND);
         }
 
+
+        $questionFromLesson->setTitle($questionToEdit->getTitle());
+        $questionFromLesson->setDifficulty($questionToEdit->getDifficulty());
+        $questionFromLesson->setStatus(($questionToEdit->getStatus()));
+        $questionFromLesson->setRowNum(($questionToEdit->getRowNum()));
+
+        $entityManager->persist($questionFromLesson);
+        $entityManager->flush();
+
+
         // Get the persisted question from db and return to user
-        $questionFromDb = $questionRepository->findLastQuestionByLessonId($lessonId);
+        $questionFromDb = $questionRepository->find($questionToEdit->getId());
 
         $json = $serializer->serialize(
             $questionFromDb,

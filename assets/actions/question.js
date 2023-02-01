@@ -76,8 +76,9 @@ export const editQuestionAction = (lesson, question) => async (dispatch) => {
         });
 
 
-        dispatch(editQuestionInLesson(res.data));
+        await dispatch(editQuestionInLesson(res.data));
 
+        dispatch(setAlertAction("The question was updated successfully!", "success", 3000));
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
         dispatch(setAlertAction("Something wrong happened"));
@@ -96,7 +97,7 @@ export const deleteQuestionAction = (questionId) => async (dispatch) => {
 
         dispatch(removeQuestionInLesson(questionId));
 
-        dispatch(setAlertAction(res.data));
+        dispatch(setAlertAction(res.data, "success", 3000));
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
