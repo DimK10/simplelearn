@@ -16,7 +16,7 @@ const {
     saveQuestionInLesson,
     editQuestionInLesson,
     removeQuestionInLesson,
-    changeStatus
+    changeStatusOfQuestion
 } = lessonSlice.actions;
 
 
@@ -104,6 +104,6 @@ export const deleteQuestionAction = (questionId) => async (dispatch) => {
     }
 }
 
-export const changeStatusOfQuestion = (payload) => dispatch => {
-    dispatch(changeStatus(payload));
+export const changeStatusOfQuestionAction = (payload) => dispatch => {
+    dispatch(changeStatusOfQuestion(payload));
 }

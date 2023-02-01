@@ -32,7 +32,7 @@ const lessonSlice = createSlice({
             state.lesson.questions =
                 [...state.lesson.questions.filter((question) => question.id !== payload)]
         },
-        changeStatus: (state, action) => {
+        changeStatusOfQuestion: (state, action) => {
             const {payload} = action;
 
             const {
@@ -65,6 +65,24 @@ const lessonSlice = createSlice({
             question.answers = [...question.answers, answer];
 
             // change question in lesson
+            state.lesson.questions = [
+                ...state.lesson.questions
+                    .map(questionEl => (questionEl.id === questionId ? {
+                        ...question
+                    } : questionEl))];
+        },
+        removeAnswerInLesson: (state, action) => {
+            const {payload} = action;
+
+            const {
+                questionId,
+                answerId
+            } = payload;
+
+            const question = state.lesson.questions.find(question => question.id === questionId);
+
+            question.answers = [...question.answers.filter(answer => answer.id !== answerId)];
+
             state.lesson.questions = [
                 ...state.lesson.questions
                     .map(questionEl => (questionEl.id === questionId ? {

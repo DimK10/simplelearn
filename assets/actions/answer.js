@@ -6,6 +6,7 @@ import lessonSlice from "../reducers/lesson";
 
 const {
     saveAnswerInLesson,
+    removeAnswerInLesson,
     lessonError
 } = lessonSlice.actions
 
@@ -32,6 +33,8 @@ export const saveAnswerAction = (questionId, answer) => async (dispatch) => {
         answer = {...answer, ...res.data};
 
         await dispatch(saveAnswerInLesson({ questionId, answer}));
+
+        dispatch(setAlertAction("The answer was saved successfully!", "success", 3000));
 
     } catch (err) {
         console.log(err)
@@ -62,11 +65,11 @@ export const editAnswerAction = (lesson, question) => async (dispatch) => {
 
     } catch (err) {
         dispatch(questionError(err.response.data.errorMessage));
-        dispatch(setAlertAction("Something wrong happened"));
+        dispatch(setAlertAction("Something wrong happened", "danger"));
     }
 }
 
-export const deleteAnswerAction = (questionId) => async (dispatch) => {
+export const deleteAnswerAction = (questionId,answerId) => async (dispatch) => {
 
     if (localStorage.jwt) {
         setAuthToken(localStorage.jwt);
@@ -74,15 +77,16 @@ export const deleteAnswerAction = (questionId) => async (dispatch) => {
 
     try {
 
-        const res = await axios.delete(`/api/lesson/question/delete/${questionId}`);
+        const res = await axios.delete(`/api/answer/delete/${answerId}`);
 
-        dispatch(removeQuestionInLesson(questionId));
+        await dispatch(removeAnswerInLesson({questionId, answerId}));
 
-        dispatch(setAlertAction(res.data));
+        dispatch(setAlertAction(res.data, "success", 3000));
 
     } catch (err) {
-        dispatch(questionError(err.response.data.errorMessage));
-        dispatch(setAlertAction("Something wrong happened"));
+        console.log(err);
+        dispatch(lessonError(err.response.data.errorMessage));
+        dispatch(setAlertAction("Something wrong happened", 'danger'));
     }
 }
 

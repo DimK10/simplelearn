@@ -7,13 +7,13 @@ import EditQuestion from "./EditQuestion";
 import EditAnswer from "./EditAnswer";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    changeStatusOfQuestion,
+    changeStatusOfQuestionAction,
     deleteQuestionAction,
     editQuestionAction,
     saveAllQuestionsAction,
     saveQuestionAction
 } from "../../actions/question";
-import {saveAnswerAction} from "../../actions/answer";
+import {deleteAnswerAction, saveAnswerAction} from "../../actions/answer";
 
 const LessonForm = () => {
 
@@ -81,21 +81,10 @@ const LessonForm = () => {
 
     const onAddAnswerClick = async (e, questionId, answer) => {
 
-        // TODO SEND TO API
         await dispatch(saveAnswerAction(questionId, answer))
 
         // add to formData
         answer = {...answer, status: 'show'};
-
-        // let questions = formData.questions.map(question => (question.id === answer.questionId ? {
-        //     ...question,
-        //     answers: [...question.answers, answer]
-        // } : question));
-        //
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions]
-        // })
 
         // remove from questions
         onRemoveAnswerComponentClick(answer.id);
@@ -112,7 +101,7 @@ const LessonForm = () => {
             status: 'edit'
         }
 
-        dispatch(changeStatusOfQuestion(questionComponent));
+        dispatch(changeStatusOfQuestionAction(questionComponent));
 
         // change question status to edit
 
@@ -271,7 +260,7 @@ const LessonForm = () => {
 
 
     const onRemoveSavedAQuestionClick = async (rowNum) => {
-        console.log(lesson)
+
         const question = lesson.questions.find(el => el.rowNum === parseInt(rowNum));
 
         await dispatch(deleteQuestionAction(question.id));
@@ -279,12 +268,16 @@ const LessonForm = () => {
         removeSavedQuestion(question.id);
     }
 
-    const onRemoveSavedAnswerClick = (e, questionId) => {
-        const answerId = e.currentTarget.getAttribute('data-index');
+    const onRemoveSavedAnswerClick = async (questionId, rowNum) => {
+        const question = lesson.questions.find(el => el.id === parseInt(questionId));
+
+        const answer = question.answers.find(el => el.rowNum === parseInt(rowNum));
 
         // TODO SEND TO API REMOVE ANSWER
 
-        removeSavedAnswer(answerId, questionId);
+        await dispatch(deleteAnswerAction(questionId, answer.id));
+
+        removeSavedAnswer(answer.id, questionId);
     }
 
     /* fast radio buttons to change difficulty without full edit of question */
@@ -470,7 +463,7 @@ const LessonForm = () => {
                                                                             className="btn btn-danger m-1"
                                                                             style={{height: 'min-content'}}
                                                                             data-index={answer.id}
-                                                                            onClick={(e) => onRemoveSavedAnswerClick(e, answer.questionId)}>
+                                                                            onClick={(e) => onRemoveSavedAnswerClick(question.id, answer.rowNum)}>
                                                                         <i className="fa-solid fa-trash"
                                                                            style={{
                                                                                display: 'inline',

@@ -8,6 +8,7 @@ use App\Repository\QuestionRepository;
 use App\Service\ClassService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -56,5 +57,23 @@ class AnswerController extends AbstractController
         );
 
         return new Response($json);
+    }
+
+    /**
+     * @Route("/answer/delete/{answerId}", name="delete_answer_of_question", methods="DELETE")
+     */
+    public function deleteAnswer(ManagerRegistry $doctrine,Request $request, SerializerInterface $serializer, ClassService $classService, int $answerId): Response
+    {
+
+        $answerRepository = $doctrine->getRepository(Answer::class);
+
+        $answerToDelete = $answerRepository->find($answerId);
+
+        if ($answerToDelete === null)
+            return new Response('Answer not found', Response::HTTP_NOT_FOUND);
+
+        $answerRepository->remove($answerToDelete, true);
+
+        return new JsonResponse("The answer was deleted successfully!");
     }
 }
