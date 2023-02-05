@@ -10,7 +10,6 @@ import {
     changeStatusOfQuestionAction,
     deleteQuestionAction,
     editQuestionAction,
-    saveAllQuestionsAction,
     saveQuestionAction
 } from "../../actions/question";
 import {
@@ -31,14 +30,6 @@ const LessonForm = () => {
     const [answerComponents, setAnswerComponents] = useState([]);
 
     const [difficultyComponent, setDifficultyComponent] = useState(false);
-    //
-    // const [formData, setFormData] = useState({
-    //     questions: lesson.questions.length > 0 ? lesson.questions : [],
-    // });
-    //
-    // let {
-    //     questions,
-    // } = formData;
 
     const {
         questions
@@ -75,11 +66,6 @@ const LessonForm = () => {
 
         question = {...question, status: 'show'};
 
-        // add to formData
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions, question]
-        // });
         // remove from questions
         await onRemoveQuestionComponentClick(questionId);
     }
@@ -148,52 +134,11 @@ const LessonForm = () => {
     }
 
     /* Remove operations */
-    const removeSavedQuestion = (questionId) => {
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions.filter((question) => question.id !== parseInt(questionId))]
-        // });
-    }
-
-    const removeSavedAnswer = (answerId, questionId) => {
-
-        //
-        // let questions = formData.questions.map(
-        //     question => (
-        //         question.id === questionId
-        //             ?
-        //             {
-        //                 ...question,
-        //                 answers: [...question.answers.filter(answer => answer.questionId !== questionId || answer.id !== answerId)]
-        //             }
-        //             :
-        //             question
-        //     ));
-        //
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions]
-        // });
-
-        // localStorage.setItem("questions", JSON.stringify(questions));
-    }
-
     const onRemoveQuestionComponentClick = (questionId) => {
         setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== questionId)]);
     }
 
     const onRemoveQuestionComponentClickOnEdit = (question) => {
-
-        // questions = questions.map(questionEl => questionEl.id === question.id ? {
-        //     ...questionEl,
-        //     status: 'show'
-        // } : questionEl);
-        //
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions]
-        // })
-
         setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== question.id)]);
     }
 
@@ -202,20 +147,6 @@ const LessonForm = () => {
     }
 
     const onRemoveAnswerComponentClickOnEdit = (answer) => {
-
-        // questions = questions.map(questionEl => questionEl.id === answer.questionId ? {
-        //     ...questionEl,
-        //     answers: questionEl.answers.map(answerEl => answerEl.id === answer.id ? {
-        //         ...answerEl,
-        //         status: 'show'
-        //     } : answerEl)
-        // } : questionEl);
-        //
-        // setFormData({
-        //     ...formData,
-        //     questions: [...questions]
-        // })
-
         setQuestionComponents([...questionComponents.filter((questionComponent) => questionComponent.id !== question.id)]);
     }
 
@@ -225,8 +156,6 @@ const LessonForm = () => {
         const question = lesson.questions.find(el => el.rowNum === parseInt(rowNum));
 
         await dispatch(deleteQuestionAction(question.id));
-
-        removeSavedQuestion(question.id);
     }
 
     const onRemoveSavedAnswerClick = async (questionId, rowNum) => {
@@ -234,11 +163,7 @@ const LessonForm = () => {
 
         const answer = question.answers.find(el => el.rowNum === parseInt(rowNum));
 
-        // TODO SEND TO API REMOVE ANSWER
-
         await dispatch(deleteAnswerAction(questionId, answer.id));
-
-        removeSavedAnswer(answer.id, questionId);
     }
 
     /* fast radio buttons to change difficulty without full edit of question */
@@ -261,17 +186,6 @@ const LessonForm = () => {
         // })
     }
 
-    // const saveAllQuestions = () => {
-    //     dispatch(saveAllQuestionsAction(lesson, questions));
-    // }
-
-    // useEffect(() => {
-    //     if (questionInRedux !== null)
-    //         setFormData({
-    //             ...formData,
-    //             questions: {...questions, questionInRedux}
-    //         });
-    // }, [questionInRedux])
 
     return (
         <>
@@ -336,7 +250,8 @@ const LessonForm = () => {
                                             /* difficulty radio */
                                             difficultyComponent
                                             &&
-                                            <div className="row text-center" key={uuidv4()}>
+                                            <div className="row text-center"
+                                                 key={uuidv4()}>
                                                 <div className="col">
                                                     <div
                                                         className="custom-control custom-radio d-inline-block w-30">
@@ -402,7 +317,8 @@ const LessonForm = () => {
                                                 question.answers.map(answer => (
                                                     answer.status === 'show'
                                                         ?
-                                                        <div className="row mb-3" key={answer.id}>
+                                                        <div className="row mb-3"
+                                                             key={answer.id}>
                                                             <div
                                                                 className={`card ${answer.correct && 'correct'}`}>
                                                                 <div
@@ -438,11 +354,14 @@ const LessonForm = () => {
                                                         :
                                                         <EditAnswer
                                                             onRemoveAnswerComponentClickOnEdit={onRemoveAnswerComponentClickOnEdit}
-                                                            answer={answer} questionId={question.id} onAEditAnswerClick={onEditAnswerClick}
+                                                            answer={answer}
+                                                            questionId={question.id}
+                                                            onAEditAnswerClick={onEditAnswerClick}
                                                         />
                                                 ))
                                                 :
-                                                <h5 className="text-center">No answers Added!
+                                                <h5 className="text-center">No answers
+                                                    Added!
                                                     Press the plus button to add a
                                                     new
                                                     question</h5>
@@ -512,13 +431,6 @@ const LessonForm = () => {
 
                 </section>
             </div>
-            {/*<div className="row">*/}
-            {/*    <button className="btn btn-success" onClick={saveAllQuestions}>*/}
-
-            {/*        <i className="fa-solid fa-check"></i>*/}
-            {/*        Save Questions*/}
-            {/*    </button>*/}
-            {/*</div>*/}
         </>
     )
 };
