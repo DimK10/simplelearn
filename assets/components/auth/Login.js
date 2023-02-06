@@ -8,6 +8,7 @@ import Alert from "../layout/Alert";
 const Login = () => {
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const user = useSelector(state => state.auth?.user);
 
   const dispatch = useDispatch();
 
@@ -27,7 +28,7 @@ const Login = () => {
   };
 
   // Redirect if logged in
-  if (isAuthenticated) {
+  if (isAuthenticated && user != null) {
     return <Navigate to='/dashboard'/>;
   }
 

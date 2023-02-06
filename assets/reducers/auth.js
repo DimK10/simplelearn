@@ -2,9 +2,15 @@ import {createSlice} from "@reduxjs/toolkit";
 import {revertAll} from "../actions/global";
 
 const registerOrLoginSuccess = (state, action) => {
-    const {payload, user} = action;
+    const {payload} = action;
+
+    const {
+        jwt,
+        user
+    } = payload;
+
     localStorage.setItem('jwt', payload.jwt);
-    state.jwt = payload.jwt;
+    state.jwt = jwt;
     state.isAuthenticated = true;
     state.loading = false;
     state.user = user;

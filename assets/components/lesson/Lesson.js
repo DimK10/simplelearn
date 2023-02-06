@@ -10,7 +10,7 @@ const Lesson = () => {
 
     let {lesson} = useSelector(state => state.lesson);
 
-    if (Object.keys(lesson).length === 0 && lesson.constructor === Object) {
+    if (Object.keys(lesson).length === 1) {
         return <Navigate to="/my-lessons" />;
     }
 

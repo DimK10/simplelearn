@@ -728,7 +728,7 @@ class AnswerFixtures extends BaseFixture implements DependentFixtureInterface
         $answer->setRowNum(52);
         $answer->setStatus("show");
         $answer->setText("44");
-        $answer->setCorrect(true);
+        $answer->setCorrect(false);
         $answer->setQuestion($mathQuestion);
 
         $this->addReference("math_answer_52", $answer);
@@ -778,7 +778,7 @@ class AnswerFixtures extends BaseFixture implements DependentFixtureInterface
         /**
          * @var Question $mathQuestion
          */
-        $mathQuestion =$this->getReference("math_question_11");
+        $mathQuestion =$this->getReference("math_question_12");
 
         $answer = new Answer();
         $answer->setId(56);
@@ -822,7 +822,7 @@ class AnswerFixtures extends BaseFixture implements DependentFixtureInterface
         $answer->setRowNum(59);
         $answer->setStatus("show");
         $answer->setText("50");
-        $answer->setCorrect(true);
+        $answer->setCorrect(false);
         $answer->setQuestion($mathQuestion);
 
         $this->addReference("math_answer_59", $answer);

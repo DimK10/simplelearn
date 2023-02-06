@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import {
     getAllLessonsByPageForStudent,
     getAllLessonsByPageForTutor
@@ -14,15 +14,15 @@ function Sidebar(props) {
 
     const dispatch = useDispatch();
 
-    const { isAuthenticated, user } = useSelector(state => state.auth);
+    const auth = useSelector(state => state.auth);
 
-    const {  loading, lessons } = useSelector(state => state.lesson);
+    const {loading, lessons} = useSelector(state => state.lesson);
 
     useEffect(() => {
 
         if (lessons.length === 0)
             dispatch(getAllLessonsByPageForStudent(0, 10));
-    }, [user]);
+    }, []);
 
 
     return (
@@ -36,24 +36,30 @@ function Sidebar(props) {
                     <div className="list-group list-group-flush mx-3 mt-4">
 
                         {/* Dashboard link - open to all roles */}
-                        <Link className={`list-group-item list-group-item-action py-2 ripple ${
-                            window.location.pathname === '/dashboard' ? 'active' : ''
-                        }`} to='/dashboard'>
+                        <Link
+                            className={`list-group-item list-group-item-action py-2 ripple ${
+                                window.location.pathname === '/dashboard' ? 'active' : ''
+                            }`} to='/dashboard'>
                             <i className="fas fa-tachometer-alt fa-fw me-3"></i
                             ><span>Main dashboard</span>
                         </Link>
 
                         {/* Teacher lessons page - open only to teacher role */}
                         {
-                            isAuthenticated
+                            auth.isAuthenticated
                             &&
-                            user !== null
+                            auth.user !== null
                             &&
-                            user.roles.includes('ROLE_ADMIN')
+                            auth.user !== 'undefined'
                             &&
-                            <Link key={uuidv4()} className={`list-group-item list-group-item-action py-2 ripple ${
-                                window.location.pathname === '/my-lessons' ? 'active' : ''
-                            }`} to='/my-lessons'>
+                            auth.user.hasOwnProperty('roles')
+                            &&
+                            auth.user.roles.includes('ROLE_ADMIN')
+                            &&
+                            <Link key={uuidv4()}
+                                  className={`list-group-item list-group-item-action py-2 ripple ${
+                                      window.location.pathname === '/my-lessons' ? 'active' : ''
+                                  }`} to='/my-lessons'>
                                 <i className="fa-solid fa-book-open fa-fw me-3"></i>
                                 <span>My Lessons</span>
                             </Link>
@@ -69,26 +75,25 @@ function Sidebar(props) {
                         >
 
                         {
-                            isAuthenticated
+                            auth.isAuthenticated
                             &&
-                            user !== null
+                            auth.user !== null
                             &&
-                            user.roles.includes('ROLE_STUDENT')
+                            auth.user !== 'undefined'
                             &&
-                            loading === false
+                            auth.user.hasOwnProperty('roles')
                             &&
-                            lessons.length > 0
+                            auth.user.roles.includes('ROLE_STUDENT')
                             &&
                             lessons.map(lesson => (
-                                <Link key={uuidv4()} className={`list-group-item list-group-item-action py-2 ripple ${
-                                    window.location.pathname === `/${lesson.name}/exam` ? 'active' : ''
-                                }`} to={`/${lesson.name}/exam`}>
+                                <Link key={uuidv4()}
+                                      className={`list-group-item list-group-item-action py-2 ripple ${
+                                          window.location.pathname === `/${lesson.name}/exam` ? 'active' : ''
+                                      }`} to={`/${lesson.name}/exam`}>
                                     <i className="fa-solid fa-book-open fa-fw me-3"></i>
                                     <span>Take {lesson.name} exam</span>
                                 </Link>
                             ))
-
-
                         }
                     </div>
                 </div>
