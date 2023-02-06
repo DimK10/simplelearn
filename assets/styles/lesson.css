@@ -1,0 +1,29 @@
+:root {
+    --card-correct-answer: #0da243bf;
+}
+
+.question-card-body {
+    padding: .5rem;
+}
+
+.question-card-body > p {
+    margin: inherit;
+}
+
+.correct {
+    background: var(--card-correct-answer);
+    color: #FFFFFF;
+}
+
+.answer-checkbox {
+    display: inherit;
+    align-items: center;
+}
+
+.question-modify-buttons {
+    top: 30%;
+}
+
+.question-button {
+    margin-right: .3rem;
+}

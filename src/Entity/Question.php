@@ -6,12 +6,8 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-enum QuestionType: string {
-    case EASY = 'EASY';
-    case MODERATE = 'MODERATE';
-    case HARD = 'HARD';
-}
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
@@ -19,28 +15,28 @@ enum QuestionType: string {
 class Question
 {
     /**
+     * @Groups("lesson")
      * @ORM\Id
+     * TODO REMOVE STRATEGY FOR REAL DATA
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     * @Groups("lesson")
      * @ORM\Column(type="text")
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @Groups("lesson")
+     * @ORM\Column(type="string", length=255)
      */
-    private $description;
+    private $difficulty;
 
     /**
-     * @ORM\Column(type="string", length=255, enumType=QuestionType::class)
-     */
-    private $type;
-
-    /**
+     * @Groups("lesson")
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question", orphanRemoval=true)
      */
     private $answers;
@@ -55,6 +51,24 @@ class Question
      */
     private $examsAsSelectedQuestion;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lesson::class, inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lesson;
+
+    /**
+     * @Groups("lesson")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
+    /**
+     * @Groups("lesson")
+     * @ORM\Column(type="integer")
+     */
+    private $rowNum;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -66,6 +80,15 @@ class Question
     {
         return $this->id;
     }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
 
     public function getTitle(): ?string
     {
@@ -79,17 +102,23 @@ class Question
         return $this;
     }
 
-    public function getDescription(): ?string
+    /**
+     * @return mixed
+     */
+    public function getDifficulty()
     {
-        return $this->description;
+        return $this->difficulty;
     }
 
-    public function setDescription(string $description): self
+    /**
+     * @param mixed $difficulty
+     */
+    public function setDifficulty($difficulty): void
     {
-        $this->description = $description;
-
-        return $this;
+        $this->difficulty = $difficulty;
     }
+
+
 
     public function getType(): ?string
     {
@@ -183,6 +212,42 @@ class Question
         if ($this->examsAsSelectedQuestion->removeElement($examsAsSelectedQuestion)) {
             $examsAsSelectedQuestion->removeQuestionsSelected($this);
         }
+
+        return $this;
+    }
+
+    public function getLesson(): ?Lesson
+    {
+        return $this->lesson;
+    }
+
+    public function setLesson(?Lesson $lesson): self
+    {
+        $this->lesson = $lesson;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getRowNum(): ?int
+    {
+        return $this->rowNum;
+    }
+
+    public function setRowNum(int $rowNum): self
+    {
+        $this->rowNum = $rowNum;
 
         return $this;
     }

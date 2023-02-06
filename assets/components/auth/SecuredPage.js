@@ -31,12 +31,12 @@ const SecuredPage = ({ children }) => {
     </Fragment>
   );
 };
-
-SecuredPage.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
-};
+//
+// SecuredPage.propTypes = {
+//   children: PropTypes.oneOfType([
+//     PropTypes.arrayOf(PropTypes.node),
+//     PropTypes.node
+//   ]).isRequired
+// };
 
 export default SecuredPage;

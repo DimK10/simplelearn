@@ -39,6 +39,23 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param int $lessonId the lesson id of the question we need to find
+     * @return Question|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findLastQuestionByLessonId(int $lessonId): ?Question
+    {
+        return $this->createQueryBuilder('q')
+            ->leftJoin('q.lesson', 'l')
+            ->andWhere('l.id = :lessonId')
+            ->setParameter('lessonId', $lessonId)
+            ->addOrderBy('q.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */

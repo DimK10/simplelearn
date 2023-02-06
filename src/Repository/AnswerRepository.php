@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Answer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,23 @@ class AnswerRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @param int $questionId the question id of the answer we need to find
+     * @return Answer|null
+     * @throws NonUniqueResultException
+     */
+    public function findLastAnswerByQuestionId(int $questionId): ?Answer
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.question', 'q')
+            ->andWhere('q.id = :questionId')
+            ->setParameter('questionId', $questionId)
+            ->addOrderBy('a.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
