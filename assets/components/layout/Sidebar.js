@@ -19,8 +19,9 @@ function Sidebar(props) {
     const {  loading, lessons } = useSelector(state => state.lesson);
 
     useEffect(() => {
-        console.log(user)
-        dispatch(getAllLessonsByPageForStudent(0, 10));
+
+        if (lessons.length === 0)
+            dispatch(getAllLessonsByPageForStudent(0, 10));
     }, [user]);
 
 

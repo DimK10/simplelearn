@@ -5,7 +5,9 @@ const initialState = {
     loading: true,
     count: 0,
     lessons: [],
-    lesson: {},
+    lesson: {
+        questions: []
+    },
     error: ''
 };
 
@@ -140,6 +142,13 @@ const lessonSlice = createSlice({
                     } : questionEl))];
         },
 
+        // individual lesson - exam
+        getLesson: (state, action) => {
+            const {payload} = action;
+            state.loading = false;
+            state.lesson = payload;
+            state.error = '';
+        },
 
 
         // lessons
@@ -162,6 +171,11 @@ const lessonSlice = createSlice({
         setViewableLesson: (state, action) => {
             const {payload} = action;
             state.lesson = payload;
+        },
+
+        /* loading */
+        startLoading: (state) => {
+            state.loading = true;
         }
     }
 })

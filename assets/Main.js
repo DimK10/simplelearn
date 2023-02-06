@@ -14,59 +14,67 @@ import SecuredPage from "./components/auth/SecuredPage";
 import Dashboard from "./components/dashboard/Dashboard";
 import MyLessons from "./components/lessons/MyLessons";
 import Lesson from "./components/lesson/Lesson";
+import Exam from "./components/exam/Exam";
 
 if (localStorage.token) {
-  setAuthToken(localStorage.token);
+    setAuthToken(localStorage.token);
 }
 
 function Main() {
 
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, []);
 
-  return (
-    <Fragment>
-      <Provider store={store}>
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Navigate to="/sign-in" />}/>
-            <Route path='/sign-in' element={<Login/>}/>
-            <Route path='/sign-up' element={<Register/>}/>
-            <Route path='/logout' element={<Logout/>}/>
+    return (
+        <Fragment>
+            <Provider store={store}>
+                <Router>
+                    <Routes>
+                        <Route exact path="/" element={<Navigate to="/sign-in"/>}/>
+                        <Route path='/sign-in' element={<Login/>}/>
+                        <Route path='/sign-up' element={<Register/>}/>
+                        <Route path='/logout' element={<Logout/>}/>
 
-            <Route path='/dashboard' element={
-              <SecuredPage>
-                <Dashboard/>
-              </SecuredPage>}/>
+                        <Route path='/dashboard' element={
+                            <SecuredPage>
+                                <Dashboard/>
+                            </SecuredPage>}/>
 
-            {/* Lesson Routes */}
-            <Route path='/my-lessons' element={
-              <SecuredPage>
-                <MyLessons/>
-              </SecuredPage>}/>
-            <Route path='lesson/view' element={
-              <SecuredPage>
-                <Lesson />
-              </SecuredPage>
-            } />
+                        {/* exam dynamic routes */}
+                        <Route path=':lessonName/exam' element={
+                            <SecuredPage>
+                                <Exam />
+                            </SecuredPage>
+                        } />
 
-          </Routes>
-        </Router>
-      </Provider>
-    </Fragment>
-  );
+                        {/* Lesson Routes */}
+                        <Route path='/my-lessons' element={
+                            <SecuredPage>
+                                <MyLessons/>
+                            </SecuredPage>}/>
+                        <Route path='lesson/view' element={
+                            <SecuredPage>
+                                <Lesson/>
+                            </SecuredPage>
+                        }/>
+
+                    </Routes>
+                </Router>
+            </Provider>
+        </Fragment>
+    );
 }
 
 export default Main;
 
 if (document.getElementById('app')) {
-  const rootElement = document.getElementById("app");
-  const root = createRoot(rootElement);
+    const rootElement = document.getElementById("app");
+    const root = createRoot(rootElement);
 
-  root.render(
-    <StrictMode>
-      <Main/>
-    </StrictMode>
-  );
+    root.render(
+        <StrictMode>
+            <Main/>
+        </StrictMode>
+    );
 }
