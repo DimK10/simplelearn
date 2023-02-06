@@ -55,6 +55,22 @@ class LessonRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return Lesson[] Returns an array of Lesson objects for enrolled student
+     */
+    public function getAllLessonsForEnrolledStudent($studentId, $firstResult, $maxResults): array
+    {
+        return $this->createQueryBuilder('l')
+            ->innerJoin('l.enrolledStudents', 's', 'WITH', 's.id = :studentId')
+            ->setParameter('studentId', $studentId)
+            ->orderBy('l.id', 'ASC')
+            ->setFirstResult($firstResult)
+            ->setMaxResults($maxResults)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Lesson[] Returns an array of Lesson objects
 //     */

@@ -42,7 +42,12 @@ class LessonController extends AbstractController
     /**
      * @Route("/lessons/tutor/{pageNo}/{numOfRecords}", name="all_lessons_for_tutor", methods="GET")
      */
-    public function index(ManagerRegistry $doctrine, SerializerInterface $serializer, int $pageNo, int $numOfRecords): Response
+    public function getAllLessonsByTutorPageable(
+        ManagerRegistry $doctrine,
+        SerializerInterface $serializer,
+        int $pageNo,
+        int $numOfRecords
+    ): Response
     {
 
         $entityManager = $doctrine->getManager();
@@ -74,12 +79,51 @@ class LessonController extends AbstractController
         );
 
         return new Response($json);
+    }
 
-//
-//        $lessonDTOs = array_map(function ($lesson) {
-//            return $this->lessonToLessonDTO->convert($lesson);
-//        }, $lessons);
-//
-//        return $this->json($lessonDTOs);
+    /**
+     * @Route("/lessons/student/{pageNo}/{numOfRecords}", name="all_lessons_for_tutor", methods="GET")
+     */
+    public function getAllLessonsByStudentPageable(
+        ManagerRegistry $doctrine,
+        SerializerInterface $serializer,
+        int $pageNo,
+        int $numOfRecords
+    ): Response
+    {
+
+        $entityManager = $doctrine->getManager();
+
+        /**
+         * @type LessonRepository $lessonRepository
+         */
+        $lessonRepository = $entityManager->getRepository(Lesson::class);
+
+        // Get tutor from jwt
+        /**
+         * @var User $student
+         */
+        $student = $this->userService->getCurrentUser();
+
+        // Calculate firstResult
+        if ($pageNo == 0)
+            $firstResult = 0;
+        else {
+            $firstResult = ($numOfRecords * $pageNo) + 1;
+        }
+
+        $lessons = $lessonRepository->getAllLessonsForEnrolledStudent(
+            $student->getId(),
+            $firstResult,
+            $numOfRecords
+        );
+
+
+        $json = $serializer->serialize(
+            $lessons,
+            'json', ['groups' => ['lesson']]
+        );
+
+        return new Response($json);
     }
 }

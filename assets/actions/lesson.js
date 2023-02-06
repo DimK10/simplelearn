@@ -27,6 +27,21 @@ export const getAllLessonsByPageForTutor = (pageNo, pageSize) => async (dispatch
   }
 }
 
+export const getAllLessonsByPageForStudent = (pageNo, pageSize) => async (dispatch) => {
+    if (localStorage.jwt) {
+        setAuthToken(localStorage.jwt);
+    }
+
+    try {
+        ///lessons/tutor/{pageNo}/{numOfRecords}
+        const res = await axios.get(`/api/lessons/student/${pageNo}/${pageSize}`);
+        dispatch(getAllLessons(res.data))
+    } catch (err) {
+        dispatch(lessonError(err.response.data.errorMessage))
+    }
+}
+
+
 export const getCountOfLessonsAction = (userId) => async (dispatch) => {
   if (localStorage.jwt) {
     setAuthToken(localStorage.jwt);

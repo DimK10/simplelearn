@@ -1,10 +1,29 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
+import {
+    getAllLessonsByPageForStudent,
+    getAllLessonsByPageForTutor
+} from "../../actions/lesson";
 
 
 Sidebar.propTypes = {};
 
 function Sidebar(props) {
+
+    const dispatch = useDispatch();
+
+    const { isAuthenticated, user } = useSelector(state => state.auth);
+
+    const {  loading, lessons } = useSelector(state => state.lesson);
+
+    useEffect(() => {
+        console.log(user)
+        dispatch(getAllLessonsByPageForStudent(0, 10));
+    }, [user]);
+
+
     return (
         <Fragment>
             {/*<!-- Sidebar -->*/}
@@ -15,6 +34,7 @@ function Sidebar(props) {
                 <div className="position-sticky">
                     <div className="list-group list-group-flush mx-3 mt-4">
 
+                        {/* Dashboard link - open to all roles */}
                         <Link className={`list-group-item list-group-item-action py-2 ripple ${
                             window.location.pathname === '/dashboard' ? 'active' : ''
                         }`} to='/dashboard'>
@@ -22,25 +42,53 @@ function Sidebar(props) {
                             ><span>Main dashboard</span>
                         </Link>
 
-                        <Link className={`list-group-item list-group-item-action py-2 ripple ${
-                            window.location.pathname === '/my-lessons' ? 'active' : ''
-                        }`} to='/my-lessons'>
-                            <i className="fa-solid fa-book-open fa-fw me-3"></i>
-                            <span>My Lessons</span>
-                        </Link>
+                        {/* Teacher lessons page - open only to teacher role */}
+                        {
+                            isAuthenticated
+                            &&
+                            user !== null
+                            &&
+                            user.roles.includes('ROLE_ADMIN')
+                            &&
+                            <Link key={uuidv4()} className={`list-group-item list-group-item-action py-2 ripple ${
+                                window.location.pathname === '/my-lessons' ? 'active' : ''
+                            }`} to='/my-lessons'>
+                                <i className="fa-solid fa-book-open fa-fw me-3"></i>
+                                <span>My Lessons</span>
+                            </Link>
+                        }
 
-                        <Link className={`list-group-item list-group-item-action py-2 ripple ${
-                            window.location.pathname === '/my-questions' ? 'active' : ''
-                        }`} to='/my-questions'>
-                            <i className="fa-solid fa-clipboard-question fa-fw me-3"></i>
-                            <span>My Questions</span>
-                        </Link>
+
+                        {/* analytics page - open to all roles */}
                         <a
                             href="#"
                             className="list-group-item list-group-item-action py-2 ripple"
                         ><i className="fas fa-chart-line fa-fw me-3"></i
                         ><span>Analytics</span></a
                         >
+
+                        {
+                            isAuthenticated
+                            &&
+                            user !== null
+                            &&
+                            user.roles.includes('ROLE_STUDENT')
+                            &&
+                            loading === false
+                            &&
+                            lessons.length > 0
+                            &&
+                            lessons.map(lesson => (
+                                <Link key={uuidv4()} className={`list-group-item list-group-item-action py-2 ripple ${
+                                    window.location.pathname === `/${lesson.name}/exam` ? 'active' : ''
+                                }`} to={`/${lesson.name}/exam`}>
+                                    <i className="fa-solid fa-book-open fa-fw me-3"></i>
+                                    <span>Take {lesson.name} exam</span>
+                                </Link>
+                            ))
+
+
+                        }
                     </div>
                 </div>
             </nav>
