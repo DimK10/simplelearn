@@ -566,6 +566,144 @@ class AnswerFixtures extends BaseFixture implements DependentFixtureInterface
         $manager->persist($answer);
         // endregion
 
+        // Math answers for question 9
+        // region
+        /**
+         * @var Question $mathQuestion
+         */
+        $mathQuestion =$this->getReference("math_question_9");
+
+        $answer = new Answer();
+        $answer->setId(41);
+        $answer->setRowNum(41);
+        $answer->setStatus("show");
+        $answer->setText("5");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_41", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(42);
+        $answer->setRowNum(42);
+        $answer->setStatus("show");
+        $answer->setText("10");
+        $answer->setCorrect(true);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_42", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(43);
+        $answer->setRowNum(43);
+        $answer->setStatus("show");
+        $answer->setText("15");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_43", $answer);
+
+        $manager->persist($answer);
+
+
+        $answer = new Answer();
+        $answer->setId(44);
+        $answer->setRowNum(44);
+        $answer->setStatus("show");
+        $answer->setText("20");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_44", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(45);
+        $answer->setRowNum(45);
+        $answer->setStatus("show");
+        $answer->setText("25");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_45", $answer);
+
+        $manager->persist($answer);
+        // endregion
+
+        // Math answers for question 10
+        // region
+        /**
+         * @var Question $mathQuestion
+         */
+        $mathQuestion =$this->getReference("math_question_10");
+
+        $answer = new Answer();
+        $answer->setId(46);
+        $answer->setRowNum(46);
+        $answer->setStatus("show");
+        $answer->setText("3");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_46", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(47);
+        $answer->setRowNum(47);
+        $answer->setStatus("show");
+        $answer->setText("4");
+        $answer->setCorrect(true);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_47", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(48);
+        $answer->setRowNum(48);
+        $answer->setStatus("show");
+        $answer->setText("5");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_48", $answer);
+
+        $manager->persist($answer);
+
+
+        $answer = new Answer();
+        $answer->setId(49);
+        $answer->setRowNum(49);
+        $answer->setStatus("show");
+        $answer->setText("6");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_49", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(50);
+        $answer->setRowNum(50);
+        $answer->setStatus("show");
+        $answer->setText("7");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_50", $answer);
+
+        $manager->persist($answer);
+        // endregion
+
         $manager->flush();
 
     }
