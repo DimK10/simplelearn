@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aaa5bc1-f265-49bd-b3b3-66d0b54bbedf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/components/exam/Exam.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/actions/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/lesson.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layout/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layout/Loading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layout/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/lesson.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LessonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LessonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Answer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Answer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Exam.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/ExamTaken.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,7 +325,7 @@
       <workItem from="1674983635703" duration="8919000" />
       <workItem from="1675185884516" duration="8626000" />
       <workItem from="1675264775158" duration="6356000" />
-      <workItem from="1675672545329" duration="7178000" />
+      <workItem from="1675672545329" duration="9932000" />
     </task>
     <servers />
   </component>

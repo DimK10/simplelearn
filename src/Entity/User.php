@@ -64,15 +64,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @Groups("user")
-     * @ORM\OneToMany(targetEntity=ExamTaken::class, mappedBy="student")
+     * @ORM\OneToMany(targetEntity=Exam::class, mappedBy="student")
      */
-    private $examsTaken;
+    private $exams;
 
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
         $this->lessonsEnrolled = new ArrayCollection();
-        $this->examsTaken = new ArrayCollection();
+        $this->exams = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -239,29 +239,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, ExamTaken>
+     * @return Collection<int, Exam>
      */
-    public function getExamsTaken(): Collection
+    public function getExams(): Collection
     {
-        return $this->examsTaken;
+        return $this->exams;
     }
 
-    public function addExamsTaken(ExamTaken $examsTaken): self
+    public function addExam(Exam $exam): self
     {
-        if (!$this->examsTaken->contains($examsTaken)) {
-            $this->examsTaken[] = $examsTaken;
-            $examsTaken->setStudent($this);
+        if (!$this->exams->contains($exam)) {
+            $this->exams[] = $exam;
+            $exam->setStudent($this);
         }
 
         return $this;
     }
 
-    public function removeExamsTaken(ExamTaken $examsTaken): self
+    public function removeExam(Exam $exam): self
     {
-        if ($this->examsTaken->removeElement($examsTaken)) {
+        if ($this->exams->removeElement($exam)) {
             // set the owning side to null (unless already changed)
-            if ($examsTaken->getStudent() === $this) {
-                $examsTaken->setStudent(null);
+            if ($exam->getStudent() === $this) {
+                $exam->setStudent(null);
             }
         }
 

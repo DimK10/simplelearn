@@ -40,11 +40,6 @@ class Answer
     private $question;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ExamTaken::class, mappedBy="correctAnswers")
-     */
-    private $examsTakenThisAnswerWasCorrect;
-
-    /**
      * @Groups({"lesson", "answer"})
      * @ORM\Column(type="integer")
      */
@@ -56,9 +51,15 @@ class Answer
      */
     private $status;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Exam::class, mappedBy="answersGivenByStudent")
+     */
+    private $exams;
+
     public function __construct()
     {
         $this->examsTakenThisAnswerWasCorrect = new ArrayCollection();
+        $this->exams = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,33 +120,6 @@ class Answer
         return $this;
     }
 
-    /**
-     * @return Collection<int, ExamTaken>
-     */
-    public function getExamsTakenThisAnswerWasCorrect(): Collection
-    {
-        return $this->examsTakenThisAnswerWasCorrect;
-    }
-
-    public function addExamsTakenThisAnswerWasCorrect(ExamTaken $examsTakenThisAnswerWasCorrect): self
-    {
-        if (!$this->examsTakenThisAnswerWasCorrect->contains($examsTakenThisAnswerWasCorrect)) {
-            $this->examsTakenThisAnswerWasCorrect[] = $examsTakenThisAnswerWasCorrect;
-            $examsTakenThisAnswerWasCorrect->addCorrectAnswer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExamsTakenThisAnswerWasCorrect(ExamTaken $examsTakenThisAnswerWasCorrect): self
-    {
-        if ($this->examsTakenThisAnswerWasCorrect->removeElement($examsTakenThisAnswerWasCorrect)) {
-            $examsTakenThisAnswerWasCorrect->removeCorrectAnswer($this);
-        }
-
-        return $this;
-    }
-
     public function getRowNum(): ?int
     {
         return $this->rowNum;
@@ -166,6 +140,33 @@ class Answer
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Exam>
+     */
+    public function getExams(): Collection
+    {
+        return $this->exams;
+    }
+
+    public function addExam(Exam $exam): self
+    {
+        if (!$this->exams->contains($exam)) {
+            $this->exams[] = $exam;
+            $exam->addAnswersGivenByStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExam(Exam $exam): self
+    {
+        if ($this->exams->removeElement($exam)) {
+            $exam->removeAnswersGivenByStudent($this);
+        }
 
         return $this;
     }

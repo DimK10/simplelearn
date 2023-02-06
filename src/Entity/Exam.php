@@ -23,15 +23,6 @@ class Exam
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Question::class, inversedBy="examsAsPossibleQuestion")
-     * @JoinTable(name="exam_question",
-     *      joinColumns={@JoinColumn(name="exam_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="question_id", referencedColumnName="id")}
-     *      )
-     */
-    private $questions;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Question::class, inversedBy="examsAsSelectedQuestion")
      * @JoinTable(name="exam_question_selected",
      *      joinColumns={@JoinColumn(name="exam_id", referencedColumnName="id")},
@@ -41,44 +32,35 @@ class Exam
     private $questionsSelected;
 
     /**
-     * @ORM\OneToMany(targetEntity=ExamTaken::class, mappedBy="exam")
+     * @ORM\Column(type="datetime")
      */
-    private $tries;
+    private $timeStarted;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $timeEnded;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="exams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $student;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Answer::class, inversedBy="exams")
+     */
+    private $answersGivenByStudent;
 
     public function __construct()
     {
-        $this->questions = new ArrayCollection();
         $this->questionsSelected = new ArrayCollection();
-        $this->tries = new ArrayCollection();
+        $this->answersGivenByStudent = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Question>
-     */
-    public function getQuestions(): Collection
-    {
-        return $this->questions;
-    }
-
-    public function addQuestion(Question $question): self
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions[] = $question;
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): self
-    {
-        $this->questions->removeElement($question);
-
-        return $this;
     }
 
     /**
@@ -105,32 +87,62 @@ class Exam
         return $this;
     }
 
-    /**
-     * @return Collection<int, ExamTaken>
-     */
-    public function getTries(): Collection
+    public function getTimeStarted(): ?\DateTimeInterface
     {
-        return $this->tries;
+        return $this->timeStarted;
     }
 
-    public function addTry(ExamTaken $try): self
+    public function setTimeStarted(\DateTimeInterface $timeStarted): self
     {
-        if (!$this->tries->contains($try)) {
-            $this->tries[] = $try;
-            $try->setExam($this);
+        $this->timeStarted = $timeStarted;
+
+        return $this;
+    }
+
+    public function getTimeEnded(): ?\DateTimeInterface
+    {
+        return $this->timeEnded;
+    }
+
+    public function setTimeEnded(\DateTimeInterface $timeEnded): self
+    {
+        $this->timeEnded = $timeEnded;
+
+        return $this;
+    }
+
+    public function getStudent(): ?User
+    {
+        return $this->student;
+    }
+
+    public function setStudent(?User $student): self
+    {
+        $this->student = $student;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Answer>
+     */
+    public function getAnswersGivenByStudent(): Collection
+    {
+        return $this->answersGivenByStudent;
+    }
+
+    public function addAnswersGivenByStudent(Answer $answersGivenByStudent): self
+    {
+        if (!$this->answersGivenByStudent->contains($answersGivenByStudent)) {
+            $this->answersGivenByStudent[] = $answersGivenByStudent;
         }
 
         return $this;
     }
 
-    public function removeTry(ExamTaken $try): self
+    public function removeAnswersGivenByStudent(Answer $answersGivenByStudent): self
     {
-        if ($this->tries->removeElement($try)) {
-            // set the owning side to null (unless already changed)
-            if ($try->getExam() === $this) {
-                $try->setExam(null);
-            }
-        }
+        $this->answersGivenByStudent->removeElement($answersGivenByStudent);
 
         return $this;
     }
