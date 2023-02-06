@@ -41,7 +41,9 @@ function Exam(props) {
                         /* check if lesson does actually have questions to it, else show unavailable exam */
                         loading === false
                         &&
-                        lesson.questions.length > 0
+                        lesson !== null
+                        &&
+                        lesson !== 'undefined'
                             ?
                             <main key={uuidv4()} style={{marginTop: '58px'}}>
                                 <div className="container pt-4">

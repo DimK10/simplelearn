@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
-     * @Groups("user")
+     * @Groups("user", "student_lesson")
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
      * @ORM\GeneratedValue(strategy="NONE")
@@ -31,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @Groups("user")
+     * @Groups("user", "student_lesson")
      * @ORM\Column(type="string", length=180)
      */
     private $username;

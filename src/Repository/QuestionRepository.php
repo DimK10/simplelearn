@@ -56,6 +56,20 @@ class QuestionRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return Question[] Returns an array of random Question objects
+     */
+    public function getFourRandomQuestionsByLesson($lessonId): array
+    {
+        return $this->createQueryBuilder('q')
+            ->innerJoin('q.lesson', 'l', 'WITH', 'l.id = :lessonId')
+            ->setParameter('lessonId', $lessonId)
+            ->orderBy('RAND()', 'ASC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */

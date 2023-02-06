@@ -15,28 +15,28 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Question
 {
     /**
-     * @Groups("lesson")
+     * @Groups({"lesson", "exam"})
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @Groups("lesson")
+     * @Groups({"lesson", "exam"})
      * @ORM\Column(type="text")
      */
     private $title;
 
     /**
-     * @Groups("lesson")
+     * @Groups({"lesson", "exam"})
      * @ORM\Column(type="string", length=255)
      */
     private $difficulty;
 
     /**
-     * @Groups("lesson")
+     * @Groups({"lesson", "exam"})
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question", orphanRemoval=true)
      */
     private $answers;
@@ -58,13 +58,13 @@ class Question
     private $lesson;
 
     /**
-     * @Groups("lesson")
+     * @Groups({"lesson", "exam"})
      * @ORM\Column(type="string", length=255)
      */
     private $status;
 
     /**
-     * @Groups("lesson")
+     * @Groups({"lesson", "exam"})
      * @ORM\Column(type="integer")
      */
     private $rowNum;

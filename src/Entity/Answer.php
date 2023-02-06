@@ -14,21 +14,22 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Answer
 {
     /**
-     * @Groups({"lesson", "answer"})
+     * @Groups({"lesson", "answer", "exam"})
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * TODO REMOVE STRATEGY FOR REAL DATA
+     * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @Groups({"lesson", "answer"})
+     * @Groups({"lesson", "answer", "exam"})
      * @ORM\Column(type="text")
      */
     private $text;
 
     /**
-     * @Groups({"lesson", "answer"})
+     * @Groups({"lesson", "answer", "exam"})
      * @ORM\Column(type="boolean")
      */
     private $correct;
@@ -40,13 +41,13 @@ class Answer
     private $question;
 
     /**
-     * @Groups({"lesson", "answer"})
+     * @Groups({"lesson", "answer", "exam"})
      * @ORM\Column(type="integer")
      */
     private $rowNum;
 
     /**
-     * @Groups({"lesson", "answer"})
+     * @Groups({"lesson", "answer", "exam"})
      * @ORM\Column(type="string", length=255)
      */
     private $status;

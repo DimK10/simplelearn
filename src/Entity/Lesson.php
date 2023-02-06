@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Lesson
 {
     /**
-     * @Groups({"admin", "lesson"})
+     * @Groups({"admin", "lesson", "student_lesson"})
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
      * @ORM\GeneratedValue(strategy="NONE")
@@ -23,7 +23,7 @@ class Lesson
     private $id;
 
     /**
-     * @Groups({"admin", "lesson"})
+     * @Groups({"admin", "lesson", "student_lesson"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -35,7 +35,7 @@ class Lesson
     private $description;
 
     /**
-     * @Groups("client")
+     * @Groups("client", "student_lesson")
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="lessons")
      * @ORM\JoinColumn(nullable=false)
      */

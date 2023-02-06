@@ -222,4 +222,23 @@ class QuestionController extends AbstractController
 
         return new JsonResponse("The question was deleted successfully!");
     }
+
+    /**
+     * @Route("/lesson/question/generate/{lessonId}", name="generate_questions_for_exam_lesson", methods="GET")
+     */
+    public function generateFourRandomQuestionsForExam(ManagerRegistry $doctrine, SerializerInterface $serializer, int $lessonId): Response
+    {
+
+        $questionRepository = $doctrine->getRepository(Question::class);
+
+        $questions = $questionRepository->getFourRandomQuestionsByLesson($lessonId);
+
+        $json = $serializer->serialize(
+            $questions,
+            'json', ['groups' => ['exam']]
+        );
+
+        return new Response($json);
+
+    }
 }
