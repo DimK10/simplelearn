@@ -364,7 +364,7 @@ class AnswerFixtures extends BaseFixture implements DependentFixtureInterface
         /**
          * @var Question $mathQuestion
          */
-        $mathQuestion =$this->getReference("math_question_5");
+        $mathQuestion =$this->getReference("math_question_6");
 
         $answer = new Answer();
         $answer->setId(26);
@@ -424,6 +424,144 @@ class AnswerFixtures extends BaseFixture implements DependentFixtureInterface
         $answer->setQuestion($mathQuestion);
 
         $this->addReference("math_answer_30", $answer);
+
+        $manager->persist($answer);
+        // endregion
+
+        // Math answers for question 7
+        // region
+        /**
+         * @var Question $mathQuestion
+         */
+        $mathQuestion =$this->getReference("math_question_7");
+
+        $answer = new Answer();
+        $answer->setId(31);
+        $answer->setRowNum(31);
+        $answer->setStatus("show");
+        $answer->setText("3");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_31", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(32);
+        $answer->setRowNum(32);
+        $answer->setStatus("show");
+        $answer->setText("4");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_32", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(33);
+        $answer->setRowNum(33);
+        $answer->setStatus("show");
+        $answer->setText("5");
+        $answer->setCorrect(true);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_33", $answer);
+
+        $manager->persist($answer);
+
+
+        $answer = new Answer();
+        $answer->setId(34);
+        $answer->setRowNum(34);
+        $answer->setStatus("show");
+        $answer->setText("6");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_34", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(35);
+        $answer->setRowNum(35);
+        $answer->setStatus("show");
+        $answer->setText("7");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_35", $answer);
+
+        $manager->persist($answer);
+        // endregion
+
+        // Math answers for question 8
+        // region
+        /**
+         * @var Question $mathQuestion
+         */
+        $mathQuestion =$this->getReference("math_question_8");
+
+        $answer = new Answer();
+        $answer->setId(36);
+        $answer->setRowNum(36);
+        $answer->setStatus("show");
+        $answer->setText("45");
+        $answer->setCorrect(true);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_36", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(37);
+        $answer->setRowNum(37);
+        $answer->setStatus("show");
+        $answer->setText("46");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_37", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(38);
+        $answer->setRowNum(38);
+        $answer->setStatus("show");
+        $answer->setText("47");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_38", $answer);
+
+        $manager->persist($answer);
+
+
+        $answer = new Answer();
+        $answer->setId(39);
+        $answer->setRowNum(39);
+        $answer->setStatus("show");
+        $answer->setText("48");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_39", $answer);
+
+        $manager->persist($answer);
+
+        $answer = new Answer();
+        $answer->setId(40);
+        $answer->setRowNum(40);
+        $answer->setStatus("show");
+        $answer->setText("49");
+        $answer->setCorrect(false);
+        $answer->setQuestion($mathQuestion);
+
+        $this->addReference("math_answer_40", $answer);
 
         $manager->persist($answer);
         // endregion
