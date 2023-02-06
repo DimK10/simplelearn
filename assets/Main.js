@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect} from 'react';
 import {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import HelloPage from "./components/HelloPage";
 import setAuthToken from "./utils/setAuthToken";
 import store from "./store";
@@ -30,7 +30,7 @@ function Main() {
       <Provider store={store}>
         <Router>
           <Routes>
-            <Route exact path="/" element={<SecuredPage/>}/>
+            <Route exact path="/" element={<Navigate to="/sign-in" />}/>
             <Route path='/sign-in' element={<Login/>}/>
             <Route path='/sign-up' element={<Register/>}/>
             <Route path='/logout' element={<Logout/>}/>
