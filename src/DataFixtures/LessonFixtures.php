@@ -33,39 +33,49 @@ class LessonFixtures extends BaseFixture implements DependentFixtureInterface
         $enrolledStudent2= $userRepository->findOneBy(["email" =>"student2@gmail.com"]);
 
         /* Lesson 1 t student 0 */
-        $lesson = new Lesson();
-        $lesson->setId(1);
-        $lesson->setName("Math");
-        $lesson->setDescription($faker->text());
-        $lesson->setTutor($admin);
-        $lesson->addEnrolledStudent($enrolledStudent0);
-        $manager->persist($lesson);
+        $lesson1 = new Lesson();
+        $lesson1->setId(1);
+        $lesson1->setName("Math");
+        $lesson1->setDescription($faker->text());
+        $lesson1->setTutor($admin);
+        $lesson1->addEnrolledStudent($enrolledStudent0);
+        $manager->persist($lesson1);
+
+        $this->addReference("math_lesson", $lesson1);
 
         /* Lesson 2 to student 1 */
-        $lesson = new Lesson();
-        $lesson->setId(2);
-        $lesson->setName("Physics");
-        $lesson->setDescription($faker->text());
-        $lesson->setTutor($admin);
-        $lesson->addEnrolledStudent($enrolledStudent1);
-        $manager->persist($lesson);
+        $lesson2 = new Lesson();
+        $lesson2->setId(2);
+        $lesson2->setName("Physics");
+        $lesson2->setDescription($faker->text());
+        $lesson2->setTutor($admin);
+        $lesson2->addEnrolledStudent($enrolledStudent1);
+        $manager->persist($lesson2);
+
+        $this->addReference("physics_lesson", $lesson2);
+
 
         /* Lesson 3 to student 2 */
-        $lesson = new Lesson();
-        $lesson->setId(3);
-        $lesson->setName("Geometry");
-        $lesson->setDescription($faker->text());
-        $lesson->setTutor($admin);
-        $lesson->addEnrolledStudent($enrolledStudent2);
-        $manager->persist($lesson);
+        $lesson3 = new Lesson();
+        $lesson3->setId(3);
+        $lesson3->setName("Geometry");
+        $lesson3->setDescription($faker->text());
+        $lesson3->setTutor($admin);
+        $lesson3->addEnrolledStudent($enrolledStudent2);
+        $manager->persist($lesson3);
+
+        $this->addReference("geometry_lesson", $lesson3);
+
 
         /* Lesson 4 to no student */
-        $lesson = new Lesson();
-        $lesson->setId(4);
-        $lesson->setName("Programming");
-        $lesson->setDescription($faker->text());
-        $lesson->setTutor($admin);
-        $manager->persist($lesson);
+        $lesson4 = new Lesson();
+        $lesson4->setId(4);
+        $lesson4->setName("Programming");
+        $lesson4->setDescription($faker->text());
+        $lesson4->setTutor($admin);
+        $manager->persist($lesson4);
+
+        $this->addReference("programming_lesson", $lesson4);
 
         $manager->flush();
     }
