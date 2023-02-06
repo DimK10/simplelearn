@@ -7,6 +7,7 @@ import HeaderNav from "../layout/HeaderNav";
 import Alert from "../layout/Alert";
 import {v4 as uuidv4} from 'uuid';
 import Loading from "../layout/Loading";
+import {generateQuestions, prepareNewExamAction} from "../../actions/exam";
 
 
 function Exam(props) {
@@ -21,6 +22,10 @@ function Exam(props) {
         dispatch(getLessonByName(lessonName));
     }, []);
 
+
+    const startExam = () => {
+        dispatch(generateQuestions(lesson.id));
+    }
 
     return (
         <>
@@ -58,6 +63,9 @@ function Exam(props) {
                                                                 Exam
                                                                 Now</strong>
                                                         </h5>
+                                                        <button className="btn btn-primary" onClick={startExam}>
+                                                            Begin the exam
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

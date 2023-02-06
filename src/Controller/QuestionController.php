@@ -233,6 +233,7 @@ class QuestionController extends AbstractController
 
         $questions = $questionRepository->getFourRandomQuestionsByLesson($lessonId);
 
+
         $json = $serializer->serialize(
             $questions,
             'json', ['groups' => ['exam']]

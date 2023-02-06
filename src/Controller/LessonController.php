@@ -126,6 +126,27 @@ class LessonController extends AbstractController
 
         return new Response($json);
     }
+
+    /**
+     * @Route("/lesson/name/{lessonName}", name="lesson_by_name", methods="GET")
+     */
+    public function getLessonByName(
+        ManagerRegistry $doctrine,
+        SerializerInterface $serializer,
+        string $lessonName
+    ) :Response
+    {
+        $lessonRepository = $doctrine->getRepository(Lesson::class);
+
+        $lesson = $lessonRepository->findOneBy(['name' => $lessonName]);
+
+        $json = $serializer->serialize(
+            $lesson,
+            'json', ['groups' => ['student_lesson']]
+        );
+
+        return new Response($json);
+    }
 }
 
 

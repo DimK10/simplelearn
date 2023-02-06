@@ -64,7 +64,7 @@ class QuestionRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('q')
             ->innerJoin('q.lesson', 'l', 'WITH', 'l.id = :lessonId')
             ->setParameter('lessonId', $lessonId)
-            ->orderBy('RAND()', 'ASC')
+            ->orderBy('RAND()')
             ->setMaxResults(4)
             ->getQuery()
             ->getResult();

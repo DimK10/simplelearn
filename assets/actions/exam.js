@@ -24,11 +24,19 @@ export const generateQuestions = (lessonId) => async dispatch => {
     };
 
     try {
-        const res = await axios.get(`/lesson/question/generate/${lessonId}`, config);
+        const res = await axios.get(`/api/lesson/question/generate/${lessonId}`, config);
 
-        dispatch(examGetQuestions(res.data));
+        let questions = res.data;
 
-    }catch (err){
+        // shuffle answers
+        questions = questions.map(question => {
+            question.answers = [...question.answers.sort(() => Math.random() - 0.5)];
+            return question;
+        })
+
+        dispatch(examGetQuestions(questions));
+
+    } catch (err) {
         dispatch(examError(err.response.data.errorMessage))
     }
 }
