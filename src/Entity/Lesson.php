@@ -17,7 +17,7 @@ class Lesson
      * @Groups({"admin", "lesson", "student_lesson"})
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      */
     private $id;

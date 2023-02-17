@@ -18,7 +18,7 @@ class Question
      * @Groups({"lesson", "exam"})
      * @ORM\Id
      * TODO REMOVE STRATEGY FOR REAL DATA
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      */
     private $id;
